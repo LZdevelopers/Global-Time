@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://brasil-time.vercel.app/</loc>
+    <loc>https://global-time.lzdev.com.br/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/relogio-mundial</loc>
+    <loc>https://global-time.lzdev.com.br/relogio-mundial</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/conversor</loc>
+    <loc>https://global-time.lzdev.com.br/conversor</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/tela-cheia</loc>
+    <loc>https://global-time.lzdev.com.br/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/cronometro</loc>
+    <loc>https://global-time.lzdev.com.br/cronometro</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/temporizador</loc>
+    <loc>https://global-time.lzdev.com.br/temporizador</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/pomodoro</loc>
+    <loc>https://global-time.lzdev.com.br/pomodoro</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/despertador</loc>
+    <loc>https://global-time.lzdev.com.br/despertador</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/contagem</loc>
+    <loc>https://global-time.lzdev.com.br/contagem</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/calendario</loc>
+    <loc>https://global-time.lzdev.com.br/calendario</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/feriados</loc>
+    <loc>https://global-time.lzdev.com.br/feriados</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/sol</loc>
+    <loc>https://global-time.lzdev.com.br/sol</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/calculadoras</loc>
+    <loc>https://global-time.lzdev.com.br/calculadoras</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/timestamp</loc>
+    <loc>https://global-time.lzdev.com.br/timestamp</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://brasil-time.vercel.app/docs</loc>
+    <loc>https://global-time.lzdev.com.br/docs</loc>
     <priority>0.8</priority>
   </url>
 </urlset>

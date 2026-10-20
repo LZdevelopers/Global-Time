@@ -8,7 +8,7 @@ import ptBR from "../scripts/i18n/textos/pt-BR.js";
 // Endereço público de produção, usado em canonical, Open Graph e sitemap.
 // AJUSTE para o domínio real antes de publicar (ou defina SITE_URL no ambiente
 // ao rodar `npm run gerar`).
-export const SITE_URL = (process.env.SITE_URL || "https://brasil-time.vercel.app").replace(/\/$/, "");
+export const SITE_URL = (process.env.SITE_URL || "https://global-time.lzdev.com.br").replace(/\/$/, "");
 
 export const SITE = {
   nome: "GlobalTime",

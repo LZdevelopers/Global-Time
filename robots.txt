@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://brasil-time.vercel.app/sitemap.xml
+Sitemap: https://global-time.lzdev.com.br/sitemap.xml
