@@ -1,0 +1,7 @@
+# Ferramentas de desenvolvimento e testes não vão para produção.
+dev/
+testes/
+*.test.mjs
+
+# Originais da logo (as versões publicadas ficam em assets/).
+logos/

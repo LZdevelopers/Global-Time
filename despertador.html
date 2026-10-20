@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- @head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Despertador online | GlobalTime</title>
+    <meta name="description" content="Programe alarmes com data, hora, repetição semanal, fuso horário e som, disparados pelo horário sincronizado." />
+    <meta name="gt:pagina" content="despertador" />
+    <link rel="canonical" href="https://brasil-time.vercel.app/despertador" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GlobalTime" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Despertador online" />
+    <meta property="og:description" content="Programe alarmes com data, hora, repetição semanal, fuso horário e som, disparados pelo horário sincronizado." />
+    <meta property="og:url" content="https://brasil-time.vercel.app/despertador" />
+    <meta property="og:image" content="https://brasil-time.vercel.app/assets/marca/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GlobalTime — hora certa sincronizada e ferramentas de tempo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Despertador online" />
+    <meta name="twitter:description" content="Programe alarmes com data, hora, repetição semanal, fuso horário e som, disparados pelo horário sincronizado." />
+    <meta name="twitter:image" content="https://brasil-time.vercel.app/assets/marca/og.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/assets/icones/icone-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/icones/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="/assets/fontes/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/estilos/app.css" />
+    <script src="/scripts/tema-inicial.js"></script>
+    <script type="module" src="/scripts/nucleo/pagina.js"></script>
+    <!-- /@head -->
+    <script type="module" src="/scripts/paginas/despertador.js"></script>
+  </head>
+  <body>
+    <!-- @cabecalho -->
+    <a class="pular-conteudo" href="#conteudo" data-i18n="comum.pularConteudo">Pular para o conteúdo</a>
+    <header class="cabecalho">
+      <div class="container cabecalho__conteudo">
+        <a class="marca" href="/" aria-label="GlobalTime — página inicial" data-i18n-attr="aria-label:comum.marcaInicio">
+          <img class="marca__simbolo marca__simbolo--preto" src="/assets/marca/simbolo-preto.png" width="32" height="32" alt="" /><img class="marca__simbolo marca__simbolo--branco" src="/assets/marca/simbolo-branco.png" width="32" height="32" alt="" />
+          <span class="marca__nome">Global<span>Time</span></span>
+        </a>
+        <nav class="nav-principal" aria-label="Principal" data-i18n-attr="aria-label:comum.navPrincipal">
+          <a href="/" data-i18n="paginas.inicio.rotuloNav">Início</a>
+          <a href="/cronometro" data-i18n="paginas.cronometro.rotulo">Cronômetro</a>
+          <a href="/temporizador" data-i18n="paginas.temporizador.rotulo">Temporizador</a>
+          <a href="/calendario" data-i18n="paginas.calendario.rotulo">Calendário</a>
+          <a href="/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">Fusos horários</a>
+        </nav>
+        <div class="cabecalho__acoes">
+          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="Usar tema escuro" title="Usar tema escuro">
+            <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tema-escuro"/></svg>
+          </button>
+          <button id="botaoMenu" class="botao botao--secundario botao--pequeno" type="button" aria-expanded="false" aria-controls="painelFerramentas">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#grade"/></svg><span data-i18n="comum.ferramentas">Ferramentas</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div id="painelFerramentas" class="painel-ferramentas" hidden>
+      <nav aria-label="Todas as ferramentas" data-i18n-attr="aria-label:comum.todasFerramentas">
+        <div class="container painel-ferramentas__conteudo">
+            <div>
+              <h2 data-i18n="grupos.relogios">Relógios</h2>
+              <ul>
+                <li><a href="/"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">Hora certa</span></a></li>
+                <li><a href="/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">Relógio mundial</span></a></li>
+                <li><a href="/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">Conversor de fusos</span></a></li>
+                <li><a href="/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">Relógio em tela cheia</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.medir">Medir o tempo</h2>
+              <ul>
+                <li><a href="/cronometro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#cronometro"/></svg><span data-i18n="paginas.cronometro.rotulo">Cronômetro</span></a></li>
+                <li><a href="/temporizador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#temporizador"/></svg><span data-i18n="paginas.temporizador.rotulo">Temporizador</span></a></li>
+                <li><a href="/pomodoro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#foco"/></svg><span data-i18n="paginas.pomodoro.rotulo">Pomodoro</span></a></li>
+                <li><a href="/despertador" aria-current="page"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#despertador"/></svg><span data-i18n="paginas.despertador.rotulo">Despertador</span></a></li>
+                <li><a href="/contagem"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#contagem"/></svg><span data-i18n="paginas.contagem.rotulo">Contagem regressiva</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.calendario">Calendário</h2>
+              <ul>
+                <li><a href="/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">Calendário</span></a></li>
+                <li><a href="/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">Feriados</span></a></li>
+                <li><a href="/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">Nascer e pôr do sol</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.utilitarios">Utilitários</h2>
+              <ul>
+                <li><a href="/calculadoras"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calculadora"/></svg><span data-i18n="paginas.calculadoras.rotulo">Calculadoras de tempo</span></a></li>
+                <li><a href="/timestamp"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#codigo"/></svg><span data-i18n="paginas.timestamp.rotulo">Timestamp Unix</span></a></li>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </div>
+    <!-- /@cabecalho -->
+
+    <main id="conteudo" tabindex="-1">
+      <div class="container">
+        <header class="pagina-topo">
+          <div>
+            <h1 data-i18n="paginas.despertador.rotulo">Despertador</h1>
+            <p data-i18n="despertador.subtitulo">Alarmes no horário sincronizado, com repetição e fuso horário.</p>
+          </div>
+        </header>
+
+        <div id="avisoPerdidos" class="aviso aviso--perigo" role="alert" hidden>
+          <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#info" /></svg>
+          <div>
+            <ul id="listaPerdidos" class="lista-perdidos"></ul>
+            <button id="botaoFecharPerdidos" type="button" class="botao botao--fantasma botao--pequeno" data-i18n="despertador.entendi">Entendi</button>
+          </div>
+        </div>
+
+        <div class="duas-colunas">
+          <section class="pilha" aria-labelledby="tituloAlarmes">
+            <div class="destaque">
+              <p class="rotulo" id="tituloAlarmes" data-i18n="despertador.proximo">Próximo alarme</p>
+              <p id="proximoAlarme" class="resultado-grande" data-i18n="despertador.nenhumAtivo">Nenhum alarme ativo</p>
+              <p id="proximoDetalhe" class="texto-suave texto-pequeno" data-i18n="despertador.crieNoFormulario">Crie um alarme no formulário.</p>
+            </div>
+
+            <ul id="listaAlarmes" class="lista-alarmes" aria-label="Alarmes" data-i18n-attr="aria-label:despertador.alarmes"></ul>
+            <p id="semAlarmes" class="texto-pequeno texto-fraco" data-i18n="despertador.semAlarmes">Nenhum alarme criado ainda.</p>
+
+            <p class="nota">
+              <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#alerta" /></svg>
+              <span data-i18n="despertador.nota">Os alarmes só tocam com esta página aberta. Para compromissos importantes, use também o despertador do aparelho.</span>
+            </p>
+          </section>
+
+          <form id="formAlarme" class="formulario pilha" novalidate>
+            <h2 id="tituloForm" class="formulario__titulo" data-i18n="despertador.novo">Novo alarme</h2>
+
+            <div class="campos campos--2-fixo">
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="despertador.horario">Horário</span>
+                <input id="campoHora" class="entrada" type="time" step="60" required value="07:00" />
+                <span id="erroHora" class="campo__erro" hidden></span>
+              </label>
+              <label id="grupoData" class="campo">
+                <span class="campo__rotulo" data-i18n="despertador.data">Data</span>
+                <input id="campoData" class="entrada" type="date" required />
+                <span id="erroData" class="campo__erro" hidden></span>
+              </label>
+            </div>
+
+            <fieldset class="campo">
+              <legend class="campo__rotulo" data-i18n="despertador.repeticao">Repetição</legend>
+              <div class="segmentado" role="group" aria-label="Repetição" data-i18n-attr="aria-label:despertador.repeticao">
+                <button type="button" data-modo="unico" aria-pressed="true" data-i18n="despertador.umaVez">Uma vez</button>
+                <button type="button" data-modo="semanal" aria-pressed="false" data-i18n="despertador.todaSemana">Toda semana</button>
+              </div>
+            </fieldset>
+
+            <fieldset id="grupoDias" class="campo" hidden>
+              <legend class="campo__rotulo" data-i18n="despertador.diasDaSemana">Dias da semana</legend>
+              <div id="diasSemana" class="fichas"></div>
+              <span id="erroDias" class="campo__erro" hidden></span>
+            </fieldset>
+
+            <label class="campo">
+              <span class="campo__rotulo" data-i18n="despertador.nome">Nome (opcional)</span>
+              <input id="campoRotulo" class="entrada" type="text" maxlength="60" autocomplete="off" placeholder="Ex.: Reunião" data-i18n-attr="placeholder:despertador.nomeExemplo" />
+            </label>
+
+            <details class="ajustes ajustes--interno">
+              <summary data-i18n="despertador.fusoSomAvisos">Fuso, som e avisos</summary>
+              <div class="ajustes__corpo">
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="despertador.fuso">Fuso horário</span>
+                  <select id="campoFuso" class="entrada"></select>
+                  <span id="ajudaFuso" class="campo__ajuda"></span>
+                </label>
+                <div class="campo">
+                  <label class="campo__rotulo" for="campoSom" data-i18n="temporizador.som">Som</label>
+                  <div class="linha linha-campo">
+                    <select id="campoSom" class="entrada campo-flexivel"></select>
+                    <button id="botaoTestarSom" type="button" class="botao botao--secundario" data-i18n="comum.testar">Testar</button>
+                  </div>
+                </div>
+                <label class="opcao">
+                  <input id="campoTelaAtiva" type="checkbox" />
+                  <span class="opcao__texto">
+                    <strong data-i18n="avisos.telaLigada">Manter a tela ligada</strong>
+                    <span id="estadoTelaAtiva" data-i18n="despertador.telaEnquantoVisivel">Enquanto esta página estiver visível.</span>
+                  </span>
+                </label>
+                <div class="opcao-linha">
+                  <p><strong data-i18n="avisos.notificacao">Notificação</strong> <span id="estadoNotificacao" class="texto-suave"></span></p>
+                  <button id="botaoNotificacao" type="button" class="botao botao--secundario botao--pequeno" data-i18n="comum.ativar">Ativar</button>
+                </div>
+              </div>
+            </details>
+
+            <div class="grupo-botoes">
+              <button type="submit" class="botao botao--primario" id="botaoSalvar" data-i18n="despertador.salvar">Salvar alarme</button>
+              <button type="button" class="botao botao--fantasma" id="botaoCancelar" hidden data-i18n="despertador.cancelarEdicao">Cancelar edição</button>
+            </div>
+            <button type="button" class="botao-atalhos" data-abrir-atalhos>
+              <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#teclado" /></svg>
+              <span data-i18n="comum.atalhos">Atalhos de teclado</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- @rodape -->
+    <footer class="rodape">
+      <div class="container rodape__conteudo">
+        <span>© <span data-ano-atual>2026</span> GlobalTime · <span data-i18n="comum.por">por</span> <a href="https://lzdev.com.br/" rel="noopener">LZdev</a></span>
+        <span class="rodape__links">
+          <a href="/docs" data-i18n="comum.documentacao">Documentação</a>
+          <button type="button" class="rodape__botao" data-abrir-atalhos data-i18n="comum.atalhos">Atalhos de teclado</button>
+          <label class="rodape__idioma">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
+            <span class="sr-only" data-i18n="comum.idioma">Idioma</span>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+          </label>
+        </span>
+      </div>
+    </footer>
+    <!-- /@rodape -->
+  </body>
+</html>

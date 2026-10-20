@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <!-- @head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Timer Pomodoro online | GlobalTime</title>
+    <meta name="description" content="Ciclos de foco e pausa com durações ajustáveis, início automático opcional, notificações e histórico de sessões." />
+    <meta name="gt:pagina" content="pomodoro" />
+    <link rel="canonical" href="https://brasil-time.vercel.app/pomodoro" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GlobalTime" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Timer Pomodoro online" />
+    <meta property="og:description" content="Ciclos de foco e pausa com durações ajustáveis, início automático opcional, notificações e histórico de sessões." />
+    <meta property="og:url" content="https://brasil-time.vercel.app/pomodoro" />
+    <meta property="og:image" content="https://brasil-time.vercel.app/assets/marca/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GlobalTime — hora certa sincronizada e ferramentas de tempo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Timer Pomodoro online" />
+    <meta name="twitter:description" content="Ciclos de foco e pausa com durações ajustáveis, início automático opcional, notificações e histórico de sessões." />
+    <meta name="twitter:image" content="https://brasil-time.vercel.app/assets/marca/og.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/assets/icones/icone-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/icones/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="/assets/fontes/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/estilos/app.css" />
+    <script src="/scripts/tema-inicial.js"></script>
+    <script type="module" src="/scripts/nucleo/pagina.js"></script>
+    <!-- /@head -->
+    <script type="module" src="/scripts/paginas/pomodoro.js"></script>
+  </head>
+  <body>
+    <!-- @cabecalho -->
+    <a class="pular-conteudo" href="#conteudo" data-i18n="comum.pularConteudo">Pular para o conteúdo</a>
+    <header class="cabecalho">
+      <div class="container cabecalho__conteudo">
+        <a class="marca" href="/" aria-label="GlobalTime — página inicial" data-i18n-attr="aria-label:comum.marcaInicio">
+          <img class="marca__simbolo marca__simbolo--preto" src="/assets/marca/simbolo-preto.png" width="32" height="32" alt="" /><img class="marca__simbolo marca__simbolo--branco" src="/assets/marca/simbolo-branco.png" width="32" height="32" alt="" />
+          <span class="marca__nome">Global<span>Time</span></span>
+        </a>
+        <nav class="nav-principal" aria-label="Principal" data-i18n-attr="aria-label:comum.navPrincipal">
+          <a href="/" data-i18n="paginas.inicio.rotuloNav">Início</a>
+          <a href="/cronometro" data-i18n="paginas.cronometro.rotulo">Cronômetro</a>
+          <a href="/temporizador" data-i18n="paginas.temporizador.rotulo">Temporizador</a>
+          <a href="/calendario" data-i18n="paginas.calendario.rotulo">Calendário</a>
+          <a href="/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">Fusos horários</a>
+        </nav>
+        <div class="cabecalho__acoes">
+          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="Usar tema escuro" title="Usar tema escuro">
+            <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tema-escuro"/></svg>
+          </button>
+          <button id="botaoMenu" class="botao botao--secundario botao--pequeno" type="button" aria-expanded="false" aria-controls="painelFerramentas">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#grade"/></svg><span data-i18n="comum.ferramentas">Ferramentas</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div id="painelFerramentas" class="painel-ferramentas" hidden>
+      <nav aria-label="Todas as ferramentas" data-i18n-attr="aria-label:comum.todasFerramentas">
+        <div class="container painel-ferramentas__conteudo">
+            <div>
+              <h2 data-i18n="grupos.relogios">Relógios</h2>
+              <ul>
+                <li><a href="/"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">Hora certa</span></a></li>
+                <li><a href="/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">Relógio mundial</span></a></li>
+                <li><a href="/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">Conversor de fusos</span></a></li>
+                <li><a href="/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">Relógio em tela cheia</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.medir">Medir o tempo</h2>
+              <ul>
+                <li><a href="/cronometro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#cronometro"/></svg><span data-i18n="paginas.cronometro.rotulo">Cronômetro</span></a></li>
+                <li><a href="/temporizador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#temporizador"/></svg><span data-i18n="paginas.temporizador.rotulo">Temporizador</span></a></li>
+                <li><a href="/pomodoro" aria-current="page"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#foco"/></svg><span data-i18n="paginas.pomodoro.rotulo">Pomodoro</span></a></li>
+                <li><a href="/despertador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#despertador"/></svg><span data-i18n="paginas.despertador.rotulo">Despertador</span></a></li>
+                <li><a href="/contagem"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#contagem"/></svg><span data-i18n="paginas.contagem.rotulo">Contagem regressiva</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.calendario">Calendário</h2>
+              <ul>
+                <li><a href="/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">Calendário</span></a></li>
+                <li><a href="/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">Feriados</span></a></li>
+                <li><a href="/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">Nascer e pôr do sol</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.utilitarios">Utilitários</h2>
+              <ul>
+                <li><a href="/calculadoras"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calculadora"/></svg><span data-i18n="paginas.calculadoras.rotulo">Calculadoras de tempo</span></a></li>
+                <li><a href="/timestamp"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#codigo"/></svg><span data-i18n="paginas.timestamp.rotulo">Timestamp Unix</span></a></li>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </div>
+    <!-- /@cabecalho -->
+
+    <main id="conteudo" tabindex="-1">
+      <div class="container container--estreito">
+        <section id="painel" class="ferramenta" aria-labelledby="tituloPagina">
+          <h1 id="tituloPagina" class="ferramenta__titulo" data-i18n="paginas.pomodoro.rotulo">Pomodoro</h1>
+          <div class="segmentado" role="group" aria-label="Etapa" data-i18n-attr="aria-label:pomodoro.etapa">
+            <button type="button" data-fase="foco" aria-pressed="true" data-i18n="pomodoro.fase.foco">Foco</button>
+            <button type="button" data-fase="curta" aria-pressed="false" data-i18n="pomodoro.fase.curta">Pausa curta</button>
+            <button type="button" data-fase="longa" aria-pressed="false" data-i18n="pomodoro.fase.longa">Pausa longa</button>
+          </div>
+          <div id="visor" class="visor visor--lg" role="timer" aria-live="off" aria-label="Tempo restante" data-i18n-attr="aria-label:temporizador.tempoRestante">25:00</div>
+          <div class="progresso" aria-hidden="true"><div id="barra" class="progresso__barra"></div></div>
+          <p id="rotulo" class="ferramenta__estado">&nbsp;</p>
+          <div id="marcadoresCiclo" class="marcadores-ciclo" aria-hidden="true"></div>
+
+          <div class="grupo-botoes grupo-botoes--centro">
+            <button id="botaoIniciar" type="button" class="botao botao--primario botao--grande">
+              <svg class="icone icone--preenchido" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#play" /></svg>
+              <span data-i18n="temporizador.iniciar">Iniciar</span>
+            </button>
+            <button id="botaoPular" type="button" class="botao botao--secundario botao--grande">
+              <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#pular" /></svg>
+              <span data-i18n="pomodoro.pular">Pular</span>
+            </button>
+            <button id="botaoReiniciar" type="button" class="botao botao--secundario botao--grande" disabled>
+              <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#reiniciar" /></svg>
+              <span data-i18n="temporizador.reiniciar">Reiniciar</span>
+            </button>
+          </div>
+          <p id="resumoHoje" class="ferramenta__resumo">&nbsp;</p>
+          <button type="button" class="botao-atalhos" data-abrir-atalhos>
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#teclado" /></svg>
+            <span data-i18n="comum.atalhos">Atalhos de teclado</span>
+          </button>
+        </section>
+
+        <details class="ajustes">
+          <summary>
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#ajustes" /></svg>
+            <span data-i18n="comum.ajustes">Ajustes</span>
+          </summary>
+          <div class="ajustes__corpo">
+            <div class="campos campos--2-fixo">
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="pomodoro.cfgFoco">Foco (min)</span>
+                <input id="cfgFoco" class="entrada" type="number" inputmode="numeric" min="1" max="180" step="1" />
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="pomodoro.cfgCurta">Pausa curta (min)</span>
+                <input id="cfgCurta" class="entrada" type="number" inputmode="numeric" min="1" max="60" step="1" />
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="pomodoro.cfgLonga">Pausa longa (min)</span>
+                <input id="cfgLonga" class="entrada" type="number" inputmode="numeric" min="1" max="120" step="1" />
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="pomodoro.cfgCiclos">Focos até a pausa longa</span>
+                <input id="cfgCiclos" class="entrada" type="number" inputmode="numeric" min="2" max="12" step="1" />
+              </label>
+            </div>
+            <label class="opcao">
+              <input id="cfgAutoPausa" type="checkbox" />
+              <span class="opcao__texto"><strong data-i18n="pomodoro.autoPausa">Iniciar pausas automaticamente</strong></span>
+            </label>
+            <label class="opcao">
+              <input id="cfgAutoFoco" type="checkbox" />
+              <span class="opcao__texto"><strong data-i18n="pomodoro.autoFoco">Iniciar foco automaticamente</strong></span>
+            </label>
+            <div class="linha linha-campo">
+              <label class="campo campo--expandir">
+                <span class="campo__rotulo" data-i18n="pomodoro.som">Som ao fim de cada etapa</span>
+                <select id="som" class="entrada"></select>
+              </label>
+              <button id="botaoTestar" type="button" class="botao botao--secundario" data-i18n="comum.testar">Testar</button>
+            </div>
+            <label class="opcao">
+              <input id="telaAtiva" type="checkbox" />
+              <span class="opcao__texto"><strong data-i18n="avisos.telaLigada">Manter a tela ligada</strong><span id="estadoTela">&nbsp;</span></span>
+            </label>
+            <div class="opcao-linha">
+              <p><strong data-i18n="avisos.notificacao">Notificação</strong> <span id="estadoNotificacao" class="texto-suave">&nbsp;</span></p>
+              <button id="botaoNotificacao" type="button" class="botao botao--secundario botao--pequeno" hidden data-i18n="comum.ativar">Ativar</button>
+            </div>
+            <p class="texto-xs texto-fraco" data-i18n="pomodoro.notaAjustes">Mudanças valem para a próxima etapa. Os avisos só tocam com esta aba aberta.</p>
+          </div>
+        </details>
+
+        <details class="ajustes">
+          <summary>
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#check" /></svg>
+            <span data-i18n="pomodoro.historico">Histórico</span>
+          </summary>
+          <div class="ajustes__corpo">
+            <ol id="listaHistorico" class="lista-historico" aria-label="Etapas concluídas recentes" data-i18n-attr="aria-label:pomodoro.historicoRecentes"></ol>
+            <p id="historicoVazio" class="texto-pequeno texto-fraco" data-i18n="pomodoro.historicoVazio">Nenhuma etapa concluída ainda.</p>
+            <div>
+              <button id="botaoLimpar" type="button" class="botao botao--fantasma botao--pequeno" disabled>
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#lixeira" /></svg>
+                <span data-i18n="pomodoro.limparHistorico">Limpar histórico</span>
+              </button>
+            </div>
+          </div>
+        </details>
+      </div>
+    </main>
+
+    <!-- @rodape -->
+    <footer class="rodape">
+      <div class="container rodape__conteudo">
+        <span>© <span data-ano-atual>2026</span> GlobalTime · <span data-i18n="comum.por">por</span> <a href="https://lzdev.com.br/" rel="noopener">LZdev</a></span>
+        <span class="rodape__links">
+          <a href="/docs" data-i18n="comum.documentacao">Documentação</a>
+          <button type="button" class="rodape__botao" data-abrir-atalhos data-i18n="comum.atalhos">Atalhos de teclado</button>
+          <label class="rodape__idioma">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
+            <span class="sr-only" data-i18n="comum.idioma">Idioma</span>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+          </label>
+        </span>
+      </div>
+    </footer>
+    <!-- /@rodape -->
+  </body>
+</html>

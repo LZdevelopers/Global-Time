@@ -1,0 +1,19 @@
+{
+  "name": "globaltime",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Horário oficial de Brasília sincronizado e ferramentas de tempo. Site estático (HTML, CSS e JavaScript puro) com uma Vercel Function.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node dev/servidor.mjs",
+    "gerar": "node dev/gerar.mjs",
+    "checar": "node dev/gerar.mjs --checar",
+    "test": "node --test \"testes/**/*.test.mjs\"",
+    "test:navegador": "node dev/testar-navegador.mjs",
+    "test:pwa": "node dev/testar-pwa.mjs"
+  },
+  "license": "MIT"
+}
