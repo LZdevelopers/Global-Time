@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ja" dir="ltr">
+  <head>
+    <!-- @head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>日付・時間・営業日の計算ツール | GlobalTime</title>
+    <meta name="description" content="日付の差、祝日を考慮した営業日、日数の加算、時刻間の所要時間、時間の単位変換。" />
+    <meta name="gt:pagina" content="calculadoras" />
+    <link rel="canonical" href="https://global-time.lzdev.com.br/ja/calculadoras" />
+    <link rel="alternate" hreflang="pt-BR" href="https://global-time.lzdev.com.br/calculadoras" />
+    <link rel="alternate" hreflang="pt-PT" href="https://global-time.lzdev.com.br/pt-pt/calculadoras" />
+    <link rel="alternate" hreflang="en" href="https://global-time.lzdev.com.br/en/calculadoras" />
+    <link rel="alternate" hreflang="es" href="https://global-time.lzdev.com.br/es/calculadoras" />
+    <link rel="alternate" hreflang="fr" href="https://global-time.lzdev.com.br/fr/calculadoras" />
+    <link rel="alternate" hreflang="de" href="https://global-time.lzdev.com.br/de/calculadoras" />
+    <link rel="alternate" hreflang="it" href="https://global-time.lzdev.com.br/it/calculadoras" />
+    <link rel="alternate" hreflang="nl" href="https://global-time.lzdev.com.br/nl/calculadoras" />
+    <link rel="alternate" hreflang="ru" href="https://global-time.lzdev.com.br/ru/calculadoras" />
+    <link rel="alternate" hreflang="ja" href="https://global-time.lzdev.com.br/ja/calculadoras" />
+    <link rel="alternate" hreflang="zh-CN" href="https://global-time.lzdev.com.br/zh-cn/calculadoras" />
+    <link rel="alternate" hreflang="ko" href="https://global-time.lzdev.com.br/ko/calculadoras" />
+    <link rel="alternate" hreflang="ar" href="https://global-time.lzdev.com.br/ar/calculadoras" />
+    <link rel="alternate" hreflang="x-default" href="https://global-time.lzdev.com.br/calculadoras" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GlobalTime" />
+    <meta property="og:locale" content="ja" />
+    <meta property="og:title" content="日付・時間・営業日の計算ツール" />
+    <meta property="og:description" content="日付の差、祝日を考慮した営業日、日数の加算、時刻間の所要時間、時間の単位変換。" />
+    <meta property="og:url" content="https://global-time.lzdev.com.br/ja/calculadoras" />
+    <meta property="og:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GlobalTime — 今の正確な時刻（同期済み）" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="日付・時間・営業日の計算ツール" />
+    <meta name="twitter:description" content="日付の差、祝日を考慮した営業日、日数の加算、時刻間の所要時間、時間の単位変換。" />
+    <meta name="twitter:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/assets/icones/icone-96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/assets/icones/icone-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/icones/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="/assets/fontes/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/estilos/app.css" />
+    <script src="/scripts/tema-inicial.js"></script>
+    <script type="module" src="/scripts/nucleo/pagina.js"></script>
+    <!-- /@head -->
+    <script type="module" src="/scripts/paginas/calculadoras.js"></script>
+  </head>
+  <body>
+    <!-- @cabecalho -->
+    <a class="pular-conteudo" href="#conteudo" data-i18n="comum.pularConteudo">本文へスキップ</a>
+    <header class="cabecalho">
+      <div class="container cabecalho__conteudo">
+        <a class="marca" href="/ja" aria-label="GlobalTime — ホーム" data-i18n-attr="aria-label:comum.marcaInicio">
+          <img class="marca__simbolo marca__simbolo--preto" src="/assets/marca/simbolo-preto.png" width="32" height="32" alt="" /><img class="marca__simbolo marca__simbolo--branco" src="/assets/marca/simbolo-branco.png" width="32" height="32" alt="" />
+          <span class="marca__nome">Global<span>Time</span></span>
+        </a>
+        <nav class="nav-principal" aria-label="メイン" data-i18n-attr="aria-label:comum.navPrincipal">
+          <a href="/ja" data-i18n="paginas.inicio.rotuloNav">ホーム</a>
+          <a href="/ja/cronometro" data-i18n="paginas.cronometro.rotulo">ストップウォッチ</a>
+          <a href="/ja/temporizador" data-i18n="paginas.temporizador.rotulo">タイマー</a>
+          <a href="/ja/calendario" data-i18n="paginas.calendario.rotulo">カレンダー</a>
+          <a href="/ja/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">タイムゾーン</a>
+        </nav>
+        <div class="cabecalho__acoes">
+          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="ダークテーマを使用" title="ダークテーマを使用" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
+            <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tema-escuro"/></svg>
+          </button>
+          <button id="botaoMenu" class="botao botao--secundario botao--pequeno" type="button" aria-expanded="false" aria-controls="painelFerramentas">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#grade"/></svg><span data-i18n="comum.ferramentas">ツール</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div id="painelFerramentas" class="painel-ferramentas" hidden>
+      <nav aria-label="すべてのツール" data-i18n-attr="aria-label:comum.todasFerramentas">
+        <div class="container painel-ferramentas__conteudo">
+            <div>
+              <h2 data-i18n="grupos.relogios">時計</h2>
+              <ul>
+                <li><a href="/ja"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">正確な時刻</span></a></li>
+                <li><a href="/ja/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">世界時計</span></a></li>
+                <li><a href="/ja/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">タイムゾーン変換</span></a></li>
+                <li><a href="/ja/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">全画面時計</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.medir">時間を計る</h2>
+              <ul>
+                <li><a href="/ja/cronometro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#cronometro"/></svg><span data-i18n="paginas.cronometro.rotulo">ストップウォッチ</span></a></li>
+                <li><a href="/ja/temporizador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#temporizador"/></svg><span data-i18n="paginas.temporizador.rotulo">タイマー</span></a></li>
+                <li><a href="/ja/pomodoro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#foco"/></svg><span data-i18n="paginas.pomodoro.rotulo">ポモドーロ</span></a></li>
+                <li><a href="/ja/despertador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#despertador"/></svg><span data-i18n="paginas.despertador.rotulo">目覚まし時計</span></a></li>
+                <li><a href="/ja/contagem"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#contagem"/></svg><span data-i18n="paginas.contagem.rotulo">カウントダウン</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.calendario">カレンダー</h2>
+              <ul>
+                <li><a href="/ja/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">カレンダー</span></a></li>
+                <li><a href="/ja/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">祝日</span></a></li>
+                <li><a href="/ja/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">日の出・日の入り</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.utilitarios">ユーティリティ</h2>
+              <ul>
+                <li><a href="/ja/calculadoras" aria-current="page"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calculadora"/></svg><span data-i18n="paginas.calculadoras.rotulo">時間の計算ツール</span></a></li>
+                <li><a href="/ja/timestamp"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#codigo"/></svg><span data-i18n="paginas.timestamp.rotulo">Unix タイムスタンプ</span></a></li>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </div>
+    <!-- /@cabecalho -->
+
+    <main id="conteudo" tabindex="-1">
+      <div class="container container--medio">
+        <header class="pagina-topo">
+          <div>
+            <h1 data-i18n="paginas.calculadoras.rotulo">時間の計算ツール</h1>
+            <p data-i18n="calc.subtitulo">日付、営業日、所要時間、単位。入力すると結果がすぐに表示されます。</p>
+          </div>
+        </header>
+
+        <div class="abas" role="tablist" aria-label="計算ツール" data-i18n-attr="aria-label:calc.abas">
+          <button type="button" role="tab" id="abaDiferenca" data-aba="diferenca" aria-controls="diferenca" aria-selected="true" data-i18n="calc.aba.diferenca">日付の差</button>
+          <button type="button" role="tab" id="abaSomar" data-aba="somar" aria-controls="somar" aria-selected="false" tabindex="-1" data-i18n="calc.aba.somar">日数の加算</button>
+          <button type="button" role="tab" id="abaDuracao" data-aba="duracao" aria-controls="duracao" aria-selected="false" tabindex="-1" data-i18n="calc.aba.duracao">所要時間</button>
+          <button type="button" role="tab" id="abaUnidades" data-aba="unidades" aria-controls="unidades" aria-selected="false" tabindex="-1" data-i18n="calc.aba.unidades">単位</button>
+        </div>
+
+        <section id="diferenca" class="calc" role="tabpanel" aria-labelledby="abaDiferenca" tabindex="0">
+          <h2 class="sr-only" data-i18n="calc.titulo.diferenca">日付の差</h2>
+          <div class="calc__corpo">
+            <form class="campos campos--pilha" id="formDiferenca" novalidate>
+              <div class="campos campos--2-fixo">
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="calc.dataInicial">開始日</span>
+                  <input class="entrada" type="date" id="difInicio" required />
+                </label>
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="calc.dataFinal">終了日</span>
+                  <input class="entrada" type="date" id="difFim" required />
+                </label>
+              </div>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="calc.feriadosUteis">営業日の計算に使う祝日</span>
+                <select class="entrada" id="difUf"></select>
+              </label>
+            </form>
+            <div class="calc__resultado" aria-live="polite">
+              <p class="rotulo" id="difRotulo" data-i18n="calc.rotulo.diferenca">差</p>
+              <p class="resultado-grande" id="difResultado">—</p>
+              <dl class="lista-dados" id="difDetalhes"></dl>
+              <p class="campo__erro" id="difErro" hidden></p>
+              <button type="button" class="botao botao--fantasma botao--pequeno" data-copiar="difDetalhes" data-titulo="difResultado">
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+                <span data-i18n="comum.copiar">コピー</span>
+              </button>
+            </div>
+          </div>
+          <p class="texto-xs texto-fraco calc__nota" data-i18n="calc.nota.diferenca">営業日：月〜金曜。両方の日付を含み、国と州の祝日（選択した場合）を除きます。任意休日は営業日として数えます。</p>
+        </section>
+
+        <section id="somar" class="calc" role="tabpanel" aria-labelledby="abaSomar" tabindex="0">
+          <h2 class="sr-only" data-i18n="calc.titulo.somar">日数の加算・減算</h2>
+          <div class="calc__corpo">
+            <form class="campos campos--pilha" id="formSomar" novalidate>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="calc.dataPartida">起算日</span>
+                <input class="entrada" type="date" id="somData" required />
+              </label>
+              <div class="campos campos--2-fixo">
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="calc.diasNegativo">日数（負の値でさかのぼる）</span>
+                  <input class="entrada" type="number" id="somQuantidade" inputmode="numeric" step="1" min="-36500" max="36500" value="30" required />
+                </label>
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="calc.contagem">数え方</span>
+                  <select class="entrada" id="somTipo">
+                    <option value="corridos" data-i18n="calc.corridos">暦日</option>
+                    <option value="uteis" data-i18n="calc.uteis">営業日</option>
+                  </select>
+                </label>
+              </div>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="calc.feriadosUteis">営業日の計算に使う祝日</span>
+                <select class="entrada" id="somUf"></select>
+              </label>
+            </form>
+            <div class="calc__resultado" aria-live="polite">
+              <p class="rotulo" data-i18n="calc.rotulo.resultado">結果</p>
+              <p class="resultado-grande" id="somResultado">—</p>
+              <dl class="lista-dados" id="somDetalhes"></dl>
+              <p class="campo__erro" id="somErro" hidden></p>
+              <button type="button" class="botao botao--fantasma botao--pequeno" data-copiar="somDetalhes" data-titulo="somResultado">
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+                <span data-i18n="comum.copiar">コピー</span>
+              </button>
+            </div>
+          </div>
+          <p class="texto-xs texto-fraco calc__nota" data-i18n="calc.nota.somar">営業日では起算日は数えません。金曜日の1営業日後は翌月曜日（または次の営業日）です。</p>
+        </section>
+
+        <section id="duracao" class="calc" role="tabpanel" aria-labelledby="abaDuracao" tabindex="0">
+          <h2 class="sr-only" data-i18n="calc.titulo.duracao">時刻間の所要時間</h2>
+          <div class="calc__corpo">
+            <form class="campos campos--pilha" id="formDuracao" novalidate>
+              <div class="campos campos--2-fixo">
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="calc.inicio">開始</span>
+                  <input class="entrada" type="time" id="durInicio" value="08:00" required />
+                </label>
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="calc.fim">終了</span>
+                  <input class="entrada" type="time" id="durFim" value="17:30" required />
+                </label>
+              </div>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="calc.pausa">差し引く休憩（分）</span>
+                <input class="entrada" type="number" id="durPausa" inputmode="numeric" min="0" max="1440" step="1" value="60" />
+              </label>
+            </form>
+            <div class="calc__resultado" aria-live="polite">
+              <p class="rotulo" data-i18n="calc.rotulo.duracao">所要時間</p>
+              <p class="resultado-grande" id="durResultado">—</p>
+              <dl class="lista-dados" id="durDetalhes"></dl>
+              <p class="campo__erro" id="durErro" hidden></p>
+              <button type="button" class="botao botao--fantasma botao--pequeno" data-copiar="durDetalhes" data-titulo="durResultado">
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+                <span data-i18n="comum.copiar">コピー</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="unidades" class="calc" role="tabpanel" aria-labelledby="abaUnidades" tabindex="0">
+          <h2 class="sr-only" data-i18n="calc.titulo.unidades">時間の単位を変換</h2>
+          <div class="calc__corpo">
+            <form class="campos campos--2-fixo" id="formUnidades" novalidate>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="calc.valor">値</span>
+                <input class="entrada" type="text" id="uniValor" inputmode="decimal" autocomplete="off" value="90" />
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="calc.unidade">単位</span>
+                <select class="entrada" id="uniDe"></select>
+              </label>
+            </form>
+            <div class="calc__resultado" aria-live="polite">
+              <p class="rotulo" data-i18n="calc.rotulo.equivale">換算値</p>
+              <p class="resultado-grande" id="uniResultado">—</p>
+              <dl class="lista-dados" id="uniDetalhes"></dl>
+              <p class="campo__erro" id="uniErro" hidden></p>
+              <button type="button" class="botao botao--fantasma botao--pequeno" data-copiar="uniDetalhes" data-titulo="uniResultado">
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+                <span data-i18n="comum.copiar">コピー</span>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- @rodape -->
+    <footer class="rodape">
+      <div class="container rodape__conteudo">
+        <span>© <span data-ano-atual>2026</span> GlobalTime · <span data-i18n="comum.por">制作：</span> <a href="https://lzdev.com.br/" rel="noopener">LZdev</a></span>
+        <span class="rodape__links">
+          <a href="/ja/docs" data-i18n="comum.documentacao">ドキュメント</a>
+          <button type="button" class="rodape__botao" data-abrir-atalhos data-i18n="comum.atalhos">キーボードショートカット</button>
+          <label class="rodape__idioma">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
+            <span class="sr-only" data-i18n="comum.idioma">言語</span>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" selected lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+          </label>
+        </span>
+      </div>
+    </footer>
+    <!-- /@rodape -->
+  </body>
+</html>

@@ -13,7 +13,7 @@
 // "Atualizar" (mensagem ATIVAR_AGORA). Se ninguém clicar, ela assume quando
 // todas as abas do site forem fechadas — ninguém fica preso a uma versão.
 
-const VERSAO = "fde2f03689ad";
+const VERSAO = "f81622f661a6";
 const CACHE = `globaltime-${VERSAO}`;
 const TEMPO_LIMITE_REDE_MS = 3500;
 
@@ -115,16 +115,19 @@ const PRECACHE = [
 ];
 // /@precache
 
+// Versões traduzidas (/en/cronometro…): não entram no pré-cache; a página
+// pede (GUARDAR_IDIOMA) as do idioma em uso. Listas geradas por dev/gerar.mjs.
+// @idiomas
+const PREFIXOS_IDIOMA = ["/pt-pt","/en","/es","/fr","/de","/it","/nl","/ru","/ja","/zh-cn","/ko","/ar"];
+const PAGINAS_TRADUZIDAS = ["/","/relogio-mundial","/conversor","/tela-cheia","/cronometro","/temporizador","/pomodoro","/despertador","/contagem","/calendario","/feriados","/sol","/calculadoras","/timestamp","/docs"];
+// /@idiomas
+
 self.addEventListener("install", (evento) => {
   evento.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE);
       // Falha de um item não pode impedir a instalação inteira.
-      await Promise.all(
-        PRECACHE.map((url) =>
-          cache.add(new Request(url, { cache: "reload" })).catch(() => undefined),
-        ),
-      );
+      await Promise.all(PRECACHE.map((url) => guardar(cache, url)));
     })(),
   );
 });
@@ -143,7 +146,20 @@ self.addEventListener("activate", (evento) => {
 
 self.addEventListener("message", (evento) => {
   if (evento.data?.tipo === "ATIVAR_AGORA") self.skipWaiting();
+  if (evento.data?.tipo === "GUARDAR_IDIOMA" && PREFIXOS_IDIOMA.includes(evento.data.prefixo)) {
+    evento.waitUntil(guardarIdioma(evento.data.prefixo));
+  }
 });
+
+async function guardarIdioma(prefixo) {
+  const cache = await caches.open(CACHE);
+  await Promise.all(
+    PAGINAS_TRADUZIDAS.map(async (pagina) => {
+      const url = pagina === "/" ? prefixo : `${prefixo}${pagina}`;
+      if (!(await cache.match(url))) await guardar(cache, url);
+    }),
+  );
+}
 
 self.addEventListener("fetch", (evento) => {
   const { request } = evento;
@@ -181,8 +197,8 @@ async function navegacao(request) {
 // Ignora a query string das páginas (ex.: /contagem?data=...) ao guardar.
 function chavePagina(request) {
   const url = new URL(request.url);
-  let caminho = url.pathname.replace(/\.html$/, "");
-  if (caminho === "/index") caminho = "/";
+  // /index e /en/index (ou /en/) são o mesmo que / e /en.
+  const caminho = url.pathname.replace(/\.html$/, "").replace(/\/index$/, "").replace(/(.)\/$/, "$1") || "/";
   return new Request(url.origin + caminho);
 }
 
@@ -201,6 +217,19 @@ async function estatico(request, evento) {
     return emCache;
   }
   return (await daRede) || new Response("", { status: 504 });
+}
+
+// Guarda uma URL no cache, exceto se a resposta veio de um redirecionamento:
+// quem tem o navegador em outro idioma é levado de /cronometro a
+// /en/cronometro, e uma resposta redirecionada servida do cache numa
+// navegação é recusada pelo navegador (a página não abriria offline).
+async function guardar(cache, url) {
+  try {
+    const resposta = await fetch(new Request(url, { cache: "reload" }));
+    if (resposta.ok && !resposta.redirected) await cache.put(url, resposta);
+  } catch {
+    /* sem rede ou erro: fica de fora */
+  }
 }
 
 function comLimite(promessa, ms) {

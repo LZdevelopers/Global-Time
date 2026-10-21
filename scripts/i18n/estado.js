@@ -6,7 +6,7 @@
 // que o texto saia sempre no idioma já carregado.
 
 import ptBR from "./textos/pt-BR.js";
-import { IDIOMA_PADRAO, infoIdioma } from "./idiomas.js";
+import { IDIOMA_PADRAO, caminhoNoIdioma, infoIdioma } from "./idiomas.js";
 
 let codigoAtual = IDIOMA_PADRAO;
 let dicionario = ptBR;
@@ -23,6 +23,14 @@ export function definirDicionario(codigo, novo) {
 /** Código do idioma da interface (ex.: "pt-BR", "en", "zh-CN"). */
 export function idiomaAtual() {
   return codigoAtual;
+}
+
+/** Caminho de uma página do site no idioma atual ("/docs" → "/en/docs"). */
+export function urlLocal(caminho) {
+  const texto = String(caminho);
+  const corte = texto.search(/[?#]/);
+  const base = corte < 0 ? texto : texto.slice(0, corte);
+  return `${caminhoNoIdioma(base, codigoAtual)}${corte < 0 ? "" : texto.slice(corte)}`;
 }
 
 /** Locale para Intl (datas e números). */

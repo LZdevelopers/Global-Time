@@ -4,6 +4,737 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/((?!api/|sw\\.js).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "brasil-time\\.vercel\\.app"
+        }
+      ],
+      "destination": "https://global-time.lzdev.com.br/$1",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "pt-PT"
+        }
+      ],
+      "destination": "/pt-pt",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "pt-PT"
+        }
+      ],
+      "destination": "/pt-pt/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "en"
+        }
+      ],
+      "destination": "/en",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "en"
+        }
+      ],
+      "destination": "/en/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "es"
+        }
+      ],
+      "destination": "/es",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "es"
+        }
+      ],
+      "destination": "/es/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "fr"
+        }
+      ],
+      "destination": "/fr",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "fr"
+        }
+      ],
+      "destination": "/fr/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "de"
+        }
+      ],
+      "destination": "/de",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "de"
+        }
+      ],
+      "destination": "/de/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "it"
+        }
+      ],
+      "destination": "/it",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "it"
+        }
+      ],
+      "destination": "/it/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "nl"
+        }
+      ],
+      "destination": "/nl",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "nl"
+        }
+      ],
+      "destination": "/nl/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "ru"
+        }
+      ],
+      "destination": "/ru",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "ru"
+        }
+      ],
+      "destination": "/ru/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "ja"
+        }
+      ],
+      "destination": "/ja",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "ja"
+        }
+      ],
+      "destination": "/ja/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "zh-CN"
+        }
+      ],
+      "destination": "/zh-cn",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "zh-CN"
+        }
+      ],
+      "destination": "/zh-cn/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "ko"
+        }
+      ],
+      "destination": "/ko",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "ko"
+        }
+      ],
+      "destination": "/ko/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "ar"
+        }
+      ],
+      "destination": "/ar",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "ar"
+        }
+      ],
+      "destination": "/ar/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[pP][tT]-(?:[pP][tT]|[aA][oO]|[mM][zZ]|[cC][vV]|[gG][wW]|[sS][tT]|[tT][lL]|[mM][oO])(?:-[A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/pt-pt",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[pP][tT]-(?:[pP][tT]|[aA][oO]|[mM][zZ]|[cC][vV]|[gG][wW]|[sS][tT]|[tT][lL]|[mM][oO])(?:-[A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/pt-pt/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[eE][nN](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/en",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[eE][nN](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/en/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[eE][sS](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/es",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[eE][sS](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/es/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[fF][rR](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/fr",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[fF][rR](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/fr/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[dD][eE](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/de",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[dD][eE](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/de/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[iI][tT](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/it",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[iI][tT](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/it/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[nN][lL](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/nl",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[nN][lL](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/nl/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[rR][uU](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/ru",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[rR][uU](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/ru/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[jJ][aA](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/ja",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[jJ][aA](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/ja/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[zZ][hH](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/zh-cn",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[zZ][hH](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/zh-cn/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[kK][oO](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/ko",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[kK][oO](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/ko/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[aA][rR](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/ar",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[aA][rR](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/ar/$1",
+      "permanent": false
+    },
+    {
       "source": "/sobre",
       "destination": "/docs",
       "permanent": true
@@ -30,6 +761,21 @@
     }
   ],
   "headers": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": ".*\\.vercel\\.app"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [

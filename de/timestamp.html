@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="de" dir="ltr">
+  <head>
+    <!-- @head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Unix-Timestamp-Konverter | GlobalTime</title>
+    <meta name="description" content="Wandeln Sie Unix-Timestamps in Sekunden oder Millisekunden in lesbare Daten um, in jeder Zeitzone und in ISO 8601, und umgekehrt." />
+    <meta name="gt:pagina" content="timestamp" />
+    <link rel="canonical" href="https://global-time.lzdev.com.br/de/timestamp" />
+    <link rel="alternate" hreflang="pt-BR" href="https://global-time.lzdev.com.br/timestamp" />
+    <link rel="alternate" hreflang="pt-PT" href="https://global-time.lzdev.com.br/pt-pt/timestamp" />
+    <link rel="alternate" hreflang="en" href="https://global-time.lzdev.com.br/en/timestamp" />
+    <link rel="alternate" hreflang="es" href="https://global-time.lzdev.com.br/es/timestamp" />
+    <link rel="alternate" hreflang="fr" href="https://global-time.lzdev.com.br/fr/timestamp" />
+    <link rel="alternate" hreflang="de" href="https://global-time.lzdev.com.br/de/timestamp" />
+    <link rel="alternate" hreflang="it" href="https://global-time.lzdev.com.br/it/timestamp" />
+    <link rel="alternate" hreflang="nl" href="https://global-time.lzdev.com.br/nl/timestamp" />
+    <link rel="alternate" hreflang="ru" href="https://global-time.lzdev.com.br/ru/timestamp" />
+    <link rel="alternate" hreflang="ja" href="https://global-time.lzdev.com.br/ja/timestamp" />
+    <link rel="alternate" hreflang="zh-CN" href="https://global-time.lzdev.com.br/zh-cn/timestamp" />
+    <link rel="alternate" hreflang="ko" href="https://global-time.lzdev.com.br/ko/timestamp" />
+    <link rel="alternate" hreflang="ar" href="https://global-time.lzdev.com.br/ar/timestamp" />
+    <link rel="alternate" hreflang="x-default" href="https://global-time.lzdev.com.br/timestamp" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GlobalTime" />
+    <meta property="og:locale" content="de" />
+    <meta property="og:title" content="Unix-Timestamp-Konverter" />
+    <meta property="og:description" content="Wandeln Sie Unix-Timestamps in Sekunden oder Millisekunden in lesbare Daten um, in jeder Zeitzone und in ISO 8601, und umgekehrt." />
+    <meta property="og:url" content="https://global-time.lzdev.com.br/de/timestamp" />
+    <meta property="og:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GlobalTime — Genaue Uhrzeit jetzt, synchronisiert" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Unix-Timestamp-Konverter" />
+    <meta name="twitter:description" content="Wandeln Sie Unix-Timestamps in Sekunden oder Millisekunden in lesbare Daten um, in jeder Zeitzone und in ISO 8601, und umgekehrt." />
+    <meta name="twitter:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/assets/icones/icone-96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/assets/icones/icone-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/icones/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="/assets/fontes/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/estilos/app.css" />
+    <script src="/scripts/tema-inicial.js"></script>
+    <script type="module" src="/scripts/nucleo/pagina.js"></script>
+    <!-- /@head -->
+    <script type="module" src="/scripts/paginas/timestamp.js"></script>
+  </head>
+  <body>
+    <!-- @cabecalho -->
+    <a class="pular-conteudo" href="#conteudo" data-i18n="comum.pularConteudo">Zum Inhalt springen</a>
+    <header class="cabecalho">
+      <div class="container cabecalho__conteudo">
+        <a class="marca" href="/de" aria-label="GlobalTime — Startseite" data-i18n-attr="aria-label:comum.marcaInicio">
+          <img class="marca__simbolo marca__simbolo--preto" src="/assets/marca/simbolo-preto.png" width="32" height="32" alt="" /><img class="marca__simbolo marca__simbolo--branco" src="/assets/marca/simbolo-branco.png" width="32" height="32" alt="" />
+          <span class="marca__nome">Global<span>Time</span></span>
+        </a>
+        <nav class="nav-principal" aria-label="Hauptnavigation" data-i18n-attr="aria-label:comum.navPrincipal">
+          <a href="/de" data-i18n="paginas.inicio.rotuloNav">Start</a>
+          <a href="/de/cronometro" data-i18n="paginas.cronometro.rotulo">Stoppuhr</a>
+          <a href="/de/temporizador" data-i18n="paginas.temporizador.rotulo">Timer</a>
+          <a href="/de/calendario" data-i18n="paginas.calendario.rotulo">Kalender</a>
+          <a href="/de/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">Zeitzonen</a>
+        </nav>
+        <div class="cabecalho__acoes">
+          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="Dunkles Design verwenden" title="Dunkles Design verwenden" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
+            <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tema-escuro"/></svg>
+          </button>
+          <button id="botaoMenu" class="botao botao--secundario botao--pequeno" type="button" aria-expanded="false" aria-controls="painelFerramentas">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#grade"/></svg><span data-i18n="comum.ferramentas">Tools</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div id="painelFerramentas" class="painel-ferramentas" hidden>
+      <nav aria-label="Alle Tools" data-i18n-attr="aria-label:comum.todasFerramentas">
+        <div class="container painel-ferramentas__conteudo">
+            <div>
+              <h2 data-i18n="grupos.relogios">Uhren</h2>
+              <ul>
+                <li><a href="/de"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">Genaue Uhrzeit</span></a></li>
+                <li><a href="/de/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">Weltuhr</span></a></li>
+                <li><a href="/de/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">Zeitzonenrechner</span></a></li>
+                <li><a href="/de/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">Vollbilduhr</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.medir">Zeit messen</h2>
+              <ul>
+                <li><a href="/de/cronometro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#cronometro"/></svg><span data-i18n="paginas.cronometro.rotulo">Stoppuhr</span></a></li>
+                <li><a href="/de/temporizador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#temporizador"/></svg><span data-i18n="paginas.temporizador.rotulo">Timer</span></a></li>
+                <li><a href="/de/pomodoro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#foco"/></svg><span data-i18n="paginas.pomodoro.rotulo">Pomodoro</span></a></li>
+                <li><a href="/de/despertador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#despertador"/></svg><span data-i18n="paginas.despertador.rotulo">Wecker</span></a></li>
+                <li><a href="/de/contagem"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#contagem"/></svg><span data-i18n="paginas.contagem.rotulo">Countdown</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.calendario">Kalender</h2>
+              <ul>
+                <li><a href="/de/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">Kalender</span></a></li>
+                <li><a href="/de/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">Feiertage in Brasilien</span></a></li>
+                <li><a href="/de/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">Sonnenauf- und -untergang</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.utilitarios">Hilfsmittel</h2>
+              <ul>
+                <li><a href="/de/calculadoras"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calculadora"/></svg><span data-i18n="paginas.calculadoras.rotulo">Zeitrechner</span></a></li>
+                <li><a href="/de/timestamp" aria-current="page"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#codigo"/></svg><span data-i18n="paginas.timestamp.rotulo">Unix-Timestamp</span></a></li>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </div>
+    <!-- /@cabecalho -->
+
+    <main id="conteudo" tabindex="-1">
+      <div class="container ts-pagina">
+        <header class="pagina-topo">
+          <div>
+            <h1 data-i18n="paginas.timestamp.rotulo">Unix-Timestamp</h1>
+            <p data-i18n="timestamp.subtitulo">Wandeln Sie Timestamps in lesbare Daten um und umgekehrt.</p>
+          </div>
+          <span id="seloSync" class="selo selo--acento selo--pulsando" data-i18n="sync.sincronizando">Wird synchronisiert …</span>
+        </header>
+
+        <section class="ts-agora" aria-labelledby="tituloAgora">
+          <h2 id="tituloAgora" class="rotulo" data-i18n="timestamp.agora">Jetzt</h2>
+          <div class="ts-agora__item">
+            <output id="agoraSegundos" class="visor ts-agora__valor">—</output>
+            <span class="texto-xs texto-fraco" data-i18n="timestamp.segundos">Sekunden</span>
+            <button type="button" class="botao botao--fantasma botao--icone botao--mini" data-copiar-agora="s" aria-label="Sekunden kopieren" title="Sekunden kopieren" data-i18n-attr="aria-label:timestamp.copiarSegundos;title:timestamp.copiarSegundos">
+              <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+            </button>
+          </div>
+          <div class="ts-agora__item">
+            <output id="agoraMs" class="visor ts-agora__valor">—</output>
+            <span class="texto-xs texto-fraco" data-i18n="timestamp.milissegundos">Millisekunden</span>
+            <button type="button" class="botao botao--fantasma botao--icone botao--mini" data-copiar-agora="ms" aria-label="Millisekunden kopieren" title="Millisekunden kopieren" data-i18n-attr="aria-label:timestamp.copiarMilissegundos;title:timestamp.copiarMilissegundos">
+              <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+            </button>
+          </div>
+        </section>
+
+        <div class="ts-conversores">
+          <section class="ts-bloco" aria-labelledby="tituloParaData">
+            <h2 id="tituloParaData" class="ts-bloco__titulo" data-i18n="timestamp.paraData">Timestamp → Datum</h2>
+            <form class="ts-bloco__form ts-bloco__form--timestamp" id="formParaData" novalidate>
+              <label class="campo ts-bloco__principal">
+                <span class="campo__rotulo" data-i18n="timestamp.timestamp">Timestamp</span>
+                <input class="entrada mono" type="text" id="tsEntrada" inputmode="numeric" autocomplete="off" spellcheck="false" />
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="timestamp.unidade">Einheit</span>
+                <select class="entrada" id="tsUnidade">
+                  <option value="auto" data-i18n="timestamp.detectar">Erkennen</option>
+                  <option value="s" data-i18n="timestamp.unidadeSegundos">Sekunden</option>
+                  <option value="ms" data-i18n="timestamp.unidadeMilissegundos">Millisekunden</option>
+                </select>
+              </label>
+              <button type="button" id="tsAgora" class="botao botao--secundario" data-i18n="comum.agora">Jetzt</button>
+            </form>
+            <div class="ts-resultado" aria-live="polite">
+              <p class="rotulo" id="tsRotulo">&nbsp;</p>
+              <p class="resultado-grande" id="tsResultado">—</p>
+              <p class="campo__erro" id="tsErro" hidden></p>
+            </div>
+            <dl class="lista-dados ts-formatos" id="tsDetalhes"></dl>
+          </section>
+
+          <section class="ts-bloco" aria-labelledby="tituloParaTs">
+            <h2 id="tituloParaTs" class="ts-bloco__titulo" data-i18n="timestamp.paraTimestamp">Datum → Timestamp</h2>
+            <form class="ts-bloco__form" id="formParaTs" novalidate>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="timestamp.data">Datum</span>
+                <input class="entrada" type="date" id="dtData" required />
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="timestamp.hora">Uhrzeit</span>
+                <input class="entrada" type="time" id="dtHora" step="1" value="00:00:00" required />
+              </label>
+              <label class="campo ts-bloco__largo">
+                <span class="campo__rotulo" data-i18n="timestamp.fuso">Zeitzone</span>
+                <select class="entrada" id="dtFuso"></select>
+              </label>
+            </form>
+            <div class="ts-resultado" aria-live="polite">
+              <p class="rotulo" data-i18n="timestamp.emSegundos">In Sekunden</p>
+              <div class="ts-resultado__linha">
+                <p class="resultado-grande mono" id="dtResultado">—</p>
+                <button type="button" class="botao botao--fantasma botao--icone botao--pequeno" id="dtCopiar" aria-label="Sekunden kopieren" title="Sekunden kopieren" data-i18n-attr="aria-label:timestamp.copiarSegundos;title:timestamp.copiarSegundos">
+                  <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+                </button>
+              </div>
+              <p class="aviso aviso--alerta texto-pequeno" id="dtAviso" hidden></p>
+              <p class="campo__erro" id="dtErro" hidden></p>
+            </div>
+            <dl class="lista-dados ts-formatos" id="dtDetalhes"></dl>
+          </section>
+        </div>
+
+        <details class="ajustes">
+          <summary>
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#codigo" /></svg>
+            <span data-i18n="timestamp.outrasLinguagens">Aktueller Timestamp in anderen Programmiersprachen</span>
+          </summary>
+          <div class="ajustes__corpo">
+            <div class="tabela-rolagem">
+            <table class="tabela ts-trechos">
+              <thead>
+                <tr>
+                  <th scope="col" data-i18n="timestamp.linguagem">Sprache</th>
+                  <th scope="col" data-i18n="timestamp.unidadeSegundos">Sekunden</th>
+                  <th scope="col" data-i18n="timestamp.unidadeMilissegundos">Millisekunden</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><code>Math.floor(Date.now() / 1000)</code></td>
+                  <td><code>Date.now()</code></td>
+                </tr>
+                <tr>
+                  <td>Python</td>
+                  <td><code>int(time.time())</code></td>
+                  <td><code>time.time_ns() // 1_000_000</code></td>
+                </tr>
+                <tr>
+                  <td>PostgreSQL</td>
+                  <td><code>SELECT extract(epoch FROM now())::bigint;</code></td>
+                  <td><code>SELECT (extract(epoch FROM now()) * 1000)::bigint;</code></td>
+                </tr>
+                <tr>
+                  <td>MySQL</td>
+                  <td><code>SELECT UNIX_TIMESTAMP();</code></td>
+                  <td><code>SELECT ROUND(UNIX_TIMESTAMP(NOW(3)) * 1000);</code></td>
+                </tr>
+                <tr>
+                  <td>Shell (Linux)</td>
+                  <td><code>date +%s</code></td>
+                  <td><code>date +%s%3N</code></td>
+                </tr>
+                <tr>
+                  <td>PHP</td>
+                  <td><code>time()</code></td>
+                  <td><code>(int) (microtime(true) * 1000)</code></td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="texto-xs texto-fraco" data-i18n="timestamp.notaDeteccao">Bei der automatischen Erkennung werden Werte ab 100.000.000.000 als Millisekunden gelesen. Wählen Sie die Einheit für Daten vor 1973 oder nach 5138.</p>
+            <p class="texto-xs texto-fraco" data-i18n="timestamp.notaUnix">Die Unix-Zeit zählt die Sekunden seit dem 1.1.1970 00:00:00 UTC ohne Schaltsekunden und ist weltweit gleich: Die Zeitzone ändert nur die Darstellung des Datums.</p>
+          </div>
+        </details>
+      </div>
+    </main>
+
+    <!-- @rodape -->
+    <footer class="rodape">
+      <div class="container rodape__conteudo">
+        <span>© <span data-ano-atual>2026</span> GlobalTime · <span data-i18n="comum.por">von</span> <a href="https://lzdev.com.br/" rel="noopener">LZdev</a></span>
+        <span class="rodape__links">
+          <a href="/de/docs" data-i18n="comum.documentacao">Dokumentation</a>
+          <button type="button" class="rodape__botao" data-abrir-atalhos data-i18n="comum.atalhos">Tastenkürzel</button>
+          <label class="rodape__idioma">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
+            <span class="sr-only" data-i18n="comum.idioma">Sprache</span>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" selected lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+          </label>
+        </span>
+      </div>
+    </footer>
+    <!-- /@rodape -->
+  </body>
+</html>

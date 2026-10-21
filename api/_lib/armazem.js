@@ -26,6 +26,10 @@ async function upstash(comandos) {
     method: "POST",
     headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     body: JSON.stringify(comandos),
+    // Sem resposta em 8 s, desiste em vez de segurar a função até o limite.
+    signal: AbortSignal.timeout(8000),
+  }).catch(() => {
+    throw new ErroHttp(503, "armazem-indisponivel");
   });
   if (!resposta.ok) throw new ErroHttp(503, "armazem-indisponivel");
   const resultados = await resposta.json();
@@ -70,7 +74,7 @@ function executarMemoria([nome, chave, ...args]) {
       return valor;
     }
     case "EXPIRE":
-      if (!memoria.has(chave)) return 0;
+      if (!memoria.has(chave) || (args.includes("NX") && expira.has(chave))) return 0;
       expira.set(chave, Date.now() + Number(args[0]) * 1000);
       return 1;
     case "HSET": {

@@ -2,6 +2,7 @@
 // ferramentas, ajuda de atalhos e registro do service worker (PWA).
 
 import { idioma, trocarIdioma } from "../i18n/index.js";
+import { IDIOMA_PADRAO, prefixoIdioma } from "../i18n/idiomas.js";
 import { t } from "../i18n/estado.js";
 import { abrirAjudaAtalhos } from "./atalhos.js";
 import { avisar } from "./ui.js";
@@ -138,6 +139,14 @@ function registrarServiceWorker() {
       };
 
       if (registro.waiting && navigator.serviceWorker.controller) oferecerAtualizacao(registro.waiting);
+
+      // O pré-cache traz as páginas em português; as do idioma em uso são
+      // guardadas agora, para também abrirem offline.
+      if (idioma !== IDIOMA_PADRAO) {
+        navigator.serviceWorker.ready
+          .then((pronto) => pronto.active?.postMessage({ tipo: "GUARDAR_IDIOMA", prefixo: prefixoIdioma(idioma) }))
+          .catch(() => {});
+      }
 
       registro.addEventListener("updatefound", () => {
         const novo = registro.installing;

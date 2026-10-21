@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- @head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Online stopwatch with laps | GlobalTime</title>
+    <meta name="description" content="Accurate stopwatch with laps, best and worst lap, CSV export and automatic recovery after reloading the page." />
+    <meta name="gt:pagina" content="cronometro" />
+    <link rel="canonical" href="https://global-time.lzdev.com.br/en/cronometro" />
+    <link rel="alternate" hreflang="pt-BR" href="https://global-time.lzdev.com.br/cronometro" />
+    <link rel="alternate" hreflang="pt-PT" href="https://global-time.lzdev.com.br/pt-pt/cronometro" />
+    <link rel="alternate" hreflang="en" href="https://global-time.lzdev.com.br/en/cronometro" />
+    <link rel="alternate" hreflang="es" href="https://global-time.lzdev.com.br/es/cronometro" />
+    <link rel="alternate" hreflang="fr" href="https://global-time.lzdev.com.br/fr/cronometro" />
+    <link rel="alternate" hreflang="de" href="https://global-time.lzdev.com.br/de/cronometro" />
+    <link rel="alternate" hreflang="it" href="https://global-time.lzdev.com.br/it/cronometro" />
+    <link rel="alternate" hreflang="nl" href="https://global-time.lzdev.com.br/nl/cronometro" />
+    <link rel="alternate" hreflang="ru" href="https://global-time.lzdev.com.br/ru/cronometro" />
+    <link rel="alternate" hreflang="ja" href="https://global-time.lzdev.com.br/ja/cronometro" />
+    <link rel="alternate" hreflang="zh-CN" href="https://global-time.lzdev.com.br/zh-cn/cronometro" />
+    <link rel="alternate" hreflang="ko" href="https://global-time.lzdev.com.br/ko/cronometro" />
+    <link rel="alternate" hreflang="ar" href="https://global-time.lzdev.com.br/ar/cronometro" />
+    <link rel="alternate" hreflang="x-default" href="https://global-time.lzdev.com.br/cronometro" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GlobalTime" />
+    <meta property="og:locale" content="en" />
+    <meta property="og:title" content="Online stopwatch with laps" />
+    <meta property="og:description" content="Accurate stopwatch with laps, best and worst lap, CSV export and automatic recovery after reloading the page." />
+    <meta property="og:url" content="https://global-time.lzdev.com.br/en/cronometro" />
+    <meta property="og:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GlobalTime — Exact time now, synced" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Online stopwatch with laps" />
+    <meta name="twitter:description" content="Accurate stopwatch with laps, best and worst lap, CSV export and automatic recovery after reloading the page." />
+    <meta name="twitter:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/assets/icones/icone-96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/assets/icones/icone-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/icones/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="/assets/fontes/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/estilos/app.css" />
+    <script src="/scripts/tema-inicial.js"></script>
+    <script type="module" src="/scripts/nucleo/pagina.js"></script>
+    <!-- /@head -->
+    <script type="module" src="/scripts/paginas/cronometro.js"></script>
+  </head>
+  <body>
+    <!-- @cabecalho -->
+    <a class="pular-conteudo" href="#conteudo" data-i18n="comum.pularConteudo">Skip to content</a>
+    <header class="cabecalho">
+      <div class="container cabecalho__conteudo">
+        <a class="marca" href="/en" aria-label="GlobalTime — home page" data-i18n-attr="aria-label:comum.marcaInicio">
+          <img class="marca__simbolo marca__simbolo--preto" src="/assets/marca/simbolo-preto.png" width="32" height="32" alt="" /><img class="marca__simbolo marca__simbolo--branco" src="/assets/marca/simbolo-branco.png" width="32" height="32" alt="" />
+          <span class="marca__nome">Global<span>Time</span></span>
+        </a>
+        <nav class="nav-principal" aria-label="Main" data-i18n-attr="aria-label:comum.navPrincipal">
+          <a href="/en" data-i18n="paginas.inicio.rotuloNav">Home</a>
+          <a href="/en/cronometro" aria-current="page" data-i18n="paginas.cronometro.rotulo">Stopwatch</a>
+          <a href="/en/temporizador" data-i18n="paginas.temporizador.rotulo">Timer</a>
+          <a href="/en/calendario" data-i18n="paginas.calendario.rotulo">Calendar</a>
+          <a href="/en/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">Time zones</a>
+        </nav>
+        <div class="cabecalho__acoes">
+          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="Use dark theme" title="Use dark theme" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
+            <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tema-escuro"/></svg>
+          </button>
+          <button id="botaoMenu" class="botao botao--secundario botao--pequeno" type="button" aria-expanded="false" aria-controls="painelFerramentas">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#grade"/></svg><span data-i18n="comum.ferramentas">Tools</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div id="painelFerramentas" class="painel-ferramentas" hidden>
+      <nav aria-label="All tools" data-i18n-attr="aria-label:comum.todasFerramentas">
+        <div class="container painel-ferramentas__conteudo">
+            <div>
+              <h2 data-i18n="grupos.relogios">Clocks</h2>
+              <ul>
+                <li><a href="/en"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">Exact time</span></a></li>
+                <li><a href="/en/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">World clock</span></a></li>
+                <li><a href="/en/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">Time zone converter</span></a></li>
+                <li><a href="/en/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">Full-screen clock</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.medir">Measure time</h2>
+              <ul>
+                <li><a href="/en/cronometro" aria-current="page"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#cronometro"/></svg><span data-i18n="paginas.cronometro.rotulo">Stopwatch</span></a></li>
+                <li><a href="/en/temporizador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#temporizador"/></svg><span data-i18n="paginas.temporizador.rotulo">Timer</span></a></li>
+                <li><a href="/en/pomodoro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#foco"/></svg><span data-i18n="paginas.pomodoro.rotulo">Pomodoro</span></a></li>
+                <li><a href="/en/despertador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#despertador"/></svg><span data-i18n="paginas.despertador.rotulo">Alarm clock</span></a></li>
+                <li><a href="/en/contagem"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#contagem"/></svg><span data-i18n="paginas.contagem.rotulo">Countdown</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.calendario">Calendar</h2>
+              <ul>
+                <li><a href="/en/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">Calendar</span></a></li>
+                <li><a href="/en/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">Brazilian holidays</span></a></li>
+                <li><a href="/en/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">Sunrise &amp; sunset</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.utilitarios">Utilities</h2>
+              <ul>
+                <li><a href="/en/calculadoras"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calculadora"/></svg><span data-i18n="paginas.calculadoras.rotulo">Time calculators</span></a></li>
+                <li><a href="/en/timestamp"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#codigo"/></svg><span data-i18n="paginas.timestamp.rotulo">Unix timestamp</span></a></li>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </div>
+    <!-- /@cabecalho -->
+
+    <main id="conteudo" tabindex="-1">
+      <div class="container container--medio">
+        <section class="ferramenta ferramenta--grande" aria-labelledby="tituloPagina">
+          <h1 id="tituloPagina" class="ferramenta__titulo" data-i18n="paginas.cronometro.rotulo">Stopwatch</h1>
+          <div id="visor" class="visor visor--gigante" role="timer" aria-live="off" aria-label="Total time" data-i18n-attr="aria-label:cronometro.tempoTotal">00:00<span class="visor__fracao">,00</span></div>
+          <p class="ferramenta__estado"><span id="estado" data-i18n="cronometro.parado">Stopped</span> · <span id="voltaAtual"></span></p>
+
+          <div class="controles">
+            <button id="botaoZerar" type="button" class="botao botao--secundario botao--grande" disabled>
+              <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#reiniciar" /></svg>
+              <span data-i18n="cronometro.zerar">Reset</span>
+            </button>
+            <button id="botaoIniciar" type="button" class="botao botao--primario botao--grande controles__principal">
+              <svg class="icone icone--preenchido" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#play" /></svg>
+              <span data-i18n="cronometro.iniciar">Start</span>
+            </button>
+            <button id="botaoVolta" type="button" class="botao botao--secundario botao--grande controles__volta" disabled>
+              <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#volta" /></svg>
+              <span data-i18n="cronometro.volta">Lap</span>
+            </button>
+          </div>
+          <button type="button" class="botao-atalhos" data-abrir-atalhos>
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#teclado" /></svg>
+            <span data-i18n="comum.atalhos">Keyboard shortcuts</span>
+          </button>
+        </section>
+
+        <section id="secaoVoltas" class="voltas" aria-labelledby="tituloVoltas" hidden>
+          <div class="voltas__topo">
+            <div>
+              <h2 id="tituloVoltas" data-i18n="cronometro.voltas">Laps</h2>
+              <p id="resumoVoltas" class="voltas__resumo"></p>
+            </div>
+            <div class="grupo-botoes">
+              <button id="botaoCopiar" type="button" class="botao botao--fantasma botao--pequeno" disabled>
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+                <span data-i18n="comum.copiar">Copy</span>
+              </button>
+              <button id="botaoCsv" type="button" class="botao botao--fantasma botao--pequeno" disabled>
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#baixar" /></svg>
+                CSV
+              </button>
+            </div>
+          </div>
+          <div id="tabelaVoltasCaixa" class="voltas__lista" tabindex="0" role="region" aria-labelledby="tituloVoltas">
+            <table class="tabela tabela--compacta">
+              <caption class="sr-only" data-i18n="cronometro.legendaTabela">Recorded laps, from most recent to oldest</caption>
+              <thead>
+                <tr>
+                  <th scope="col" data-i18n="cronometro.colVolta">Lap</th>
+                  <th scope="col" class="numero" data-i18n="cronometro.colTempo">Time</th>
+                  <th scope="col" class="numero voltas__diferenca" data-i18n="cronometro.colDiferenca">Difference</th>
+                  <th scope="col" class="numero" data-i18n="cronometro.colTotal">Total</th>
+                </tr>
+              </thead>
+              <tbody id="corpoVoltas"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- @rodape -->
+    <footer class="rodape">
+      <div class="container rodape__conteudo">
+        <span>© <span data-ano-atual>2026</span> GlobalTime · <span data-i18n="comum.por">by</span> <a href="https://lzdev.com.br/" rel="noopener">LZdev</a></span>
+        <span class="rodape__links">
+          <a href="/en/docs" data-i18n="comum.documentacao">Documentation</a>
+          <button type="button" class="rodape__botao" data-abrir-atalhos data-i18n="comum.atalhos">Keyboard shortcuts</button>
+          <label class="rodape__idioma">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
+            <span class="sr-only" data-i18n="comum.idioma">Language</span>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" selected lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+          </label>
+        </span>
+      </div>
+    </footer>
+    <!-- /@rodape -->
+  </body>
+</html>

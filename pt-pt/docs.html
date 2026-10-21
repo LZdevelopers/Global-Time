@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="pt-PT" dir="ltr">
+  <head>
+    <!-- @head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Documentação do GlobalTime | GlobalTime</title>
+    <meta name="description" content="Como o GlobalTime sincroniza a hora, como usar cada ferramenta, fusos, calendário, atalhos, utilização offline, idiomas e desenvolvimento." />
+    <meta name="gt:pagina" content="docs" />
+    <link rel="canonical" href="https://global-time.lzdev.com.br/pt-pt/docs" />
+    <link rel="alternate" hreflang="pt-BR" href="https://global-time.lzdev.com.br/docs" />
+    <link rel="alternate" hreflang="pt-PT" href="https://global-time.lzdev.com.br/pt-pt/docs" />
+    <link rel="alternate" hreflang="en" href="https://global-time.lzdev.com.br/en/docs" />
+    <link rel="alternate" hreflang="x-default" href="https://global-time.lzdev.com.br/docs" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GlobalTime" />
+    <meta property="og:locale" content="pt_PT" />
+    <meta property="og:title" content="Documentação do GlobalTime" />
+    <meta property="og:description" content="Como o GlobalTime sincroniza a hora, como usar cada ferramenta, fusos, calendário, atalhos, utilização offline, idiomas e desenvolvimento." />
+    <meta property="og:url" content="https://global-time.lzdev.com.br/pt-pt/docs" />
+    <meta property="og:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GlobalTime — Hora certa agora, sincronizada" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Documentação do GlobalTime" />
+    <meta name="twitter:description" content="Como o GlobalTime sincroniza a hora, como usar cada ferramenta, fusos, calendário, atalhos, utilização offline, idiomas e desenvolvimento." />
+    <meta name="twitter:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/assets/icones/icone-96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/assets/icones/icone-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/icones/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="/assets/fontes/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/estilos/app.css" />
+    <script src="/scripts/tema-inicial.js"></script>
+    <script type="module" src="/scripts/nucleo/pagina.js"></script>
+    <!-- /@head -->
+    <script type="module" src="/scripts/paginas/docs.js"></script>
+  </head>
+  <body>
+    <!-- @cabecalho -->
+    <a class="pular-conteudo" href="#conteudo" data-i18n="comum.pularConteudo">Saltar para o conteúdo</a>
+    <header class="cabecalho">
+      <div class="container cabecalho__conteudo">
+        <a class="marca" href="/pt-pt" aria-label="GlobalTime — página inicial" data-i18n-attr="aria-label:comum.marcaInicio">
+          <img class="marca__simbolo marca__simbolo--preto" src="/assets/marca/simbolo-preto.png" width="32" height="32" alt="" /><img class="marca__simbolo marca__simbolo--branco" src="/assets/marca/simbolo-branco.png" width="32" height="32" alt="" />
+          <span class="marca__nome">Global<span>Time</span></span>
+        </a>
+        <nav class="nav-principal" aria-label="Principal" data-i18n-attr="aria-label:comum.navPrincipal">
+          <a href="/pt-pt" data-i18n="paginas.inicio.rotuloNav">Início</a>
+          <a href="/pt-pt/cronometro" data-i18n="paginas.cronometro.rotulo">Cronómetro</a>
+          <a href="/pt-pt/temporizador" data-i18n="paginas.temporizador.rotulo">Temporizador</a>
+          <a href="/pt-pt/calendario" data-i18n="paginas.calendario.rotulo">Calendário</a>
+          <a href="/pt-pt/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">Fusos horários</a>
+        </nav>
+        <div class="cabecalho__acoes">
+          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="Usar tema escuro" title="Usar tema escuro" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
+            <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tema-escuro"/></svg>
+          </button>
+          <button id="botaoMenu" class="botao botao--secundario botao--pequeno" type="button" aria-expanded="false" aria-controls="painelFerramentas">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#grade"/></svg><span data-i18n="comum.ferramentas">Ferramentas</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div id="painelFerramentas" class="painel-ferramentas" hidden>
+      <nav aria-label="Todas as ferramentas" data-i18n-attr="aria-label:comum.todasFerramentas">
+        <div class="container painel-ferramentas__conteudo">
+            <div>
+              <h2 data-i18n="grupos.relogios">Relógios</h2>
+              <ul>
+                <li><a href="/pt-pt"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">Hora certa</span></a></li>
+                <li><a href="/pt-pt/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">Relógio mundial</span></a></li>
+                <li><a href="/pt-pt/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">Conversor de fusos</span></a></li>
+                <li><a href="/pt-pt/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">Relógio em ecrã inteiro</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.medir">Medir o tempo</h2>
+              <ul>
+                <li><a href="/pt-pt/cronometro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#cronometro"/></svg><span data-i18n="paginas.cronometro.rotulo">Cronómetro</span></a></li>
+                <li><a href="/pt-pt/temporizador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#temporizador"/></svg><span data-i18n="paginas.temporizador.rotulo">Temporizador</span></a></li>
+                <li><a href="/pt-pt/pomodoro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#foco"/></svg><span data-i18n="paginas.pomodoro.rotulo">Pomodoro</span></a></li>
+                <li><a href="/pt-pt/despertador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#despertador"/></svg><span data-i18n="paginas.despertador.rotulo">Despertador</span></a></li>
+                <li><a href="/pt-pt/contagem"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#contagem"/></svg><span data-i18n="paginas.contagem.rotulo">Contagem decrescente</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.calendario">Calendário</h2>
+              <ul>
+                <li><a href="/pt-pt/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">Calendário</span></a></li>
+                <li><a href="/pt-pt/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">Feriados do Brasil</span></a></li>
+                <li><a href="/pt-pt/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">Nascer e pôr do sol</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.utilitarios">Utilitários</h2>
+              <ul>
+                <li><a href="/pt-pt/calculadoras"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calculadora"/></svg><span data-i18n="paginas.calculadoras.rotulo">Calculadoras de tempo</span></a></li>
+                <li><a href="/pt-pt/timestamp"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#codigo"/></svg><span data-i18n="paginas.timestamp.rotulo">Timestamp Unix</span></a></li>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </div>
+    <!-- /@cabecalho -->
+
+    <main id="conteudo" tabindex="-1">
+      <div class="container docs">
+        <aside class="docs__lateral">
+          <button id="docsMenu" type="button" class="docs__menu-botao" aria-expanded="false" aria-controls="docsNavegacao">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#menu" /></svg>
+            <span id="docsSecaoAtual" data-i18n="docs.secoes">Secções</span>
+          </button>
+          <div id="docsNavegacao" class="docs__navegacao">
+            <div class="docs__busca">
+              <label class="sr-only" for="docsBusca" data-i18n="docs.buscar">Pesquisar na documentação</label>
+              <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#busca" /></svg>
+              <input id="docsBusca" type="search" class="entrada" autocomplete="off" placeholder="Pesquisar na documentação" data-i18n-attr="placeholder:docs.buscar" />
+            </div>
+            <p id="docsResultado" class="docs__resultado" aria-live="polite"></p>
+            <nav id="docsIndice" class="docs__indice" aria-label="Documentação" data-i18n-attr="aria-label:paginas.docs.rotulo"></nav>
+          </div>
+        </aside>
+
+        <div class="docs__corpo">
+          <header class="docs__topo">
+            <p class="rotulo" data-i18n="paginas.docs.rotulo">Documentação</p>
+            <h1 data-i18n="docs.titulo">Como usar o GlobalTime</h1>
+            <p id="docsAvisoIdioma" class="docs__aviso" hidden data-i18n="docs.avisoIdioma">A documentação está disponível em português e inglês; abaixo, a versão em inglês.</p>
+          </header>
+
+          <!-- Português -->
+          <article class="docs__artigo prosa" lang="pt-BR" data-docs-idioma="pt">
+            <div class="docs__grupo" data-grupo="Começando">
+              <section id="visao-geral">
+                <h2>Visão geral</h2>
+                <p>
+                  O GlobalTime mostra a hora certa no seu fuso, sincronizada com o servidor, e reúne ferramentas de
+                  tempo: relógio mundial, conversor de fusos, relógio em tela cheia, cronômetro, temporizador,
+                  Pomodoro, despertador, contagem regressiva, calendário com eventos pessoais, feriados do Brasil,
+                  nascer e pôr do sol, calculadoras de datas e conversor de timestamp Unix.
+                </p>
+                <p>
+                  Tudo funciona no navegador, de graça e sem anúncios. Criar uma conta é opcional e serve só para
+                  guardar os seus eventos do calendário no servidor (veja <a href="#eventos-e-conta">Eventos e conta</a>).
+                </p>
+              </section>
+
+              <section id="idioma-e-fuso">
+                <h2>Idioma e fuso horário</h2>
+                <h3 id="idioma">Idioma</h3>
+                <p>
+                  Cada idioma tem o próprio endereço: <code>/cronometro</code> em português do Brasil,
+                  <code>/en/cronometro</code> em inglês, <code>/es/cronometro</code> em espanhol, e assim por diante.
+                  Na primeira visita a um endereço em português, o site leva você à versão no idioma principal do
+                  seu navegador (o primeiro da lista de idiomas preferidos), se o GlobalTime oferecer esse idioma;
+                  senão, a página fica em português do Brasil. Um endereço com idioma (como <code>/en/...</code>)
+                  sempre abre nesse idioma.
+                </p>
+                <p>
+                  Idiomas disponíveis: português do Brasil, português europeu, inglês, espanhol, francês, alemão,
+                  italiano, holandês, russo, japonês, chinês simplificado, coreano e árabe (da direita para a
+                  esquerda). Para trocar, use o seletor de idioma no rodapé: a página abre no idioma escolhido, e
+                  a escolha fica salva neste navegador e passa a valer em todas as visitas.
+                </p>
+                <p>
+                  Nomes de feriados e datas comemorativas brasileiras ficam em português, por serem nomes próprios.
+                  Esta documentação existe em português e inglês.
+                </p>
+                <h3 id="fuso">Fuso horário</h3>
+                <p>
+                  A hora da página inicial é exibida no fuso configurado no seu aparelho, lido com
+                  <code>Intl.DateTimeFormat().resolvedOptions().timeZone</code>. O GlobalTime não pede a sua
+                  localização para isso — e o fuso do aparelho não indica, por si, onde você está.
+                </p>
+                <p>
+                  Para escolher outro, clique no nome do lugar acima do relógio. A escolha fica salva; selecione
+                  “Automático” para voltar ao fuso do aparelho. Quando o fuso exibido tem outra hora, o horário de
+                  Brasília aparece logo abaixo da data.
+                </p>
+                <p>
+                  Trocar o fuso só muda a forma de exibir: o instante continua vindo do relógio sincronizado com o
+                  servidor. O relógio mundial, o conversor, o despertador e a contagem regressiva começam pelo fuso
+                  escolhido.
+                </p>
+              </section>
+
+              <section id="atalhos">
+                <h2>Atalhos de teclado</h2>
+                <p>
+                  Pressione <kbd>H</kbd> (ou <kbd>?</kbd>) em qualquer página para ver os atalhos dela; o botão
+                  “Atalhos de teclado”, no rodapé e perto dos controles das ferramentas, faz o mesmo.
+                </p>
+                <div class="tabela-rolagem">
+                  <table class="tabela">
+                    <thead>
+                      <tr><th scope="col">Tecla</th><th scope="col">Ação</th><th scope="col">Onde</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><kbd>Espaço</kbd></td><td>Iniciar, pausar ou continuar</td><td>Cronômetro, temporizador, Pomodoro</td></tr>
+                      <tr><td><kbd>L</kbd></td><td>Registrar volta</td><td>Cronômetro</td></tr>
+                      <tr><td><kbd>R</kbd></td><td>Zerar ou reiniciar (pede confirmação quando há dados a perder)</td><td>Cronômetro, temporizador, Pomodoro</td></tr>
+                      <tr><td><kbd>+</kbd></td><td>Adicionar 1 minuto</td><td>Temporizador</td></tr>
+                      <tr><td><kbd>N</kbd></td><td>Pular para a próxima etapa</td><td>Pomodoro</td></tr>
+                      <tr><td><kbd>F</kbd> / <kbd>M</kbd></td><td>Tela cheia / alternar digital e analógico</td><td>Tela cheia</td></tr>
+                      <tr><td>Setas, <kbd>PageUp</kbd>, <kbd>PageDown</kbd>, <kbd>Home</kbd></td><td>Mudar de dia, de período e voltar a hoje</td><td>Calendário</td></tr>
+                      <tr><td><kbd>H</kbd> ou <kbd>?</kbd></td><td>Mostrar os atalhos</td><td>Todas</td></tr>
+                      <tr><td><kbd>Esc</kbd></td><td>Fechar janelas e sair de modos</td><td>Todas</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>
+                  Os atalhos não funcionam enquanto você digita em um campo nem com uma janela aberta, e nunca usam
+                  <kbd>Ctrl</kbd>, <kbd>Alt</kbd> ou <kbd>⌘</kbd>, para não conflitar com o navegador e o sistema. As
+                  letras valem em qualquer layout: em teclados cirílicos, árabes ou coreanos conta a posição física
+                  da tecla. Zerar um cronômetro com voltas (ou com mais de um minuto medido) pede confirmação.
+                </p>
+              </section>
+            </div>
+
+            <div class="docs__grupo" data-grupo="Horário">
+              <section id="sincronizacao">
+                <h2>Como a sincronização funciona</h2>
+                <p>
+                  O relógio do seu computador ou celular pode estar adiantado ou atrasado. Por isso o GlobalTime
+                  compara o seu relógio com o do servidor:
+                </p>
+                <ol>
+                  <li>O navegador consulta <code>/api/hora</code>, que devolve o horário do servidor em milissegundos, com cabeçalhos que proíbem cache.</li>
+                  <li>O envio e o recebimento são medidos com <code>performance.now()</code>, que não muda quando alguém ajusta o relógio do sistema.</li>
+                  <li>Supomos que o servidor leu o relógio no meio da viagem: na chegada, a hora do servidor é o valor recebido mais metade do tempo de ida e volta.</li>
+                  <li>Ao abrir a página são feitas até cinco medições; usamos a de <strong>menor latência</strong>, a menos afetada por filas na rede.</li>
+                  <li>Entre sincronizações, a hora avança com <code>performance.now()</code> a partir dessa medição.</li>
+                  <li>A cada 10 minutos há uma nova rodada (três medições), e também quando a aba volta a ficar visível depois de mais de um minuto, quando a conexão volta e quando a página é restaurada do histórico.</li>
+                  <li>A cada 5 segundos o avanço do cronômetro interno é comparado com o do relógio do sistema; se divergirem mais de 2 segundos (suspensão, ajuste de relógio), a sincronização é refeita na hora.</li>
+                  <li>Cada consulta tem limite de 5 segundos, e respostas atrasadas nunca sobrescrevem uma medição mais nova.</li>
+                </ol>
+                <h3 id="falhas">Se o servidor de horário falhar</h3>
+                <ol>
+                  <li><strong>Servidor do GlobalTime</strong> (<code>/api/hora</code>), com resolução de milissegundos.</li>
+                  <li><strong>Cabeçalho HTTP <code>Date</code></strong> de um arquivo do próprio site: resolução de 1 segundo; o servidor é tentado de novo a cada minuto.</li>
+                  <li><strong>Relógio do seu aparelho</strong>, sem correção, se nada responder. Se uma sincronização anterior deu certo, o relógio continua corrigido por ela.</li>
+                </ol>
+              </section>
+
+              <section id="precisao">
+                <h2>Precisão e estados do relógio</h2>
+                <p>
+                  Na página inicial, o estado aparece discreto no canto superior direito do relógio. Clique nele para
+                  ver a janela <strong>Precisão do relógio</strong>: fonte usada, latência, diferença do seu relógio
+                  e <strong>incerteza estimada</strong> — metade do tempo de ida e volta, o maior erro que a rede pode
+                  ter causado supondo que o servidor esteja certo.
+                </p>
+                <p>
+                  Ela não é uma garantia de precisão absoluta: o relógio do servidor (Vercel) é mantido por NTP e não
+                  é uma fonte oficial de hora atômica; a estimativa supõe ida e volta com a mesma duração; e a tela só
+                  muda quando o navegador desenha um novo quadro. Diferenças de até 0,1 s aparecem como “em dia”.
+                </p>
+                <h3 id="estados">Estados</h3>
+                <div class="tabela-rolagem">
+                  <table class="tabela">
+                    <thead><tr><th scope="col">Estado</th><th scope="col">Significado</th></tr></thead>
+                    <tbody>
+                      <tr><td><span class="selo selo--acento">Sincronizando…</span></td><td>Medindo a diferença entre o seu relógio e o servidor.</td></tr>
+                      <tr><td><span class="selo selo--sucesso">Sincronizado</span></td><td>Horário corrigido pelo servidor do GlobalTime.</td></tr>
+                      <tr><td><span class="selo selo--alerta">Precisão limitada</span></td><td>Servidor indisponível; usando o cabeçalho HTTP Date.</td></tr>
+                      <tr><td><span class="selo selo--alerta">Usando relógio do aparelho</span></td><td>Nenhuma fonte respondeu; horário do aparelho, sem correção.</td></tr>
+                      <tr><td><span class="selo selo--alerta">Offline · última sincronização</span></td><td>Sem internet, ainda corrigido pela última sincronização.</td></tr>
+                      <tr><td><span class="selo selo--perigo">Offline</span></td><td>Sem internet e sem sincronização anterior.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section id="fusos">
+                <h2>Fusos horários</h2>
+                <p>
+                  Os horários de outras cidades são calculados com a base oficial de fusos (IANA) embutida no
+                  navegador, pela API <code>Intl.DateTimeFormat</code> — nunca somando horas fixas —, então as regras
+                  de horário de verão de cada lugar são respeitadas. O Brasil não adota horário de verão desde 2019.
+                </p>
+                <ul>
+                  <li><strong>Relógio mundial:</strong> começa com poucas cidades a partir do seu fuso; adicione, reordene e remova cidades. A lista fica salva neste navegador.</li>
+                  <li><strong>Conversor:</strong> converte um horário entre cidades ou fusos IANA, avisa horários inexistentes ou repetidos na troca do horário de verão e tem um planejador de reuniões.</li>
+                  <li><strong>Tela cheia:</strong> relógio grande para TVs e monitores, com fusos extras; os ajustes ficam no endereço da página.</li>
+                </ul>
+              </section>
+            </div>
+
+            <div class="docs__grupo" data-grupo="Ferramentas">
+              <section id="cronometro">
+                <h2>Cronômetro</h2>
+                <p>
+                  Mede o tempo com <code>performance.now()</code> durante a sessão, então não é afetado por ajustes
+                  do relógio do sistema. Registre voltas com <kbd>L</kbd>; a lista mostra o tempo de cada volta, a
+                  diferença para a anterior, o total e destaca a melhor e a pior. Ela tem rolagem própria, para não
+                  esticar a página.
+                </p>
+                <p>
+                  Copie os resultados ou exporte um CSV (separador <code>;</code>, com colunas em milissegundos
+                  exatos). Se a página for recarregada, o cronômetro continua de onde estava.
+                </p>
+              </section>
+
+              <section id="temporizador">
+                <h2>Temporizador e Pomodoro</h2>
+                <p>
+                  A contagem é calculada a partir do <strong>instante final</strong>, não subtraindo segundos: o tempo
+                  restante continua certo mesmo se o navegador atrasar a aba em segundo plano. Ao terminar, toca o som
+                  escolhido (até 5 minutos, se “Repetir” estiver ligado) e, se você permitiu, aparece uma notificação
+                  do sistema. Se a página estava fechada, ela informa quando o tempo acabou.
+                </p>
+                <p>
+                  O Pomodoro alterna foco, pausa curta e pausa longa com durações ajustáveis e guarda o histórico do
+                  dia neste navegador. Som, notificações e “manter a tela ligada” ficam em seções recolhíveis.
+                </p>
+              </section>
+
+              <section id="despertador">
+                <h2>Despertador e contagem regressiva</h2>
+                <p>
+                  Os alarmes usam o horário sincronizado e podem ter data, repetição semanal, fuso e som. Eles
+                  <strong>só tocam com a página aberta</strong>: com a aba ou o navegador fechados, nada toca, e
+                  celulares podem suspender abas em segundo plano. Para compromissos importantes, use também o
+                  despertador do aparelho.
+                </p>
+                <p>
+                  A contagem regressiva mostra quanto falta para uma data em qualquer fuso e gera um link para
+                  compartilhar. As contagens salvas aparecem no calendário.
+                </p>
+              </section>
+
+              <section id="utilitarios">
+                <h2>Calculadoras, timestamp e sol</h2>
+                <ul>
+                  <li><strong>Calculadoras:</strong> diferença entre datas (com dias úteis descontando feriados nacionais e, se escolhidos, estaduais), soma de dias corridos ou úteis, duração entre horários e conversão de unidades.</li>
+                  <li><strong>Timestamp Unix:</strong> converte segundos ou milissegundos em datas (ISO 8601, UTC e no fuso escolhido) e o caminho inverso.</li>
+                  <li><strong>Nascer e pôr do sol:</strong> cálculo pelo algoritmo da NOAA para cidades ou coordenadas. A localização só é pedida se você clicar em “Usar minha localização”, e as coordenadas não saem do navegador.</li>
+                </ul>
+              </section>
+            </div>
+
+            <div class="docs__grupo" data-grupo="Calendário">
+              <section id="calendario">
+                <h2>Calendário</h2>
+                <p>
+                  O calendário abre no <strong>ano inteiro</strong>, com os 12 meses em grade. Use os botões Ano, Mês e
+                  Semana para trocar a visualização; a data selecionada é mantida. As setas avançam ou voltam um
+                  período e “Hoje” volta ao período atual. Clique no nome de um mês para abri-lo.
+                </p>
+                <p>
+                  Feriados nacionais, estaduais e da capital escolhida, pontos facultativos, datas comemorativas, as
+                  suas contagens e os seus eventos aparecem em todas as visualizações. O painel ao lado mostra os
+                  detalhes do dia selecionado.
+                </p>
+              </section>
+
+              <section id="eventos-e-conta">
+                <h2>Eventos e conta</h2>
+                <p>
+                  Crie eventos com título, data, horário e descrição opcionais e a opção “Repetir todo ano”, para
+                  aniversários (29 de fevereiro aparece em 28 de fevereiro nos anos não bissextos). Edite ou exclua
+                  pelo painel do dia; dois cliques num dia (ou <kbd>Enter</kbd>) criam um evento nele.
+                </p>
+                <h3 id="sem-conta">Sem conta</h3>
+                <p>Os eventos ficam só neste navegador (armazenamento local). Apagar os dados do site os remove.</p>
+                <h3 id="com-conta">Com conta</h3>
+                <p>
+                  Com e-mail e senha, os eventos ficam no servidor e aparecem em qualquer aparelho em que você entrar.
+                  Ao entrar, o GlobalTime oferece levar para a conta os eventos que estavam só no navegador.
+                </p>
+                <ul>
+                  <li>A senha é guardada com <code>scrypt</code> e sal aleatório; o servidor nunca guarda a senha em si.</li>
+                  <li>A sessão usa um cookie <code>HttpOnly</code>, <code>SameSite=Lax</code> e <code>Secure</code>, válido por 30 dias.</li>
+                  <li>Tentativas de entrar são limitadas, e cada conta só acessa os próprios eventos.</li>
+                  <li>Ainda não há recuperação de senha por e-mail. Você pode excluir a conta e todos os eventos a qualquer momento, confirmando a senha.</li>
+                </ul>
+              </section>
+
+              <section id="feriados">
+                <h2>Dados de feriados</h2>
+                <p>
+                  Os dados foram compilados em 19/10/2026 a partir de leis e calendários oficiais; cada data traz a
+                  base legal e a fonte.
+                </p>
+                <ul>
+                  <li><strong>Nacionais:</strong> Lei nº 662/1949 (redação da Lei nº 10.607/2002), Lei nº 6.802/1980 e Lei nº 14.759/2023 (20 de novembro, nacional desde 2024).</li>
+                  <li><strong>Pontos facultativos</strong> não são feriados: valem para a administração pública federal (em 2026, Portaria MGI nº 11.460/2025).</li>
+                  <li><strong>Datas móveis</strong> (Carnaval, Sexta-feira Santa, Páscoa, Corpus Christi) são calculadas a partir da Páscoa.</li>
+                  <li><strong>Estaduais:</strong> verificados para 24 unidades da federação; MG, MT e PR não têm feriado estadual próprio.</li>
+                  <li><strong>Municipais:</strong> apenas 21 capitais com lei localizada. Confirme com a prefeitura da sua cidade.</li>
+                </ul>
+              </section>
+            </div>
+
+            <div class="docs__grupo" data-grupo="Aplicativo">
+              <section id="offline">
+                <h2>Uso sem internet</h2>
+                <p>
+                  O GlobalTime é um aplicativo web instalável (PWA). Depois da primeira visita, páginas, estilos,
+                  fontes, traduções e scripts ficam guardados, e as ferramentas que não dependem da rede funcionam
+                  offline.
+                </p>
+                <p>
+                  A <strong>sincronização precisa de internet</strong> e nunca vai para o cache — um horário guardado
+                  seria um horário errado. As contas e os eventos guardados na conta também precisam de conexão.
+                  Quando há uma nova versão, aparece o aviso “Atualizar”.
+                </p>
+              </section>
+
+              <section id="permissoes">
+                <h2>Permissões do navegador</h2>
+                <ul>
+                  <li><strong>Som:</strong> só é liberado depois de uma interação, por isso é preparado quando você clica em Iniciar.</li>
+                  <li><strong>Notificações:</strong> pedidas só quando você clica em Ativar.</li>
+                  <li><strong>Manter a tela ligada:</strong> disponível em parte dos navegadores; solto quando a aba fica oculta e pedido de novo quando ela volta.</li>
+                  <li><strong>Tela cheia:</strong> só por clique ou tecla; <kbd>Esc</kbd> sai.</li>
+                  <li><strong>Localização:</strong> usada apenas no nascer e pôr do sol, e só se você pedir.</li>
+                </ul>
+              </section>
+
+              <section id="privacidade">
+                <h2>Privacidade</h2>
+                <ul>
+                  <li>Sem anúncios, rastreadores ou análise de audiência. Fontes e ícones vêm do próprio site.</li>
+                  <li>Preferências (idioma, tema, fuso), cronômetros, alarmes, cidades, históricos e eventos sem conta ficam no <code>localStorage</code> do navegador.</li>
+                  <li>O idioma escolhido no seletor também fica no cookie <code>gt_idioma</code> (só o código do idioma, por um ano), para o site abrir direto na versão certa.</li>
+                  <li>Com conta, o servidor guarda apenas o e-mail, a senha protegida e os seus eventos.</li>
+                  <li>A consulta de horário não envia dados pessoais nem cookies.</li>
+                </ul>
+              </section>
+            </div>
+
+            <div class="docs__grupo" data-grupo="Desenvolvimento">
+              <section id="estrutura">
+                <h2>Estrutura do projeto</h2>
+                <p>
+                  Site estático em HTML, CSS e JavaScript puro, sem etapa de build nem dependências em produção, com
+                  Vercel Functions em <code>api/</code>.
+                </p>
+                <ul>
+                  <li><code>*.html</code> — páginas; cabeçalho, rodapé e metadados são mantidos por <code>dev/gerar.mjs</code> a partir de <code>dev/site.mjs</code>.</li>
+                  <li><code>scripts/nucleo/</code> — lógica sem DOM (tempo, sincronização, calendário, eventos) e componentes.</li>
+                  <li><code>scripts/paginas/</code> — um script por página. <code>scripts/i18n/</code> — idiomas e traduções.</li>
+                  <li><code>api/hora.js</code>, <code>api/conta.js</code>, <code>api/eventos.js</code> — funções; auxiliares em <code>api/_lib/</code>.</li>
+                  <li><code>sw.js</code> — service worker (pré-cache gerado).</li>
+                </ul>
+              </section>
+
+              <section id="executar">
+                <h2>Executar e testar</h2>
+                <p>Requer Node.js 20 ou superior; não há pacotes para instalar.</p>
+                <pre><code>npm run dev              # http://localhost:3000
+npm run gerar            # atualiza cabeçalho, rodapé, textos, sitemap e service worker
+npm run checar           # falha se algo estiver desatualizado
+npm test                 # testes de unidade e das funções
+npm run test:navegador   # todas as páginas no Chrome/Edge (desktop e celular)
+npm run test:pwa         # service worker e uso offline</code></pre>
+                <p>
+                  No servidor local, as contas usam um armazenamento em memória (apagado ao reiniciar). Opções dos
+                  testes de navegador: <code>SO=/cronometro</code> (uma página), <code>FUSO=Asia/Tokyo</code>,
+                  <code>TEMA=dark</code> e <code>INTEIRA=1</code> (captura da página inteira).
+                </p>
+              </section>
+
+              <section id="implantacao">
+                <h2>Implantação na Vercel</h2>
+                <p>
+                  O projeto é publicado na Vercel como está. As contas de usuário precisam de um banco Redis: crie um
+                  <strong>Upstash Redis</strong> pelo Marketplace da Vercel (há plano gratuito) e conecte-o ao projeto.
+                  A Vercel cria as variáveis:
+                </p>
+                <pre><code>KV_REST_API_URL=…
+KV_REST_API_TOKEN=…</code></pre>
+                <p>
+                  Os nomes <code>UPSTASH_REDIS_REST_URL</code> e <code>UPSTASH_REDIS_REST_TOKEN</code> também são
+                  aceitos. Sem essas variáveis o site funciona normalmente e os eventos ficam só no navegador. Defina
+                  <code>SITE_URL</code> ao rodar <code>npm run gerar</code> para o endereço público usado no sitemap.
+                </p>
+              </section>
+
+              <section id="api">
+                <h2>API</h2>
+                <h3 id="api-hora">GET /api/hora</h3>
+                <p>Devolve o horário do servidor em milissegundos, sem cache.</p>
+                <pre><code>curl https://SEU-DOMINIO/api/hora
+# {"timestamp":1792519155792}</code></pre>
+                <h3 id="api-conta">/api/conta</h3>
+                <p>
+                  <code>GET</code> informa se as contas estão disponíveis e qual conta está conectada.
+                  <code>POST</code> com <code>acao</code> igual a <code>cadastrar</code>, <code>entrar</code> ou
+                  <code>sair</code>; <code>DELETE</code> com a senha exclui a conta. Pedidos que mudam dados precisam
+                  de JSON e da mesma origem.
+                </p>
+                <pre><code>await fetch("/api/conta", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ acao: "entrar", email: "voce@exemplo.com", senha: "…" }),
+});</code></pre>
+                <h3 id="api-eventos">/api/eventos</h3>
+                <p>
+                  Com sessão aberta: <code>GET</code> lista, <code>POST</code> cria, <code>PUT ?id=</code> atualiza e
+                  <code>DELETE ?id=</code> exclui. Campos: <code>titulo</code>, <code>data</code>
+                  (<code>AAAA-MM-DD</code>), <code>hora</code> (<code>HH:MM</code>, opcional), <code>descricao</code> e
+                  <code>anual</code>.
+                </p>
+                <pre><code>await fetch("/api/eventos", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ titulo: "Aniversário", data: "2026-03-14", anual: true }),
+});</code></pre>
+              </section>
+
+              <section id="traducoes">
+                <h2>Traduções</h2>
+                <p>
+                  Os textos ficam em <code>scripts/i18n/textos/</code>: <code>pt-BR.js</code> é a referência, e cada
+                  idioma tem um arquivo com as mesmas chaves (os testes conferem). No HTML, elementos com
+                  <code>data-i18n</code> são preenchidos em português pelo gerador e traduzidos no navegador; nos
+                  scripts, use <code>t("chave", { parametros })</code>. Para incluir um idioma, adicione-o em
+                  <code>scripts/i18n/idiomas.js</code> e crie o arquivo de textos.
+                </p>
+              </section>
+            </div>
+          </article>
+
+          <!-- Inglês (English) -->
+        </div>
+
+        <aside class="docs__toc" aria-labelledby="docsTocTitulo">
+          <p id="docsTocTitulo" class="rotulo" data-i18n="docs.nestaSecao">Nesta secção</p>
+          <nav id="docsToc" aria-labelledby="docsTocTitulo"></nav>
+        </aside>
+      </div>
+    </main>
+
+    <!-- @rodape -->
+    <footer class="rodape">
+      <div class="container rodape__conteudo">
+        <span>© <span data-ano-atual>2026</span> GlobalTime · <span data-i18n="comum.por">por</span> <a href="https://lzdev.com.br/" rel="noopener">LZdev</a></span>
+        <span class="rodape__links">
+          <a href="/pt-pt/docs" data-i18n="comum.documentacao">Documentação</a>
+          <button type="button" class="rodape__botao" data-abrir-atalhos data-i18n="comum.atalhos">Atalhos de teclado</button>
+          <label class="rodape__idioma">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
+            <span class="sr-only" data-i18n="comum.idioma">Idioma</span>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" selected lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+          </label>
+        </span>
+      </div>
+    </footer>
+    <!-- /@rodape -->
+  </body>
+</html>

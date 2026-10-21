@@ -5,7 +5,8 @@ import { Readable } from "node:stream";
 process.env.GT_ARMAZEM = "memoria";
 const { default: conta } = await import("../api/conta.js");
 const { default: eventos } = await import("../api/eventos.js");
-const { limparMemoria } = await import("../api/_lib/armazem.js");
+const { limparMemoria, executar } = await import("../api/_lib/armazem.js");
+const { randomBytes, scryptSync } = await import("node:crypto");
 
 const ORIGEM = "https://globaltime.test";
 
@@ -49,6 +50,47 @@ test("cadastro abre sessão com cookie HttpOnly, Secure e SameSite", async () =>
   assert.equal(r.cabecalhos["cache-control"].includes("no-store"), true);
   const sessao = await pedir(conta, { cookie: r.cookie });
   assert.deepEqual(sessao.corpo, { disponivel: true, conta: { email: "ana@exemplo.com" } });
+});
+
+test("outro cookie malformado no domínio não derruba a sessão", async () => {
+  const r = await cadastrar();
+  const sessao = await pedir(conta, { cookie: `outro=%E0%A4%A; ${r.cookie}; x=%` });
+  assert.equal(sessao.status, 200);
+  assert.equal(sessao.corpo.conta.email, "ana@exemplo.com");
+});
+
+test("senha nova usa scrypt N=2^16, r=8, p=2 gravado na conta", async () => {
+  await cadastrar("kdf@exemplo.com");
+  const [id] = await executar(["GET", "conta:email:kdf@exemplo.com"]);
+  const [bruto] = await executar(["GET", `conta:${id}`]);
+  assert.deepEqual(JSON.parse(bruto).kdf, { N: 65536, r: 8, p: 2 });
+});
+
+test("conta antiga (scrypt N=2^14, sem parâmetros) entra e é recalculada", async () => {
+  const sal = randomBytes(16);
+  const hash = scryptSync("senha-antiga-1", sal, 64, { N: 16384, r: 8, p: 1 });
+  const legado = { id: "a".repeat(24), email: "velha@exemplo.com", sal: sal.toString("base64"), hash: hash.toString("base64"), criadoEm: 1 };
+  await executar(["SET", `conta:${legado.id}`, JSON.stringify(legado)], ["SET", "conta:email:velha@exemplo.com", legado.id]);
+
+  const errada = await pedir(conta, { metodo: "POST", corpo: { acao: "entrar", email: "velha@exemplo.com", senha: "outra-senha-1" } });
+  assert.equal(errada.status, 401);
+  assert.equal(JSON.parse((await executar(["GET", `conta:${legado.id}`]))[0]).kdf, undefined, "senha errada não altera a conta");
+
+  const certa = await pedir(conta, { metodo: "POST", corpo: { acao: "entrar", email: "velha@exemplo.com", senha: "senha-antiga-1" } });
+  assert.equal(certa.status, 200);
+  const atual = JSON.parse((await executar(["GET", `conta:${legado.id}`]))[0]);
+  assert.deepEqual(atual.kdf, { N: 65536, r: 8, p: 2 });
+  assert.notEqual(atual.hash, legado.hash);
+  assert.equal(atual.criadoEm, 1);
+  const outraVez = await pedir(conta, { metodo: "POST", corpo: { acao: "entrar", email: "velha@exemplo.com", senha: "senha-antiga-1" } });
+  assert.equal(outraVez.status, 200);
+});
+
+test("e-mail repetido não deixa conta órfã gravada", async () => {
+  await cadastrar("d@exemplo.com");
+  assert.equal((await cadastrar("d@exemplo.com", "outra-senha-1")).status, 409);
+  const login = await pedir(conta, { metodo: "POST", corpo: { acao: "entrar", email: "d@exemplo.com", senha: "senha-segura-1" } });
+  assert.equal(login.status, 200);
 });
 
 test("cadastro valida e-mail, senha e e-mail repetido", async () => {

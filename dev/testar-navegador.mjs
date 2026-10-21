@@ -21,7 +21,7 @@ import { fileURLToPath } from "node:url";
 import { PAGINAS } from "./site.mjs";
 import { VERIFICACOES } from "./verificacoes-navegador.mjs";
 import ptBR from "../scripts/i18n/textos/pt-BR.js";
-import { infoIdioma } from "../scripts/i18n/idiomas.js";
+import { caminhoNoIdioma, infoIdioma } from "../scripts/i18n/idiomas.js";
 
 const RAIZ = fileURLToPath(new URL("..", import.meta.url));
 const PORTA_SITE = Number(process.env.PORTA) || 3100 + Math.floor(Math.random() * 600);
@@ -124,6 +124,10 @@ async function main() {
       "--disable-gpu",
       "--hide-scrollbars",
       "--autoplay-policy=no-user-gesture-required",
+      // Idioma fixo: a Vercel (e o servidor local) redirecionam pelo
+      // Accept-Language, e as verificações por página esperam português.
+      "--lang=pt-BR",
+      "--accept-lang=pt-BR",
       "about:blank",
     ],
     { stdio: "ignore" },
@@ -184,7 +188,13 @@ async function main() {
       }
     });
 
-    const paginas = PAGINAS.map((p) => ({ ...p, url: p.arquivo === "404.html" ? "/rota-que-nao-existe" : p.caminho }))
+    // IDIOMA=en: as páginas indexáveis abrem na versão traduzida (/en/...); a
+    // 404 num endereço com o prefixo; a offline (/offline) pela preferência salva.
+    const noIdioma = (caminho) => (IDIOMA ? caminhoNoIdioma(caminho, IDIOMA) : caminho);
+    const paginas = PAGINAS.map((p) => ({
+      ...p,
+      url: p.arquivo === "404.html" ? noIdioma("/rota-que-nao-existe") : p.semIndexar ? p.caminho : noIdioma(p.caminho),
+    }))
       .filter((p) => !process.env.SO || p.caminho === process.env.SO);
 
     const telas = [

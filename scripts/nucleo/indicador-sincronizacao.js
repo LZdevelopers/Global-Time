@@ -1,7 +1,7 @@
 // Selo de estado da sincronização, linha de detalhe e janela "Detalhes".
 // Mostra latência e incerteza medidas, sem prometer precisão absoluta.
 
-import { numero, t } from "../i18n/estado.js";
+import { numero, t, urlLocal } from "../i18n/estado.js";
 import { fusoPreferido } from "./fuso-preferido.js";
 import { ESTADOS } from "./sincronizacao.js";
 import { formatarDiferencaCurta, formatarHora, partesNoFuso } from "./tempo.js";
@@ -125,7 +125,7 @@ export function abrirDetalhes(relogio) {
         "p",
         { class: "texto-xs texto-fraco dica-rodape-atalhos" },
         `${t("sync.explicacao")} `,
-        el("a", { href: "/docs#sincronizacao" }, t("sync.entenda")),
+        el("a", { href: urlLocal("/docs#sincronizacao") }, t("sync.entenda")),
       ),
     ],
     acoes: [botaoSincronizar],

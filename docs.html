@@ -8,6 +8,10 @@
     <meta name="description" content="Como o GlobalTime sincroniza o horário, como usar cada ferramenta, fusos, calendário, atalhos, uso offline, idiomas e desenvolvimento." />
     <meta name="gt:pagina" content="docs" />
     <link rel="canonical" href="https://global-time.lzdev.com.br/docs" />
+    <link rel="alternate" hreflang="pt-BR" href="https://global-time.lzdev.com.br/docs" />
+    <link rel="alternate" hreflang="pt-PT" href="https://global-time.lzdev.com.br/pt-pt/docs" />
+    <link rel="alternate" hreflang="en" href="https://global-time.lzdev.com.br/en/docs" />
+    <link rel="alternate" hreflang="x-default" href="https://global-time.lzdev.com.br/docs" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="GlobalTime" />
     <meta property="og:locale" content="pt_BR" />
@@ -17,14 +21,15 @@
     <meta property="og:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="GlobalTime — hora certa sincronizada e ferramentas de tempo" />
+    <meta property="og:image:alt" content="GlobalTime — Hora certa agora, sincronizada" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Documentação do GlobalTime" />
     <meta name="twitter:description" content="Como o GlobalTime sincroniza o horário, como usar cada ferramenta, fusos, calendário, atalhos, uso offline, idiomas e desenvolvimento." />
     <meta name="twitter:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="color-scheme" content="light dark" />
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/assets/icones/icone-96.png" type="image/png" sizes="96x96" />
     <link rel="icon" href="/assets/icones/icone-192.png" type="image/png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/assets/icones/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -53,7 +58,7 @@
           <a href="/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">Fusos horários</a>
         </nav>
         <div class="cabecalho__acoes">
-          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="Usar tema escuro" title="Usar tema escuro">
+          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="Usar tema escuro" title="Usar tema escuro" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
             <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tema-escuro"/></svg>
           </button>
           <button id="botaoMenu" class="botao botao--secundario botao--pequeno" type="button" aria-expanded="false" aria-controls="painelFerramentas">
@@ -150,16 +155,18 @@
                 <h2>Idioma e fuso horário</h2>
                 <h3 id="idioma">Idioma</h3>
                 <p>
-                  Na primeira visita, o idioma acompanha a região do seu aparelho (a localidade informada por
-                  <code>Intl</code>) e, depois, as preferências do navegador (<code>navigator.languages</code>, ou
-                  <code>navigator.language</code>): vale o primeiro idioma que o GlobalTime oferece. Sem nenhum
-                  compatível, a interface abre em português do Brasil.
+                  Cada idioma tem o próprio endereço: <code>/cronometro</code> em português do Brasil,
+                  <code>/en/cronometro</code> em inglês, <code>/es/cronometro</code> em espanhol, e assim por diante.
+                  Na primeira visita a um endereço em português, o site leva você à versão no idioma principal do
+                  seu navegador (o primeiro da lista de idiomas preferidos), se o GlobalTime oferecer esse idioma;
+                  senão, a página fica em português do Brasil. Um endereço com idioma (como <code>/en/...</code>)
+                  sempre abre nesse idioma.
                 </p>
                 <p>
                   Idiomas disponíveis: português do Brasil, português europeu, inglês, espanhol, francês, alemão,
                   italiano, holandês, russo, japonês, chinês simplificado, coreano e árabe (da direita para a
-                  esquerda). Para trocar, use o seletor de idioma no rodapé; a escolha fica salva neste navegador e
-                  passa a valer em todas as visitas.
+                  esquerda). Para trocar, use o seletor de idioma no rodapé: a página abre no idioma escolhido, e
+                  a escolha fica salva neste navegador e passa a valer em todas as visitas.
                 </p>
                 <p>
                   Nomes de feriados e datas comemorativas brasileiras ficam em português, por serem nomes próprios.
@@ -422,6 +429,7 @@
                 <ul>
                   <li>Sem anúncios, rastreadores ou análise de audiência. Fontes e ícones vêm do próprio site.</li>
                   <li>Preferências (idioma, tema, fuso), cronômetros, alarmes, cidades, históricos e eventos sem conta ficam no <code>localStorage</code> do navegador.</li>
+                  <li>O idioma escolhido no seletor também fica no cookie <code>gt_idioma</code> (só o código do idioma, por um ano), para o site abrir direto na versão certa.</li>
                   <li>Com conta, o servidor guarda apenas o e-mail, a senha protegida e os seus eventos.</li>
                   <li>A consulta de horário não envia dados pessoais nem cookies.</li>
                 </ul>
@@ -542,16 +550,18 @@ KV_REST_API_TOKEN=…</code></pre>
                 <h2>Language and time zone</h2>
                 <h3 id="en-idioma">Language</h3>
                 <p>
-                  On your first visit, the language follows your device's region (the locale reported by
-                  <code>Intl</code>) and then your browser preferences (<code>navigator.languages</code>, or
-                  <code>navigator.language</code>): the first language GlobalTime offers wins. If none match, the
-                  interface opens in Brazilian Portuguese.
+                  Each language has its own address: <code>/cronometro</code> in Brazilian Portuguese,
+                  <code>/en/cronometro</code> in English, <code>/es/cronometro</code> in Spanish, and so on. On your
+                  first visit to a Portuguese address, the site takes you to the version in your browser's main
+                  language (the first one in your preferred languages), if GlobalTime offers it; otherwise the page
+                  stays in Brazilian Portuguese. An address with a language (such as <code>/en/...</code>) always
+                  opens in that language.
                 </p>
                 <p>
                   Available languages: Brazilian Portuguese, European Portuguese, English, Spanish, French, German,
                   Italian, Dutch, Russian, Japanese, Simplified Chinese, Korean and Arabic (right to
-                  left). To switch, use the language selector in the footer; your choice is saved in this browser and
-                  applies on every visit.
+                  left). To switch, use the language selector in the footer: the page opens in the chosen language,
+                  and your choice is saved in this browser and applies on every visit.
                 </p>
                 <p>
                   Names of Brazilian holidays and observances stay in Portuguese, since they are proper names.
@@ -814,6 +824,7 @@ KV_REST_API_TOKEN=…</code></pre>
                 <ul>
                   <li>No ads, trackers or audience analytics. Fonts and icons are served from the site itself.</li>
                   <li>Preferences (language, theme, time zone), stopwatches, alarms, cities, history and events without an account are kept in the browser's <code>localStorage</code>.</li>
+                  <li>The language chosen in the selector is also kept in the <code>gt_idioma</code> cookie (just the language code, for one year), so the site opens straight in the right version.</li>
                   <li>With an account, the server stores only your email, your protected password and your events.</li>
                   <li>The time query sends no personal data or cookies.</li>
                 </ul>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="it" dir="ltr">
+  <head>
+    <!-- @head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Calcolatrice di date, ore e giorni lavorativi | GlobalTime</title>
+    <meta name="description" content="Differenza tra date, giorni lavorativi considerando le festività, somma di giorni, durata tra orari e conversione di unità di tempo." />
+    <meta name="gt:pagina" content="calculadoras" />
+    <link rel="canonical" href="https://global-time.lzdev.com.br/it/calculadoras" />
+    <link rel="alternate" hreflang="pt-BR" href="https://global-time.lzdev.com.br/calculadoras" />
+    <link rel="alternate" hreflang="pt-PT" href="https://global-time.lzdev.com.br/pt-pt/calculadoras" />
+    <link rel="alternate" hreflang="en" href="https://global-time.lzdev.com.br/en/calculadoras" />
+    <link rel="alternate" hreflang="es" href="https://global-time.lzdev.com.br/es/calculadoras" />
+    <link rel="alternate" hreflang="fr" href="https://global-time.lzdev.com.br/fr/calculadoras" />
+    <link rel="alternate" hreflang="de" href="https://global-time.lzdev.com.br/de/calculadoras" />
+    <link rel="alternate" hreflang="it" href="https://global-time.lzdev.com.br/it/calculadoras" />
+    <link rel="alternate" hreflang="nl" href="https://global-time.lzdev.com.br/nl/calculadoras" />
+    <link rel="alternate" hreflang="ru" href="https://global-time.lzdev.com.br/ru/calculadoras" />
+    <link rel="alternate" hreflang="ja" href="https://global-time.lzdev.com.br/ja/calculadoras" />
+    <link rel="alternate" hreflang="zh-CN" href="https://global-time.lzdev.com.br/zh-cn/calculadoras" />
+    <link rel="alternate" hreflang="ko" href="https://global-time.lzdev.com.br/ko/calculadoras" />
+    <link rel="alternate" hreflang="ar" href="https://global-time.lzdev.com.br/ar/calculadoras" />
+    <link rel="alternate" hreflang="x-default" href="https://global-time.lzdev.com.br/calculadoras" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GlobalTime" />
+    <meta property="og:locale" content="it" />
+    <meta property="og:title" content="Calcolatrice di date, ore e giorni lavorativi" />
+    <meta property="og:description" content="Differenza tra date, giorni lavorativi considerando le festività, somma di giorni, durata tra orari e conversione di unità di tempo." />
+    <meta property="og:url" content="https://global-time.lzdev.com.br/it/calculadoras" />
+    <meta property="og:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GlobalTime — L’ora esatta adesso, sincronizzata" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Calcolatrice di date, ore e giorni lavorativi" />
+    <meta name="twitter:description" content="Differenza tra date, giorni lavorativi considerando le festività, somma di giorni, durata tra orari e conversione di unità di tempo." />
+    <meta name="twitter:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/assets/icones/icone-96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/assets/icones/icone-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/icones/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="/assets/fontes/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/estilos/app.css" />
+    <script src="/scripts/tema-inicial.js"></script>
+    <script type="module" src="/scripts/nucleo/pagina.js"></script>
+    <!-- /@head -->
+    <script type="module" src="/scripts/paginas/calculadoras.js"></script>
+  </head>
+  <body>
+    <!-- @cabecalho -->
+    <a class="pular-conteudo" href="#conteudo" data-i18n="comum.pularConteudo">Vai al contenuto</a>
+    <header class="cabecalho">
+      <div class="container cabecalho__conteudo">
+        <a class="marca" href="/it" aria-label="GlobalTime — pagina iniziale" data-i18n-attr="aria-label:comum.marcaInicio">
+          <img class="marca__simbolo marca__simbolo--preto" src="/assets/marca/simbolo-preto.png" width="32" height="32" alt="" /><img class="marca__simbolo marca__simbolo--branco" src="/assets/marca/simbolo-branco.png" width="32" height="32" alt="" />
+          <span class="marca__nome">Global<span>Time</span></span>
+        </a>
+        <nav class="nav-principal" aria-label="Principale" data-i18n-attr="aria-label:comum.navPrincipal">
+          <a href="/it" data-i18n="paginas.inicio.rotuloNav">Home</a>
+          <a href="/it/cronometro" data-i18n="paginas.cronometro.rotulo">Cronometro</a>
+          <a href="/it/temporizador" data-i18n="paginas.temporizador.rotulo">Timer</a>
+          <a href="/it/calendario" data-i18n="paginas.calendario.rotulo">Calendario</a>
+          <a href="/it/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">Fusi orari</a>
+        </nav>
+        <div class="cabecalho__acoes">
+          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="Usa tema scuro" title="Usa tema scuro" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
+            <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tema-escuro"/></svg>
+          </button>
+          <button id="botaoMenu" class="botao botao--secundario botao--pequeno" type="button" aria-expanded="false" aria-controls="painelFerramentas">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#grade"/></svg><span data-i18n="comum.ferramentas">Strumenti</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div id="painelFerramentas" class="painel-ferramentas" hidden>
+      <nav aria-label="Tutti gli strumenti" data-i18n-attr="aria-label:comum.todasFerramentas">
+        <div class="container painel-ferramentas__conteudo">
+            <div>
+              <h2 data-i18n="grupos.relogios">Orologi</h2>
+              <ul>
+                <li><a href="/it"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">Ora esatta</span></a></li>
+                <li><a href="/it/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">Orologio mondiale</span></a></li>
+                <li><a href="/it/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">Convertitore di fusi</span></a></li>
+                <li><a href="/it/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">Orologio a schermo intero</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.medir">Misurare il tempo</h2>
+              <ul>
+                <li><a href="/it/cronometro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#cronometro"/></svg><span data-i18n="paginas.cronometro.rotulo">Cronometro</span></a></li>
+                <li><a href="/it/temporizador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#temporizador"/></svg><span data-i18n="paginas.temporizador.rotulo">Timer</span></a></li>
+                <li><a href="/it/pomodoro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#foco"/></svg><span data-i18n="paginas.pomodoro.rotulo">Pomodoro</span></a></li>
+                <li><a href="/it/despertador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#despertador"/></svg><span data-i18n="paginas.despertador.rotulo">Sveglia</span></a></li>
+                <li><a href="/it/contagem"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#contagem"/></svg><span data-i18n="paginas.contagem.rotulo">Conto alla rovescia</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.calendario">Calendario</h2>
+              <ul>
+                <li><a href="/it/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">Calendario</span></a></li>
+                <li><a href="/it/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">Festività in Brasile</span></a></li>
+                <li><a href="/it/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">Alba e tramonto</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.utilitarios">Utilità</h2>
+              <ul>
+                <li><a href="/it/calculadoras" aria-current="page"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calculadora"/></svg><span data-i18n="paginas.calculadoras.rotulo">Calcolatrici di tempo</span></a></li>
+                <li><a href="/it/timestamp"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#codigo"/></svg><span data-i18n="paginas.timestamp.rotulo">Timestamp Unix</span></a></li>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </div>
+    <!-- /@cabecalho -->
+
+    <main id="conteudo" tabindex="-1">
+      <div class="container container--medio">
+        <header class="pagina-topo">
+          <div>
+            <h1 data-i18n="paginas.calculadoras.rotulo">Calcolatrici di tempo</h1>
+            <p data-i18n="calc.subtitulo">Date, giorni lavorativi, durate e unità. Il risultato appare mentre digiti.</p>
+          </div>
+        </header>
+
+        <div class="abas" role="tablist" aria-label="Calcolatrici" data-i18n-attr="aria-label:calc.abas">
+          <button type="button" role="tab" id="abaDiferenca" data-aba="diferenca" aria-controls="diferenca" aria-selected="true" data-i18n="calc.aba.diferenca">Tra date</button>
+          <button type="button" role="tab" id="abaSomar" data-aba="somar" aria-controls="somar" aria-selected="false" tabindex="-1" data-i18n="calc.aba.somar">Aggiungi giorni</button>
+          <button type="button" role="tab" id="abaDuracao" data-aba="duracao" aria-controls="duracao" aria-selected="false" tabindex="-1" data-i18n="calc.aba.duracao">Durata</button>
+          <button type="button" role="tab" id="abaUnidades" data-aba="unidades" aria-controls="unidades" aria-selected="false" tabindex="-1" data-i18n="calc.aba.unidades">Unità</button>
+        </div>
+
+        <section id="diferenca" class="calc" role="tabpanel" aria-labelledby="abaDiferenca" tabindex="0">
+          <h2 class="sr-only" data-i18n="calc.titulo.diferenca">Differenza tra date</h2>
+          <div class="calc__corpo">
+            <form class="campos campos--pilha" id="formDiferenca" novalidate>
+              <div class="campos campos--2-fixo">
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="calc.dataInicial">Data iniziale</span>
+                  <input class="entrada" type="date" id="difInicio" required />
+                </label>
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="calc.dataFinal">Data finale</span>
+                  <input class="entrada" type="date" id="difFim" required />
+                </label>
+              </div>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="calc.feriadosUteis">Festività per i giorni lavorativi</span>
+                <select class="entrada" id="difUf"></select>
+              </label>
+            </form>
+            <div class="calc__resultado" aria-live="polite">
+              <p class="rotulo" id="difRotulo" data-i18n="calc.rotulo.diferenca">Differenza</p>
+              <p class="resultado-grande" id="difResultado">—</p>
+              <dl class="lista-dados" id="difDetalhes"></dl>
+              <p class="campo__erro" id="difErro" hidden></p>
+              <button type="button" class="botao botao--fantasma botao--pequeno" data-copiar="difDetalhes" data-titulo="difResultado">
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+                <span data-i18n="comum.copiar">Copia</span>
+              </button>
+            </div>
+          </div>
+          <p class="texto-xs texto-fraco calc__nota" data-i18n="calc.nota.diferenca">Giorni lavorativi: dal lunedì al venerdì, incluse entrambe le date, escluse le festività nazionali e statali (se scelte). I riposi facoltativi contano come giorni lavorativi.</p>
+        </section>
+
+        <section id="somar" class="calc" role="tabpanel" aria-labelledby="abaSomar" tabindex="0">
+          <h2 class="sr-only" data-i18n="calc.titulo.somar">Aggiungi o sottrai giorni</h2>
+          <div class="calc__corpo">
+            <form class="campos campos--pilha" id="formSomar" novalidate>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="calc.dataPartida">Data di partenza</span>
+                <input class="entrada" type="date" id="somData" required />
+              </label>
+              <div class="campos campos--2-fixo">
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="calc.diasNegativo">Giorni (negativo per tornare indietro)</span>
+                  <input class="entrada" type="number" id="somQuantidade" inputmode="numeric" step="1" min="-36500" max="36500" value="30" required />
+                </label>
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="calc.contagem">Conteggio</span>
+                  <select class="entrada" id="somTipo">
+                    <option value="corridos" data-i18n="calc.corridos">Giorni di calendario</option>
+                    <option value="uteis" data-i18n="calc.uteis">Giorni lavorativi</option>
+                  </select>
+                </label>
+              </div>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="calc.feriadosUteis">Festività per i giorni lavorativi</span>
+                <select class="entrada" id="somUf"></select>
+              </label>
+            </form>
+            <div class="calc__resultado" aria-live="polite">
+              <p class="rotulo" data-i18n="calc.rotulo.resultado">Risultato</p>
+              <p class="resultado-grande" id="somResultado">—</p>
+              <dl class="lista-dados" id="somDetalhes"></dl>
+              <p class="campo__erro" id="somErro" hidden></p>
+              <button type="button" class="botao botao--fantasma botao--pequeno" data-copiar="somDetalhes" data-titulo="somResultado">
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+                <span data-i18n="comum.copiar">Copia</span>
+              </button>
+            </div>
+          </div>
+          <p class="texto-xs texto-fraco calc__nota" data-i18n="calc.nota.somar">Nei giorni lavorativi la data di partenza non conta: 1 giorno lavorativo dopo un venerdì è il lunedì successivo (o il giorno lavorativo successivo).</p>
+        </section>
+
+        <section id="duracao" class="calc" role="tabpanel" aria-labelledby="abaDuracao" tabindex="0">
+          <h2 class="sr-only" data-i18n="calc.titulo.duracao">Durata tra orari</h2>
+          <div class="calc__corpo">
+            <form class="campos campos--pilha" id="formDuracao" novalidate>
+              <div class="campos campos--2-fixo">
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="calc.inicio">Inizio</span>
+                  <input class="entrada" type="time" id="durInicio" value="08:00" required />
+                </label>
+                <label class="campo">
+                  <span class="campo__rotulo" data-i18n="calc.fim">Fine</span>
+                  <input class="entrada" type="time" id="durFim" value="17:30" required />
+                </label>
+              </div>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="calc.pausa">Pausa detratta (minuti)</span>
+                <input class="entrada" type="number" id="durPausa" inputmode="numeric" min="0" max="1440" step="1" value="60" />
+              </label>
+            </form>
+            <div class="calc__resultado" aria-live="polite">
+              <p class="rotulo" data-i18n="calc.rotulo.duracao">Durata</p>
+              <p class="resultado-grande" id="durResultado">—</p>
+              <dl class="lista-dados" id="durDetalhes"></dl>
+              <p class="campo__erro" id="durErro" hidden></p>
+              <button type="button" class="botao botao--fantasma botao--pequeno" data-copiar="durDetalhes" data-titulo="durResultado">
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+                <span data-i18n="comum.copiar">Copia</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="unidades" class="calc" role="tabpanel" aria-labelledby="abaUnidades" tabindex="0">
+          <h2 class="sr-only" data-i18n="calc.titulo.unidades">Converti unità di tempo</h2>
+          <div class="calc__corpo">
+            <form class="campos campos--2-fixo" id="formUnidades" novalidate>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="calc.valor">Valore</span>
+                <input class="entrada" type="text" id="uniValor" inputmode="decimal" autocomplete="off" value="90" />
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="calc.unidade">Unità</span>
+                <select class="entrada" id="uniDe"></select>
+              </label>
+            </form>
+            <div class="calc__resultado" aria-live="polite">
+              <p class="rotulo" data-i18n="calc.rotulo.equivale">Equivale a</p>
+              <p class="resultado-grande" id="uniResultado">—</p>
+              <dl class="lista-dados" id="uniDetalhes"></dl>
+              <p class="campo__erro" id="uniErro" hidden></p>
+              <button type="button" class="botao botao--fantasma botao--pequeno" data-copiar="uniDetalhes" data-titulo="uniResultado">
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+                <span data-i18n="comum.copiar">Copia</span>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- @rodape -->
+    <footer class="rodape">
+      <div class="container rodape__conteudo">
+        <span>© <span data-ano-atual>2026</span> GlobalTime · <span data-i18n="comum.por">di</span> <a href="https://lzdev.com.br/" rel="noopener">LZdev</a></span>
+        <span class="rodape__links">
+          <a href="/it/docs" data-i18n="comum.documentacao">Documentazione</a>
+          <button type="button" class="rodape__botao" data-abrir-atalhos data-i18n="comum.atalhos">Scorciatoie da tastiera</button>
+          <label class="rodape__idioma">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
+            <span class="sr-only" data-i18n="comum.idioma">Lingua</span>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" selected lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+          </label>
+        </span>
+      </div>
+    </footer>
+    <!-- /@rodape -->
+  </body>
+</html>

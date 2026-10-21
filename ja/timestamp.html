@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ja" dir="ltr">
+  <head>
+    <!-- @head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Unix タイムスタンプ変換 | GlobalTime</title>
+    <meta name="description" content="秒またはミリ秒の Unix タイムスタンプを、任意のタイムゾーンや ISO 8601 の読みやすい日付に変換。その逆も可能です。" />
+    <meta name="gt:pagina" content="timestamp" />
+    <link rel="canonical" href="https://global-time.lzdev.com.br/ja/timestamp" />
+    <link rel="alternate" hreflang="pt-BR" href="https://global-time.lzdev.com.br/timestamp" />
+    <link rel="alternate" hreflang="pt-PT" href="https://global-time.lzdev.com.br/pt-pt/timestamp" />
+    <link rel="alternate" hreflang="en" href="https://global-time.lzdev.com.br/en/timestamp" />
+    <link rel="alternate" hreflang="es" href="https://global-time.lzdev.com.br/es/timestamp" />
+    <link rel="alternate" hreflang="fr" href="https://global-time.lzdev.com.br/fr/timestamp" />
+    <link rel="alternate" hreflang="de" href="https://global-time.lzdev.com.br/de/timestamp" />
+    <link rel="alternate" hreflang="it" href="https://global-time.lzdev.com.br/it/timestamp" />
+    <link rel="alternate" hreflang="nl" href="https://global-time.lzdev.com.br/nl/timestamp" />
+    <link rel="alternate" hreflang="ru" href="https://global-time.lzdev.com.br/ru/timestamp" />
+    <link rel="alternate" hreflang="ja" href="https://global-time.lzdev.com.br/ja/timestamp" />
+    <link rel="alternate" hreflang="zh-CN" href="https://global-time.lzdev.com.br/zh-cn/timestamp" />
+    <link rel="alternate" hreflang="ko" href="https://global-time.lzdev.com.br/ko/timestamp" />
+    <link rel="alternate" hreflang="ar" href="https://global-time.lzdev.com.br/ar/timestamp" />
+    <link rel="alternate" hreflang="x-default" href="https://global-time.lzdev.com.br/timestamp" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GlobalTime" />
+    <meta property="og:locale" content="ja" />
+    <meta property="og:title" content="Unix タイムスタンプ変換" />
+    <meta property="og:description" content="秒またはミリ秒の Unix タイムスタンプを、任意のタイムゾーンや ISO 8601 の読みやすい日付に変換。その逆も可能です。" />
+    <meta property="og:url" content="https://global-time.lzdev.com.br/ja/timestamp" />
+    <meta property="og:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GlobalTime — 今の正確な時刻（同期済み）" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Unix タイムスタンプ変換" />
+    <meta name="twitter:description" content="秒またはミリ秒の Unix タイムスタンプを、任意のタイムゾーンや ISO 8601 の読みやすい日付に変換。その逆も可能です。" />
+    <meta name="twitter:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/assets/icones/icone-96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/assets/icones/icone-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/icones/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="/assets/fontes/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/estilos/app.css" />
+    <script src="/scripts/tema-inicial.js"></script>
+    <script type="module" src="/scripts/nucleo/pagina.js"></script>
+    <!-- /@head -->
+    <script type="module" src="/scripts/paginas/timestamp.js"></script>
+  </head>
+  <body>
+    <!-- @cabecalho -->
+    <a class="pular-conteudo" href="#conteudo" data-i18n="comum.pularConteudo">本文へスキップ</a>
+    <header class="cabecalho">
+      <div class="container cabecalho__conteudo">
+        <a class="marca" href="/ja" aria-label="GlobalTime — ホーム" data-i18n-attr="aria-label:comum.marcaInicio">
+          <img class="marca__simbolo marca__simbolo--preto" src="/assets/marca/simbolo-preto.png" width="32" height="32" alt="" /><img class="marca__simbolo marca__simbolo--branco" src="/assets/marca/simbolo-branco.png" width="32" height="32" alt="" />
+          <span class="marca__nome">Global<span>Time</span></span>
+        </a>
+        <nav class="nav-principal" aria-label="メイン" data-i18n-attr="aria-label:comum.navPrincipal">
+          <a href="/ja" data-i18n="paginas.inicio.rotuloNav">ホーム</a>
+          <a href="/ja/cronometro" data-i18n="paginas.cronometro.rotulo">ストップウォッチ</a>
+          <a href="/ja/temporizador" data-i18n="paginas.temporizador.rotulo">タイマー</a>
+          <a href="/ja/calendario" data-i18n="paginas.calendario.rotulo">カレンダー</a>
+          <a href="/ja/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">タイムゾーン</a>
+        </nav>
+        <div class="cabecalho__acoes">
+          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="ダークテーマを使用" title="ダークテーマを使用" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
+            <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tema-escuro"/></svg>
+          </button>
+          <button id="botaoMenu" class="botao botao--secundario botao--pequeno" type="button" aria-expanded="false" aria-controls="painelFerramentas">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#grade"/></svg><span data-i18n="comum.ferramentas">ツール</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div id="painelFerramentas" class="painel-ferramentas" hidden>
+      <nav aria-label="すべてのツール" data-i18n-attr="aria-label:comum.todasFerramentas">
+        <div class="container painel-ferramentas__conteudo">
+            <div>
+              <h2 data-i18n="grupos.relogios">時計</h2>
+              <ul>
+                <li><a href="/ja"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">正確な時刻</span></a></li>
+                <li><a href="/ja/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">世界時計</span></a></li>
+                <li><a href="/ja/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">タイムゾーン変換</span></a></li>
+                <li><a href="/ja/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">全画面時計</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.medir">時間を計る</h2>
+              <ul>
+                <li><a href="/ja/cronometro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#cronometro"/></svg><span data-i18n="paginas.cronometro.rotulo">ストップウォッチ</span></a></li>
+                <li><a href="/ja/temporizador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#temporizador"/></svg><span data-i18n="paginas.temporizador.rotulo">タイマー</span></a></li>
+                <li><a href="/ja/pomodoro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#foco"/></svg><span data-i18n="paginas.pomodoro.rotulo">ポモドーロ</span></a></li>
+                <li><a href="/ja/despertador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#despertador"/></svg><span data-i18n="paginas.despertador.rotulo">目覚まし時計</span></a></li>
+                <li><a href="/ja/contagem"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#contagem"/></svg><span data-i18n="paginas.contagem.rotulo">カウントダウン</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.calendario">カレンダー</h2>
+              <ul>
+                <li><a href="/ja/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">カレンダー</span></a></li>
+                <li><a href="/ja/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">祝日</span></a></li>
+                <li><a href="/ja/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">日の出・日の入り</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.utilitarios">ユーティリティ</h2>
+              <ul>
+                <li><a href="/ja/calculadoras"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calculadora"/></svg><span data-i18n="paginas.calculadoras.rotulo">時間の計算ツール</span></a></li>
+                <li><a href="/ja/timestamp" aria-current="page"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#codigo"/></svg><span data-i18n="paginas.timestamp.rotulo">Unix タイムスタンプ</span></a></li>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </div>
+    <!-- /@cabecalho -->
+
+    <main id="conteudo" tabindex="-1">
+      <div class="container ts-pagina">
+        <header class="pagina-topo">
+          <div>
+            <h1 data-i18n="paginas.timestamp.rotulo">Unix タイムスタンプ</h1>
+            <p data-i18n="timestamp.subtitulo">タイムスタンプを読みやすい日付に、またその逆に変換します。</p>
+          </div>
+          <span id="seloSync" class="selo selo--acento selo--pulsando" data-i18n="sync.sincronizando">同期中…</span>
+        </header>
+
+        <section class="ts-agora" aria-labelledby="tituloAgora">
+          <h2 id="tituloAgora" class="rotulo" data-i18n="timestamp.agora">現在</h2>
+          <div class="ts-agora__item">
+            <output id="agoraSegundos" class="visor ts-agora__valor">—</output>
+            <span class="texto-xs texto-fraco" data-i18n="timestamp.segundos">秒</span>
+            <button type="button" class="botao botao--fantasma botao--icone botao--mini" data-copiar-agora="s" aria-label="秒をコピー" title="秒をコピー" data-i18n-attr="aria-label:timestamp.copiarSegundos;title:timestamp.copiarSegundos">
+              <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+            </button>
+          </div>
+          <div class="ts-agora__item">
+            <output id="agoraMs" class="visor ts-agora__valor">—</output>
+            <span class="texto-xs texto-fraco" data-i18n="timestamp.milissegundos">ミリ秒</span>
+            <button type="button" class="botao botao--fantasma botao--icone botao--mini" data-copiar-agora="ms" aria-label="ミリ秒をコピー" title="ミリ秒をコピー" data-i18n-attr="aria-label:timestamp.copiarMilissegundos;title:timestamp.copiarMilissegundos">
+              <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+            </button>
+          </div>
+        </section>
+
+        <div class="ts-conversores">
+          <section class="ts-bloco" aria-labelledby="tituloParaData">
+            <h2 id="tituloParaData" class="ts-bloco__titulo" data-i18n="timestamp.paraData">タイムスタンプ → 日付</h2>
+            <form class="ts-bloco__form ts-bloco__form--timestamp" id="formParaData" novalidate>
+              <label class="campo ts-bloco__principal">
+                <span class="campo__rotulo" data-i18n="timestamp.timestamp">タイムスタンプ</span>
+                <input class="entrada mono" type="text" id="tsEntrada" inputmode="numeric" autocomplete="off" spellcheck="false" />
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="timestamp.unidade">単位</span>
+                <select class="entrada" id="tsUnidade">
+                  <option value="auto" data-i18n="timestamp.detectar">自動検出</option>
+                  <option value="s" data-i18n="timestamp.unidadeSegundos">秒</option>
+                  <option value="ms" data-i18n="timestamp.unidadeMilissegundos">ミリ秒</option>
+                </select>
+              </label>
+              <button type="button" id="tsAgora" class="botao botao--secundario" data-i18n="comum.agora">現在</button>
+            </form>
+            <div class="ts-resultado" aria-live="polite">
+              <p class="rotulo" id="tsRotulo">&nbsp;</p>
+              <p class="resultado-grande" id="tsResultado">—</p>
+              <p class="campo__erro" id="tsErro" hidden></p>
+            </div>
+            <dl class="lista-dados ts-formatos" id="tsDetalhes"></dl>
+          </section>
+
+          <section class="ts-bloco" aria-labelledby="tituloParaTs">
+            <h2 id="tituloParaTs" class="ts-bloco__titulo" data-i18n="timestamp.paraTimestamp">日付 → タイムスタンプ</h2>
+            <form class="ts-bloco__form" id="formParaTs" novalidate>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="timestamp.data">日付</span>
+                <input class="entrada" type="date" id="dtData" required />
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="timestamp.hora">時刻</span>
+                <input class="entrada" type="time" id="dtHora" step="1" value="00:00:00" required />
+              </label>
+              <label class="campo ts-bloco__largo">
+                <span class="campo__rotulo" data-i18n="timestamp.fuso">タイムゾーン</span>
+                <select class="entrada" id="dtFuso"></select>
+              </label>
+            </form>
+            <div class="ts-resultado" aria-live="polite">
+              <p class="rotulo" data-i18n="timestamp.emSegundos">秒単位</p>
+              <div class="ts-resultado__linha">
+                <p class="resultado-grande mono" id="dtResultado">—</p>
+                <button type="button" class="botao botao--fantasma botao--icone botao--pequeno" id="dtCopiar" aria-label="秒をコピー" title="秒をコピー" data-i18n-attr="aria-label:timestamp.copiarSegundos;title:timestamp.copiarSegundos">
+                  <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#copiar" /></svg>
+                </button>
+              </div>
+              <p class="aviso aviso--alerta texto-pequeno" id="dtAviso" hidden></p>
+              <p class="campo__erro" id="dtErro" hidden></p>
+            </div>
+            <dl class="lista-dados ts-formatos" id="dtDetalhes"></dl>
+          </section>
+        </div>
+
+        <details class="ajustes">
+          <summary>
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#codigo" /></svg>
+            <span data-i18n="timestamp.outrasLinguagens">他のプログラミング言語での現在のタイムスタンプ</span>
+          </summary>
+          <div class="ajustes__corpo">
+            <div class="tabela-rolagem">
+            <table class="tabela ts-trechos">
+              <thead>
+                <tr>
+                  <th scope="col" data-i18n="timestamp.linguagem">プログラミング言語</th>
+                  <th scope="col" data-i18n="timestamp.unidadeSegundos">秒</th>
+                  <th scope="col" data-i18n="timestamp.unidadeMilissegundos">ミリ秒</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>JavaScript</td>
+                  <td><code>Math.floor(Date.now() / 1000)</code></td>
+                  <td><code>Date.now()</code></td>
+                </tr>
+                <tr>
+                  <td>Python</td>
+                  <td><code>int(time.time())</code></td>
+                  <td><code>time.time_ns() // 1_000_000</code></td>
+                </tr>
+                <tr>
+                  <td>PostgreSQL</td>
+                  <td><code>SELECT extract(epoch FROM now())::bigint;</code></td>
+                  <td><code>SELECT (extract(epoch FROM now()) * 1000)::bigint;</code></td>
+                </tr>
+                <tr>
+                  <td>MySQL</td>
+                  <td><code>SELECT UNIX_TIMESTAMP();</code></td>
+                  <td><code>SELECT ROUND(UNIX_TIMESTAMP(NOW(3)) * 1000);</code></td>
+                </tr>
+                <tr>
+                  <td>Shell (Linux)</td>
+                  <td><code>date +%s</code></td>
+                  <td><code>date +%s%3N</code></td>
+                </tr>
+                <tr>
+                  <td>PHP</td>
+                  <td><code>time()</code></td>
+                  <td><code>(int) (microtime(true) * 1000)</code></td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            <p class="texto-xs texto-fraco" data-i18n="timestamp.notaDeteccao">自動検出では、100,000,000,000 以上の値はミリ秒として読み取ります。1973年より前または5138年より後の日付には単位を選んでください。</p>
+            <p class="texto-xs texto-fraco" data-i18n="timestamp.notaUnix">Unix 時間は 1970/1/1 00:00:00 UTC からの秒数を数えます（うるう秒なし）。世界中で同じ値で、タイムゾーンは日付の表示方法を変えるだけです。</p>
+          </div>
+        </details>
+      </div>
+    </main>
+
+    <!-- @rodape -->
+    <footer class="rodape">
+      <div class="container rodape__conteudo">
+        <span>© <span data-ano-atual>2026</span> GlobalTime · <span data-i18n="comum.por">制作：</span> <a href="https://lzdev.com.br/" rel="noopener">LZdev</a></span>
+        <span class="rodape__links">
+          <a href="/ja/docs" data-i18n="comum.documentacao">ドキュメント</a>
+          <button type="button" class="rodape__botao" data-abrir-atalhos data-i18n="comum.atalhos">キーボードショートカット</button>
+          <label class="rodape__idioma">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
+            <span class="sr-only" data-i18n="comum.idioma">言語</span>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" selected lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+          </label>
+        </span>
+      </div>
+    </footer>
+    <!-- /@rodape -->
+  </body>
+</html>

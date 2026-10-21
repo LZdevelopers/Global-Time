@@ -1,6 +1,7 @@
 // Servidor local que imita o comportamento da Vercel o suficiente para
-// desenvolver e testar: URLs limpas (cleanUrls), 404.html, redirecionamentos e
-// cabeçalhos de vercel.json, e as funções em /api executadas com Node.
+// desenvolver e testar: URLs limpas (cleanUrls), 404.html, redirecionamentos
+// (com as condições has/missing de cabeçalho, cookie e host, e $1 no destino)
+// e cabeçalhos de vercel.json, e as funções em /api executadas com Node.
 //
 // Uso: npm run dev            → http://localhost:3000
 //      PORT=8080 npm run dev
@@ -38,21 +39,49 @@ const TIPOS = {
 // Pastas que a Vercel não publica (.vercelignore) também não são servidas aqui.
 const BLOQUEADOS = ["/dev/", "/testes/", "/.git/", "/node_modules/"];
 
-// Converte padrões do vercel.json ("/api/(.*)", "/paginas/:pagina*") em RegExp.
+// Converte padrões do vercel.json ("/api/(.*)", "/paginas/:pagina*",
+// "/(cronometro|docs)") em RegExp. O ponto só é literal quando não escapado.
 function padraoParaRegex(fonte) {
   const corpo = fonte
-    .replace(/[.+?^${}|[\]\\]/g, (c) => (c === "(" || c === ")" ? c : `\\${c}`))
+    .replace(/(?<!\\)\./g, "\\.")
     .replace(/:(\w+)\*/g, "(.*)")
     .replace(/:(\w+)/g, "([^/]+)");
   return new RegExp(`^${corpo}$`);
 }
 
-const regrasCabecalho = config.headers.map((r) => ({ re: padraoParaRegex(r.source), headers: r.headers }));
-const redirecionamentos = config.redirects.map((r) => ({ re: padraoParaRegex(r.source), ...r }));
+function lerCookies(req) {
+  const saida = {};
+  for (const parte of String(req.headers.cookie || "").split(";")) {
+    const i = parte.indexOf("=");
+    if (i > 0) saida[parte.slice(0, i).trim()] = parte.slice(i + 1).trim();
+  }
+  return saida;
+}
 
-function aplicarCabecalhos(res, caminho) {
+// Condições has/missing: o valor (se houver) é uma expressão regular que
+// precisa casar com o valor inteiro, como na Vercel.
+function valorDaCondicao(req, condicao) {
+  if (condicao.type === "header") return req.headers[condicao.key.toLowerCase()];
+  if (condicao.type === "cookie") return lerCookies(req)[condicao.key];
+  if (condicao.type === "host") return String(req.headers.host || "").replace(/:\d+$/, "");
+  return undefined;
+}
+
+function satisfaz(req, condicao) {
+  const valor = valorDaCondicao(req, condicao);
+  if (valor === undefined) return false;
+  return condicao.value === undefined || new RegExp(`^(?:${condicao.value})$`).test(valor);
+}
+
+const aplica = (regra, req) =>
+  (regra.has ?? []).every((c) => satisfaz(req, c)) && !(regra.missing ?? []).some((c) => satisfaz(req, c));
+
+const regrasCabecalho = config.headers.map((r) => ({ ...r, re: padraoParaRegex(r.source) }));
+const redirecionamentos = config.redirects.map((r) => ({ ...r, re: padraoParaRegex(r.source) }));
+
+function aplicarCabecalhos(req, res, caminho) {
   for (const regra of regrasCabecalho) {
-    if (regra.re.test(caminho)) {
+    if (regra.re.test(caminho) && aplica(regra, req)) {
       for (const { key, value } of regra.headers) {
         // Localmente servimos em HTTP: o upgrade quebraria os recursos.
         const valor = key === "Content-Security-Policy" ? value.replace(/;\s*upgrade-insecure-requests/, "") : value;
@@ -78,6 +107,7 @@ async function resolverArquivo(caminhoUrl) {
   }
   if (caminhoUrl === "/" || caminhoUrl === "") return join(RAIZ, "index.html");
   if (await existeArquivo(absoluto)) return absoluto;
+  if (await existeArquivo(join(absoluto, "index.html"))) return join(absoluto, "index.html");
   if (!extname(absoluto) && (await existeArquivo(`${absoluto}.html`))) return `${absoluto}.html`;
   return null;
 }
@@ -98,8 +128,10 @@ const servidor = createServer(async (req, res) => {
     if (BLOQUEADOS.some((b) => caminho.startsWith(b))) caminho = "/__bloqueado__";
 
     for (const r of redirecionamentos) {
-      if (r.re.test(caminho)) {
-        res.writeHead(r.permanent ? 308 : 307, { Location: r.destination });
+      const casou = r.re.exec(caminho);
+      if (casou && aplica(r, req)) {
+        const destino = r.destination.replace(/\$(\d+)/g, (_m, n) => casou[Number(n)] ?? "");
+        res.writeHead(r.permanent ? 308 : 307, { Location: destino + url.search });
         return res.end();
       }
     }
@@ -115,7 +147,7 @@ const servidor = createServer(async (req, res) => {
       return res.end();
     }
 
-    aplicarCabecalhos(res, caminho);
+    aplicarCabecalhos(req, res, caminho);
 
     if (caminho.startsWith("/api/")) {
       if (await executarFuncao(caminho.slice(5), req, res)) return;

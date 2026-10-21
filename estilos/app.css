@@ -41,7 +41,7 @@
   --cor-tinta: #0b0b0d;
   --cor-texto: #2a2b30;
   --cor-suave: #5a5e68;
-  --cor-fraca: #6f737d;
+  --cor-fraca: #6b6f79; /* 4,5:1 também sobre --cor-fundo-suave */
   --cor-marca: #0b0b0d;
   --cor-marca-hover: #2a2b30;
   --cor-sobre-marca: #ffffff;
@@ -651,6 +651,14 @@ main {
   text-decoration: underline;
 }
 
+/* Link no meio da frase ("por LZdev"): sublinhado discreto, para não depender
+   só da cor (WCAG 1.4.1). */
+.rodape__conteudo > span:first-child a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
 .rodape__links {
   display: flex;
   flex-wrap: wrap;
@@ -980,6 +988,7 @@ select.entrada {
 
 input[type="number"].entrada {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 input[type="number"].entrada::-webkit-outer-spin-button,
@@ -1125,6 +1134,18 @@ legend {
   flex-basis: 100%;
   font-size: var(--texto-xs);
   color: var(--cor-fraca);
+}
+
+/* Preenchida pelo JavaScript: reserva a linha (duas no celular) para o
+   conteúdo abaixo não descer quando o texto aparece. */
+.barra-filtros__nota:empty {
+  min-height: 1lh;
+}
+
+@media (max-width: 40rem) {
+  .barra-filtros__nota:empty {
+    min-height: 2lh;
+  }
 }
 
 /* Seção recolhível (ajustes, histórico, tabelas de apoio). */
@@ -2928,10 +2949,12 @@ body:has(.inicio) .rodape {
   display: none;
 }
 
-/* Visão anual: 12 meses pequenos em grade; colunas conforme a largura. */
+/* Visão anual: 12 meses pequenos em grade; colunas conforme a largura.
+   8.5rem garante duas colunas em celulares de 360 px (com 9.5rem caía para
+   uma coluna e a página ficava três vezes mais longa). */
 .calendario__ano {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 8.5rem), 1fr));
   gap: var(--e-5) var(--e-4);
   padding: var(--e-4);
 }
@@ -3112,6 +3135,14 @@ body:has(.inicio) .rodape {
   }
 }
 
+/* O calendário é montado pelo JavaScript. Até lá, a área reserva a altura
+   da tela: o painel do dia e o rodapé começam fora da vista e não "pulam"
+   quando os meses aparecem (CLS). */
+.area-calendario:empty,
+#listaMeses:empty {
+  min-height: 100vh;
+}
+
 /* Painel do dia e área de conta */
 .evento-dia {
   display: grid;
@@ -3164,6 +3195,14 @@ body:has(.inicio) .rodape {
 
 .barra-filtros--compacta {
   margin-bottom: 0;
+}
+
+/* Largura própria no topo da página: sem ela, a barra encolhia ao conteúdo e,
+   com os selects ainda vazios, os campos quebravam em duas linhas até o
+   JavaScript preenchê-los (salto de layout). */
+.pagina-topo > .barra-filtros--compacta {
+  flex: 0 1 27rem;
+  justify-content: flex-end;
 }
 
 .barra-filtros--compacta > .campo {
@@ -3619,6 +3658,18 @@ textarea.entrada {
 
 .ts-trechos td {
   white-space: normal;
+}
+
+/* Os 10 formatos são preenchidos pelo JavaScript: reserva a altura (um pouco
+   abaixo da real) para o bloco seguinte não descer ao carregar. */
+.ts-formatos:empty {
+  min-height: 29rem;
+}
+
+@media (max-width: 40rem) {
+  .ts-formatos:empty {
+    min-height: 42rem;
+  }
 }
 
 @media (max-width: 40rem) {

@@ -3,7 +3,7 @@
 // eventos pessoais — na conta, quando há sessão, ou neste navegador.
 
 import "../i18n/index.js";
-import { t } from "../i18n/estado.js";
+import { t, urlLocal } from "../i18n/estado.js";
 import { aoMudarEmOutraAba, gravar, ler } from "../nucleo/armazenamento.js";
 import { classeMarca, classeSeloEvento, criarCalendario, legendaCalendario } from "../nucleo/calendario.js";
 import { abrirArmazemEventos, cadastrar, entrar, enviarLocaisParaConta, estadoConta, eventosLocais, excluirConta, sair } from "../nucleo/conta.js";
@@ -177,7 +177,7 @@ function mostrarDia(juliano) {
 
   const titulo = eventos.find((e) => e.tipo !== "contagem")?.nome ?? capitalizar(formatarDataExtenso(d, { comSemana: false }));
   const busca = new URLSearchParams({ titulo, data: `${dataIso(d.ano, d.mes, d.dia)}T00:00`, fuso: fusoHoje() });
-  $("#linkContagem").href = `/contagem?${busca}`;
+  $("#linkContagem").href = urlLocal(`/contagem?${busca}`);
 }
 
 // ---- Editor de eventos ------------------------------------------------------------------

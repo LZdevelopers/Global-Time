@@ -53,7 +53,8 @@ let servidor = subirServidor();
 const perfil = join(tmpdir(), `brasil-time-pwa-${Date.now()}`);
 const navegador = spawn(
   chrome,
-  ["--headless=new", `--remote-debugging-port=${PORTA_DEPURACAO}`, `--user-data-dir=${perfil}`, "--no-first-run", "about:blank"],
+  // Idioma fixo: com outro Accept-Language, /cronometro redirecionaria para a versão traduzida.
+  ["--headless=new", `--remote-debugging-port=${PORTA_DEPURACAO}`, `--user-data-dir=${perfil}`, "--no-first-run", "--lang=pt-BR", "--accept-lang=pt-BR", "about:blank"],
   { stdio: "ignore" },
 );
 
@@ -92,6 +93,19 @@ try {
   const navegar = async (url, ms = 1500) => {
     await enviar("Page.navigate", { url });
     await esperar(ms);
+  };
+
+  // O selo muda quando a sincronização termina (até 5 amostras de até 5 s
+  // cada): em vez de um tempo fixo, espera o estado esperado com um prazo.
+  const seloAte = async (padrao, limiteMs = 15000) => {
+    const fim = Date.now() + limiteMs;
+    let texto;
+    do {
+      texto = await avaliar(`return document.querySelector("#seloSync")?.textContent;`);
+      if (padrao.test(texto || "")) break;
+      await esperar(250);
+    } while (Date.now() < fim);
+    return texto;
   };
 
   await enviar("Page.enable");
@@ -146,8 +160,8 @@ try {
   const cronometroOffline = await avaliar(`return document.querySelector("h1")?.textContent?.trim();`);
   verificar("cronômetro abre sem servidor", Boolean(cronometroOffline) && !/conex/i.test(cronometroOffline), cronometroOffline);
 
-  await navegar(`${BASE}/`, 6000);
-  const seloOffline = await avaliar(`return document.querySelector("#seloSync")?.textContent;`);
+  await navegar(`${BASE}/`);
+  const seloOffline = await seloAte(/aparelho|Offline|limitada/i);
   verificar(
     "relógio offline informa que não está sincronizado",
     /aparelho|Offline|limitada/i.test(seloOffline || ""),
@@ -161,8 +175,8 @@ try {
   // 5. Volta o servidor.
   servidor = subirServidor();
   await aguardar(`${BASE}/`);
-  await navegar(`${BASE}/`, 3000);
-  const seloOnline = await avaliar(`return document.querySelector("#seloSync")?.textContent;`);
+  await navegar(`${BASE}/`);
+  const seloOnline = await seloAte(/Sincronizado/);
   verificar("ao voltar a rede, sincroniza de novo", /Sincronizado/.test(seloOnline || ""), seloOnline);
 
   ws.close();

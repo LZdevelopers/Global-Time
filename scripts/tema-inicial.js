@@ -2,9 +2,10 @@
 // mantido mínimo de propósito:
 //  - aplica o tema salvo, evitando o "piscar" do tema errado;
 //  - marca que há JavaScript, para estilos que dependem dele;
-//  - se a interface provavelmente não for em português do Brasil, esconde o
-//    conteúdo até scripts/i18n/index.js traduzir (o CSS revela sozinho após
-//    alguns segundos caso o script falhe), evitando a troca visível de idioma.
+//  - nas páginas 404 e offline (as únicas traduzidas no navegador; as demais
+//    já vêm traduzidas no HTML), se a interface provavelmente não for em
+//    português do Brasil, esconde o conteúdo até scripts/i18n/index.js
+//    traduzir (o CSS revela sozinho após alguns segundos caso o script falhe).
 (function () {
   var raiz = document.documentElement;
   raiz.classList.add("js");
@@ -14,11 +15,16 @@
   } catch (erro) {
     /* armazenamento indisponível: tema claro padrão */
   }
-  var idioma = null;
-  try {
-    idioma = localStorage.getItem("gt:idioma");
-  } catch (erro) {
-    /* sem preferência salva */
+  var pagina = document.querySelector('meta[name="gt:pagina"]');
+  if (!pagina || (pagina.content !== "404" && pagina.content !== "offline")) return;
+  var prefixo = location.pathname.split("/")[1] || "";
+  var idioma = /^[a-z]{2}(-[a-z]{2})?$/i.test(prefixo) ? prefixo : null;
+  if (!idioma) {
+    try {
+      idioma = localStorage.getItem("gt:idioma");
+    } catch (erro) {
+      /* sem preferência salva */
+    }
   }
   if (!idioma) {
     try {

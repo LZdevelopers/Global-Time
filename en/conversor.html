@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- @head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Time zone converter and meeting planner | GlobalTime</title>
+    <meta name="description" content="Convert a time between cities and time zones, even on daylight saving time dates, and find shared hours for meetings." />
+    <meta name="gt:pagina" content="conversor" />
+    <link rel="canonical" href="https://global-time.lzdev.com.br/en/conversor" />
+    <link rel="alternate" hreflang="pt-BR" href="https://global-time.lzdev.com.br/conversor" />
+    <link rel="alternate" hreflang="pt-PT" href="https://global-time.lzdev.com.br/pt-pt/conversor" />
+    <link rel="alternate" hreflang="en" href="https://global-time.lzdev.com.br/en/conversor" />
+    <link rel="alternate" hreflang="es" href="https://global-time.lzdev.com.br/es/conversor" />
+    <link rel="alternate" hreflang="fr" href="https://global-time.lzdev.com.br/fr/conversor" />
+    <link rel="alternate" hreflang="de" href="https://global-time.lzdev.com.br/de/conversor" />
+    <link rel="alternate" hreflang="it" href="https://global-time.lzdev.com.br/it/conversor" />
+    <link rel="alternate" hreflang="nl" href="https://global-time.lzdev.com.br/nl/conversor" />
+    <link rel="alternate" hreflang="ru" href="https://global-time.lzdev.com.br/ru/conversor" />
+    <link rel="alternate" hreflang="ja" href="https://global-time.lzdev.com.br/ja/conversor" />
+    <link rel="alternate" hreflang="zh-CN" href="https://global-time.lzdev.com.br/zh-cn/conversor" />
+    <link rel="alternate" hreflang="ko" href="https://global-time.lzdev.com.br/ko/conversor" />
+    <link rel="alternate" hreflang="ar" href="https://global-time.lzdev.com.br/ar/conversor" />
+    <link rel="alternate" hreflang="x-default" href="https://global-time.lzdev.com.br/conversor" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GlobalTime" />
+    <meta property="og:locale" content="en" />
+    <meta property="og:title" content="Time zone converter and meeting planner" />
+    <meta property="og:description" content="Convert a time between cities and time zones, even on daylight saving time dates, and find shared hours for meetings." />
+    <meta property="og:url" content="https://global-time.lzdev.com.br/en/conversor" />
+    <meta property="og:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GlobalTime — Exact time now, synced" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Time zone converter and meeting planner" />
+    <meta name="twitter:description" content="Convert a time between cities and time zones, even on daylight saving time dates, and find shared hours for meetings." />
+    <meta name="twitter:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/assets/icones/icone-96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/assets/icones/icone-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/icones/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="/assets/fontes/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/estilos/app.css" />
+    <script src="/scripts/tema-inicial.js"></script>
+    <script type="module" src="/scripts/nucleo/pagina.js"></script>
+    <!-- /@head -->
+    <script type="module" src="/scripts/paginas/conversor.js"></script>
+  </head>
+  <body>
+    <!-- @cabecalho -->
+    <a class="pular-conteudo" href="#conteudo" data-i18n="comum.pularConteudo">Skip to content</a>
+    <header class="cabecalho">
+      <div class="container cabecalho__conteudo">
+        <a class="marca" href="/en" aria-label="GlobalTime — home page" data-i18n-attr="aria-label:comum.marcaInicio">
+          <img class="marca__simbolo marca__simbolo--preto" src="/assets/marca/simbolo-preto.png" width="32" height="32" alt="" /><img class="marca__simbolo marca__simbolo--branco" src="/assets/marca/simbolo-branco.png" width="32" height="32" alt="" />
+          <span class="marca__nome">Global<span>Time</span></span>
+        </a>
+        <nav class="nav-principal" aria-label="Main" data-i18n-attr="aria-label:comum.navPrincipal">
+          <a href="/en" data-i18n="paginas.inicio.rotuloNav">Home</a>
+          <a href="/en/cronometro" data-i18n="paginas.cronometro.rotulo">Stopwatch</a>
+          <a href="/en/temporizador" data-i18n="paginas.temporizador.rotulo">Timer</a>
+          <a href="/en/calendario" data-i18n="paginas.calendario.rotulo">Calendar</a>
+          <a href="/en/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">Time zones</a>
+        </nav>
+        <div class="cabecalho__acoes">
+          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="Use dark theme" title="Use dark theme" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
+            <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tema-escuro"/></svg>
+          </button>
+          <button id="botaoMenu" class="botao botao--secundario botao--pequeno" type="button" aria-expanded="false" aria-controls="painelFerramentas">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#grade"/></svg><span data-i18n="comum.ferramentas">Tools</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div id="painelFerramentas" class="painel-ferramentas" hidden>
+      <nav aria-label="All tools" data-i18n-attr="aria-label:comum.todasFerramentas">
+        <div class="container painel-ferramentas__conteudo">
+            <div>
+              <h2 data-i18n="grupos.relogios">Clocks</h2>
+              <ul>
+                <li><a href="/en"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">Exact time</span></a></li>
+                <li><a href="/en/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">World clock</span></a></li>
+                <li><a href="/en/conversor" aria-current="page"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">Time zone converter</span></a></li>
+                <li><a href="/en/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">Full-screen clock</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.medir">Measure time</h2>
+              <ul>
+                <li><a href="/en/cronometro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#cronometro"/></svg><span data-i18n="paginas.cronometro.rotulo">Stopwatch</span></a></li>
+                <li><a href="/en/temporizador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#temporizador"/></svg><span data-i18n="paginas.temporizador.rotulo">Timer</span></a></li>
+                <li><a href="/en/pomodoro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#foco"/></svg><span data-i18n="paginas.pomodoro.rotulo">Pomodoro</span></a></li>
+                <li><a href="/en/despertador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#despertador"/></svg><span data-i18n="paginas.despertador.rotulo">Alarm clock</span></a></li>
+                <li><a href="/en/contagem"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#contagem"/></svg><span data-i18n="paginas.contagem.rotulo">Countdown</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.calendario">Calendar</h2>
+              <ul>
+                <li><a href="/en/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">Calendar</span></a></li>
+                <li><a href="/en/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">Brazilian holidays</span></a></li>
+                <li><a href="/en/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">Sunrise &amp; sunset</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.utilitarios">Utilities</h2>
+              <ul>
+                <li><a href="/en/calculadoras"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calculadora"/></svg><span data-i18n="paginas.calculadoras.rotulo">Time calculators</span></a></li>
+                <li><a href="/en/timestamp"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#codigo"/></svg><span data-i18n="paginas.timestamp.rotulo">Unix timestamp</span></a></li>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </div>
+    <!-- /@cabecalho -->
+
+    <main id="conteudo" tabindex="-1">
+      <div class="container">
+        <header class="pagina-topo">
+          <div>
+            <h1 data-i18n="conversor.titulo">Time zone converter</h1>
+            <p data-i18n="conversor.subtitulo">Find out what time it will be in another city, even on daylight saving time dates.</p>
+          </div>
+        </header>
+
+        <section class="duas-colunas duas-colunas--lateral" aria-labelledby="tituloConversao">
+          <h2 id="tituloConversao" class="sr-only" data-i18n="conversor.converter">Convert time</h2>
+          <form id="formConversor" class="formulario pilha" novalidate>
+            <fieldset class="pilha pilha--sm">
+              <legend class="rotulo" data-i18n="conversor.de">From</legend>
+              <div class="campos campos--3-auto">
+                <div class="campo">
+                  <label class="campo__rotulo" for="origem" data-i18n="conversor.cidadeOuFuso">City or time zone</label>
+                  <select id="origem" class="entrada" data-zona></select>
+                </div>
+                <div class="campo">
+                  <label class="campo__rotulo" for="data" data-i18n="conversor.data">Date</label>
+                  <input id="data" class="entrada" type="date" required />
+                </div>
+                <div class="campo">
+                  <label class="campo__rotulo" for="hora" data-i18n="conversor.hora">Time</label>
+                  <input id="hora" class="entrada" type="time" required />
+                </div>
+              </div>
+              <div class="campo" data-iana-para="origem" hidden>
+                <label class="campo__rotulo" for="origemIana" data-i18n="conversor.fusoIana">IANA time zone</label>
+                <input id="origemIana" class="entrada" type="text" list="listaFusosIana" autocomplete="off" spellcheck="false" placeholder="E.g. Asia/Kolkata" aria-describedby="origemIanaErro" data-i18n-attr="placeholder:conversor.exemploOrigem" />
+                <p id="origemIanaErro" class="campo__erro" hidden data-i18n="conversor.fusoNaoReconhecido">Time zone not recognized.</p>
+              </div>
+            </fieldset>
+
+            <div class="linha">
+              <button id="botaoInverter" type="button" class="botao botao--fantasma botao--pequeno">
+                <svg class="icone icone--sm icone--girado" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor" /></svg>
+                <span data-i18n="conversor.inverter">Swap</span>
+              </button>
+              <button id="botaoAgora" type="button" class="botao botao--fantasma botao--pequeno">
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio" /></svg>
+                <span data-i18n="comum.agora">Now</span>
+              </button>
+            </div>
+
+            <fieldset class="pilha pilha--sm">
+              <legend class="rotulo" data-i18n="conversor.para">To</legend>
+              <div class="campo">
+                <label class="campo__rotulo" for="destino" data-i18n="conversor.cidadeOuFuso">City or time zone</label>
+                <select id="destino" class="entrada" data-zona></select>
+              </div>
+              <div class="campo" data-iana-para="destino" hidden>
+                <label class="campo__rotulo" for="destinoIana" data-i18n="conversor.fusoIana">IANA time zone</label>
+                <input id="destinoIana" class="entrada" type="text" list="listaFusosIana" autocomplete="off" spellcheck="false" placeholder="E.g. Europe/Berlin" aria-describedby="destinoIanaErro" data-i18n-attr="placeholder:conversor.exemploDestino" />
+                <p id="destinoIanaErro" class="campo__erro" hidden data-i18n="conversor.fusoNaoReconhecido">Time zone not recognized.</p>
+              </div>
+            </fieldset>
+            <datalist id="listaFusosIana"></datalist>
+          </form>
+
+          <aside class="cartao pilha" aria-labelledby="tituloResultado" aria-live="polite">
+            <p id="tituloResultado" class="rotulo" data-i18n="conversor.resultado">Result</p>
+            <div id="resultado" class="pilha pilha--sm">
+              <p class="texto-suave" data-i18n="conversor.preencha">Enter the date and time.</p>
+            </div>
+            <div id="escolhaAmbigua" class="pilha pilha--sm" hidden></div>
+            <div>
+              <button id="botaoCopiarLink" type="button" class="botao botao--fantasma botao--pequeno" disabled>
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#link" /></svg>
+                <span data-i18n="conversor.copiarLink">Copy link</span>
+              </button>
+            </div>
+          </aside>
+        </section>
+
+        <details class="ajustes">
+          <summary>
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario" /></svg>
+            <span data-i18n="conversor.planejador">Meeting planner</span>
+          </summary>
+          <div class="ajustes__corpo">
+            <p class="texto-pequeno texto-suave" data-i18n="conversor.planejadorAjuda">Compare all 24 hours of the day in up to 5 cities. Business hours: Mon–Fri, 9 a.m.–6 p.m. local time.</p>
+            <div class="campos">
+              <div class="campo">
+                <label class="campo__rotulo" for="dataReuniao" data-i18n="conversor.dataReuniao">Date (in the first city's time zone)</label>
+                <input id="dataReuniao" class="entrada" type="date" />
+              </div>
+              <form id="formReuniao" class="adicionar-cidade" novalidate>
+                <label class="sr-only" for="cidadeReuniao" data-i18n="conversor.adicionarCidade">Add city</label>
+                <select id="cidadeReuniao" class="entrada"></select>
+                <button id="botaoAdicionarReuniao" type="submit" class="botao botao--secundario" data-i18n="comum.adicionar">Add</button>
+              </form>
+            </div>
+            <ul id="fichasReuniao" class="fichas" aria-label="Meeting cities" data-i18n-attr="aria-label:conversor.cidadesReuniao"></ul>
+            <p id="resumoReuniao" class="texto-pequeno" aria-live="polite"></p>
+            <div class="planejador" tabindex="0" role="region" aria-label="Time table by city" data-i18n-attr="aria-label:conversor.tabelaRotulo">
+              <table>
+                <caption class="sr-only" data-i18n="conversor.tabelaLegenda">Local time in each city for each hour of the day</caption>
+                <tbody id="tabelaReuniao"></tbody>
+              </table>
+            </div>
+            <div class="legenda">
+              <span><span class="legenda__amostra legenda__amostra--comercial"></span><span data-i18n="conversor.legendaComercial">Business hours</span></span>
+              <span><span class="legenda__amostra legenda__amostra--todos"></span><span data-i18n="conversor.legendaTodos">Everyone in business hours</span></span>
+            </div>
+          </div>
+        </details>
+      </div>
+    </main>
+
+    <!-- @rodape -->
+    <footer class="rodape">
+      <div class="container rodape__conteudo">
+        <span>© <span data-ano-atual>2026</span> GlobalTime · <span data-i18n="comum.por">by</span> <a href="https://lzdev.com.br/" rel="noopener">LZdev</a></span>
+        <span class="rodape__links">
+          <a href="/en/docs" data-i18n="comum.documentacao">Documentation</a>
+          <button type="button" class="rodape__botao" data-abrir-atalhos data-i18n="comum.atalhos">Keyboard shortcuts</button>
+          <label class="rodape__idioma">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
+            <span class="sr-only" data-i18n="comum.idioma">Language</span>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" selected lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+          </label>
+        </span>
+      </div>
+    </footer>
+    <!-- /@rodape -->
+  </body>
+</html>

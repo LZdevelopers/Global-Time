@@ -1,18 +1,24 @@
 // Idioma da interface no navegador.
 //
-// 1. Preferência manual salva (seletor de idioma), se houver.
-// 2. Senão, o primeiro idioma suportado entre a localidade regional do
-//    sistema (Intl) e navigator.languages (ou navigator.language), com
-//    português do Brasil como padrão.
+// Cada página indexável existe já traduzida no próprio endereço (/cronometro
+// em português do Brasil, /en/cronometro em inglês…), gerada por
+// dev/gerar.mjs; o idioma é o do HTML (<html lang>). A escolha automática na
+// primeira visita é feita pela Vercel (vercel.json), pelo Accept-Language,
+// antes de a página carregar.
 //
-// O dicionário é carregado antes de qualquer página usar os textos (await no
-// nível do módulo). O HTML já vem em português do Brasil; nos demais idiomas
-// os elementos marcados com data-i18n são traduzidos aqui.
+// As páginas 404 e offline respondem por qualquer endereço e são traduzidas
+// aqui: idioma do prefixo da URL, senão a preferência salva, senão o do
+// navegador (Intl e navigator.languages).
+//
+// A escolha manual fica no cookie gt_idioma (lido pela Vercel para levar à
+// versão certa) e em localStorage.
 
-import { IDIOMA_PADRAO, IDIOMAS, escolherIdioma, infoIdioma } from "./idiomas.js";
+import { IDIOMA_PADRAO, IDIOMAS, caminhoNoIdioma, escolherIdioma, idiomaDoCaminho, infoIdioma } from "./idiomas.js";
 import { definirDicionario, t } from "./estado.js";
 
 const CHAVE = "gt:idioma";
+const COOKIE = "gt_idioma";
+const UM_ANO_S = 365 * 24 * 60 * 60;
 
 function preferenciaSalva() {
   try {
@@ -21,6 +27,22 @@ function preferenciaSalva() {
   } catch {
     return null;
   }
+}
+
+function cookieIdioma() {
+  const par = document.cookie.split("; ").find((c) => c.startsWith(`${COOKIE}=`));
+  const valor = par ? decodeURIComponent(par.slice(COOKIE.length + 1)) : null;
+  return infoIdioma(valor) ? valor : null;
+}
+
+function gravarPreferencia(codigo) {
+  try {
+    localStorage.setItem(CHAVE, codigo);
+  } catch {
+    /* preferência não persistida */
+  }
+  const seguro = location.protocol === "https:" ? "; Secure" : "";
+  document.cookie = `${COOKIE}=${encodeURIComponent(codigo)}; Path=/; Max-Age=${UM_ANO_S}; SameSite=Lax${seguro}`;
 }
 
 /**
@@ -39,7 +61,25 @@ function preferenciasDoNavegador() {
   return [regional, ...lista].filter(Boolean);
 }
 
-export const idioma = preferenciaSalva() ?? escolherIdioma(preferenciasDoNavegador());
+const paginaAtual = document.querySelector('meta[name="gt:pagina"]')?.content;
+// 404 e offline: o mesmo HTML (em português) para qualquer endereço.
+const paginaGenerica = paginaAtual === "404" || paginaAtual === "offline";
+const idiomaDoHtml = infoIdioma(document.documentElement.lang)?.codigo ?? IDIOMA_PADRAO;
+
+export const idioma = paginaGenerica
+  ? (idiomaDoCaminho(location.pathname) ?? preferenciaSalva() ?? escolherIdioma(preferenciasDoNavegador()))
+  : idiomaDoHtml;
+
+// Preferência salva por uma versão anterior do site (só em localStorage):
+// vira cookie, para a Vercel passar a respeitá-la, e leva uma única vez à
+// versão no idioma escolhido.
+const salva = preferenciaSalva();
+if (salva && !cookieIdioma()) {
+  gravarPreferencia(salva);
+  if (!paginaGenerica && salva !== idioma && !idiomaDoCaminho(location.pathname)) {
+    location.replace(caminhoNoIdioma(location.pathname, salva) + location.search + location.hash);
+  }
+}
 
 if (idioma !== IDIOMA_PADRAO) {
   try {
@@ -50,15 +90,15 @@ if (idioma !== IDIOMA_PADRAO) {
   }
 }
 
-/** Escolha manual: salva e recarrega para que toda a página mude junto. */
+/** Escolha manual: salva e abre a mesma página no idioma escolhido. */
 export function trocarIdioma(codigo) {
   if (!infoIdioma(codigo)) return;
-  try {
-    localStorage.setItem(CHAVE, codigo);
-  } catch {
-    /* preferência não persistida */
+  gravarPreferencia(codigo);
+  if (paginaGenerica) {
+    location.reload();
+    return;
   }
-  location.reload();
+  location.assign(caminhoNoIdioma(location.pathname, codigo) + location.search + location.hash);
 }
 
 /** true se o usuário escolheu o idioma manualmente. */
@@ -86,9 +126,9 @@ export function traduzirDom(raiz = document) {
 const info = infoIdioma(idioma) ?? IDIOMAS[0];
 document.documentElement.lang = idioma;
 document.documentElement.dir = info.dir;
-if (idioma !== IDIOMA_PADRAO) {
+// Só 404/offline chegam aqui num idioma diferente do HTML.
+if (idioma !== idiomaDoHtml) {
   traduzirDom();
-  const pagina = document.querySelector('meta[name="gt:pagina"]')?.content;
-  if (pagina) document.title = pagina === "inicio" ? t("paginas.inicio.titulo") : `${t(`paginas.${pagina}.titulo`)} | GlobalTime`;
+  if (paginaAtual) document.title = `${t(`paginas.${paginaAtual}.titulo`)} | GlobalTime`;
 }
 document.documentElement.classList.remove("i18n-pendente");

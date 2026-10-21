@@ -82,13 +82,28 @@ risco de perder dados), <kbd>Esc</kbd> fechar janelas e sair de modos,
 ## Idiomas e fusos
 
 - 13 idiomas: pt-BR, pt-PT, en, es, fr, de, it, nl, ru, ja, zh-CN, ko e ar
-  (árabe da direita para a esquerda). O idioma vem de `navigator.languages`;
-  sem nenhum compatível, pt-BR. O seletor no rodapé salva a escolha (`gt:idioma`).
+  (árabe da direita para a esquerda), **cada um com o próprio endereço**:
+  `/cronometro` (pt-BR, na raiz), `/en/cronometro`, `/pt-pt/cronometro`,
+  `/zh-cn/cronometro`… São HTMLs já traduzidos, gerados por `npm run gerar`
+  nas pastas `en/`, `es/` etc. (não edite: são sobrescritos), com `lang`,
+  `dir`, título, descrição, canonical e `hreflang` próprios.
+- Primeira visita: nas URLs em português, a Vercel redireciona (307) para a
+  versão no primeiro idioma do `Accept-Language`, se houver. Buscadores
+  rastreiam sem esse cabeçalho e veem cada URL como ela é. URLs com prefixo
+  nunca são redirecionadas.
+- O seletor no rodapé abre a mesma página no idioma escolhido e salva a escolha
+  no cookie `gt_idioma` (lido pela Vercel, tem prioridade sobre o
+  `Accept-Language`) e em `localStorage` (`gt:idioma`).
+- 404 e offline respondem por qualquer endereço e são traduzidas no navegador
+  (prefixo da URL, preferência salva ou idioma do navegador).
+- A documentação longa existe em pt e en; nas demais línguas, `/xx/docs` mostra
+  o texto em inglês e aponta (canonical) para `/en/docs`.
 - Textos em `scripts/i18n/textos/`: `pt-BR.js` é a referência (com partes em
   `pt-BR/`); cada idioma tem um arquivo com as mesmas chaves —
   `testes/i18n.test.mjs` confere chaves, marcadores `{x}` e formas de plural.
-  No HTML, `data-i18n` / `data-i18n-attr` são preenchidos em português por
-  `npm run gerar` e traduzidos no navegador; nos scripts, `t("chave", {...})`.
+  No HTML, `data-i18n` / `data-i18n-attr` são preenchidos por `npm run gerar`
+  (em português na raiz e no idioma de cada pasta); nos scripts,
+  `t("chave", {...})`, e `urlLocal("/docs")` para links no idioma atual.
 - Nomes de feriados brasileiros ficam em português (nomes próprios). A
   documentação existe em português e inglês.
 - A hora é exibida no fuso do aparelho (`Intl`), sem pedir localização; o
@@ -99,7 +114,8 @@ risco de perder dados), <kbd>Esc</kbd> fechar janelas e sair de modos,
 
 - Sem conta, os eventos do calendário ficam no navegador.
 - Com conta (e-mail e senha), ficam no Upstash Redis e aparecem em qualquer
-  aparelho. Senha com `scrypt` e sal; sessão em cookie `HttpOnly`,
+  aparelho. Senha com `scrypt` (N=2^16, r=8, p=2, sal por conta; contas
+  antigas são recalculadas no login); sessão em cookie `HttpOnly`,
   `SameSite=Lax`, `Secure`, 30 dias, guardada como hash; limite de tentativas
   por IP e por e-mail; pedidos que mudam dados exigem JSON e mesma origem;
   cada conta só acessa a própria chave. A conta pode ser excluída com a senha.
@@ -136,8 +152,8 @@ estão no início de `estilos/app.css`. O sistema evita gradientes e usa uma
 Requisito: **Node.js 20 ou superior** (nenhum pacote para instalar).
 
 ```bash
-git clone https://github.com/destypc/Brasil-Time.git
-cd Brasil-Time
+git clone https://github.com/LZdevelopers/Global-Time.git
+cd Global-Time
 npm run dev
 ```
 
@@ -154,8 +170,9 @@ Em `localhost` o service worker só é registrado se você acessar uma vez com
 ### Cabeçalho, rodapé, SEO e sitemap
 
 Os blocos repetidos das páginas (metadados do `<head>`, cabeçalho, rodapé,
-atalhos da home), o `sitemap.xml`, o `robots.txt` e a lista de
-pré-cache do service worker são mantidos a partir de **`dev/site.mjs`**:
+atalhos da home), as versões traduzidas, o `sitemap.xml`, o `robots.txt`, os
+redirecionamentos de idioma do `vercel.json` e a lista de pré-cache do service
+worker são mantidos a partir de **`dev/site.mjs`**:
 
 ```bash
 npm run gerar    # atualiza os arquivos
@@ -226,6 +243,8 @@ curl -I https://SEU-DOMINIO/cronometro         # 200 (URL limpa)
 curl -I https://SEU-DOMINIO/paginas/cronometro.html   # 308 → /cronometro
 curl -I https://SEU-DOMINIO/nao-existe         # 404 com a página personalizada
 curl -s https://SEU-DOMINIO/api/conta          # {"disponivel":true|false,"conta":null}
+curl -I https://brasil-time.vercel.app/feriados  # 308 → https://global-time.lzdev.com.br/feriados
+curl -I https://SEU-DOMINIO/ | grep -i robots  # nada (o domínio oficial é indexável)
 ```
 
 ## Como funciona a sincronização de horário
@@ -313,7 +332,12 @@ Cada item exibe sua base legal e fonte na página.
 `vercel.json`:
 
 - `cleanUrls: true` — `/cronometro.html` responde em `/cronometro`.
-- Redirecionamentos permanentes das URLs antigas (`/paginas/*.html`).
+- Redirecionamentos permanentes das URLs antigas (`/paginas/*.html`) e do
+  endereço antigo `brasil-time.vercel.app` para `global-time.lzdev.com.br`
+  (exceto `/api/*` e `/sw.js`, para que PWAs instaladas no endereço antigo
+  continuem atualizando).
+- `X-Robots-Tag: noindex` em qualquer host `*.vercel.app` (prévias): só o
+  domínio oficial é indexado.
 - Segurança em todas as rotas: CSP restritiva (`script-src 'self'`, sem
   scripts ou estilos inline), `X-Content-Type-Options`, `X-Frame-Options`,
   `Referrer-Policy`, `Permissions-Policy`, HSTS.
@@ -343,8 +367,9 @@ despertador informa alarmes perdidos.
 ## Estrutura do repositório
 
 ```
-Brasil-Time/
-├── *.html                 # uma página por ferramenta (URLs limpas na Vercel)
+Global-Time/
+├── *.html                 # uma página por ferramenta, em pt-BR (URLs limpas na Vercel)
+├── en/, es/, pt-pt/, …    # versões traduzidas, geradas por npm run gerar
 ├── 404.html, offline.html
 ├── api/hora.js            # Vercel Function: timestamp do servidor (no-store)
 ├── api/conta.js           # contas: cadastro, login, sessão, exclusão
@@ -371,12 +396,10 @@ Brasil-Time/
 
 ## Autores
 
-**Enzinxz, Luizeh, Lumi e Erick** — com a identidade visual e a reestruturação
+**Enzinxz, Luizeh** — com a identidade visual e a reestruturação
 da nova versão alinhadas ao padrão da [LZdev](https://lzdev.com.br/).
 
 [@destypc](https://github.com/destypc) ·
-[@luizeh](https://github.com/luizeh) ·
-[@er1ck-xyz](https://github.com/er1ck-xyz) ·
-[@lumivivos](https://github.com/lumivivos)
+[@luizeh](https://github.com/luizeh)
 
 Licença MIT.

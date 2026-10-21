@@ -36,6 +36,8 @@ export class ErroHttp extends Error {
 export async function lerJson(req) {
   const tipo = String(req.headers["content-type"] || "");
   if (!tipo.toLowerCase().startsWith("application/json")) throw new ErroHttp(415, "tipo-invalido");
+  // Na Vercel o corpo chega já analisado; o limite vale pelo tamanho declarado.
+  if (Number(req.headers["content-length"]) > LIMITE_CORPO) throw new ErroHttp(413, "corpo-grande");
   // Na Vercel, req.body já vem analisado (e lança erro se o JSON for inválido).
   let corpo;
   try {

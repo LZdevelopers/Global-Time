@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <!-- @head -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>日出和日落时间 | GlobalTime</title>
+    <meta name="description" content="计算城市或坐标的日出、日落、太阳正午和白昼时长。" />
+    <meta name="gt:pagina" content="sol" />
+    <link rel="canonical" href="https://global-time.lzdev.com.br/zh-cn/sol" />
+    <link rel="alternate" hreflang="pt-BR" href="https://global-time.lzdev.com.br/sol" />
+    <link rel="alternate" hreflang="pt-PT" href="https://global-time.lzdev.com.br/pt-pt/sol" />
+    <link rel="alternate" hreflang="en" href="https://global-time.lzdev.com.br/en/sol" />
+    <link rel="alternate" hreflang="es" href="https://global-time.lzdev.com.br/es/sol" />
+    <link rel="alternate" hreflang="fr" href="https://global-time.lzdev.com.br/fr/sol" />
+    <link rel="alternate" hreflang="de" href="https://global-time.lzdev.com.br/de/sol" />
+    <link rel="alternate" hreflang="it" href="https://global-time.lzdev.com.br/it/sol" />
+    <link rel="alternate" hreflang="nl" href="https://global-time.lzdev.com.br/nl/sol" />
+    <link rel="alternate" hreflang="ru" href="https://global-time.lzdev.com.br/ru/sol" />
+    <link rel="alternate" hreflang="ja" href="https://global-time.lzdev.com.br/ja/sol" />
+    <link rel="alternate" hreflang="zh-CN" href="https://global-time.lzdev.com.br/zh-cn/sol" />
+    <link rel="alternate" hreflang="ko" href="https://global-time.lzdev.com.br/ko/sol" />
+    <link rel="alternate" hreflang="ar" href="https://global-time.lzdev.com.br/ar/sol" />
+    <link rel="alternate" hreflang="x-default" href="https://global-time.lzdev.com.br/sol" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GlobalTime" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:title" content="日出和日落时间" />
+    <meta property="og:description" content="计算城市或坐标的日出、日落、太阳正午和白昼时长。" />
+    <meta property="og:url" content="https://global-time.lzdev.com.br/zh-cn/sol" />
+    <meta property="og:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GlobalTime — 现在的准确时间，已同步" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="日出和日落时间" />
+    <meta name="twitter:description" content="计算城市或坐标的日出、日落、太阳正午和白昼时长。" />
+    <meta name="twitter:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/assets/icones/icone-96.png" type="image/png" sizes="96x96" />
+    <link rel="icon" href="/assets/icones/icone-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/assets/icones/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="preload" href="/assets/fontes/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fontes/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/estilos/app.css" />
+    <script src="/scripts/tema-inicial.js"></script>
+    <script type="module" src="/scripts/nucleo/pagina.js"></script>
+    <!-- /@head -->
+    <script type="module" src="/scripts/paginas/sol.js"></script>
+  </head>
+  <body>
+    <!-- @cabecalho -->
+    <a class="pular-conteudo" href="#conteudo" data-i18n="comum.pularConteudo">跳到主要内容</a>
+    <header class="cabecalho">
+      <div class="container cabecalho__conteudo">
+        <a class="marca" href="/zh-cn" aria-label="GlobalTime — 首页" data-i18n-attr="aria-label:comum.marcaInicio">
+          <img class="marca__simbolo marca__simbolo--preto" src="/assets/marca/simbolo-preto.png" width="32" height="32" alt="" /><img class="marca__simbolo marca__simbolo--branco" src="/assets/marca/simbolo-branco.png" width="32" height="32" alt="" />
+          <span class="marca__nome">Global<span>Time</span></span>
+        </a>
+        <nav class="nav-principal" aria-label="主导航" data-i18n-attr="aria-label:comum.navPrincipal">
+          <a href="/zh-cn" data-i18n="paginas.inicio.rotuloNav">首页</a>
+          <a href="/zh-cn/cronometro" data-i18n="paginas.cronometro.rotulo">秒表</a>
+          <a href="/zh-cn/temporizador" data-i18n="paginas.temporizador.rotulo">计时器</a>
+          <a href="/zh-cn/calendario" data-i18n="paginas.calendario.rotulo">日历</a>
+          <a href="/zh-cn/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">时区</a>
+        </nav>
+        <div class="cabecalho__acoes">
+          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="使用深色主题" title="使用深色主题" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
+            <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tema-escuro"/></svg>
+          </button>
+          <button id="botaoMenu" class="botao botao--secundario botao--pequeno" type="button" aria-expanded="false" aria-controls="painelFerramentas">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#grade"/></svg><span data-i18n="comum.ferramentas">工具</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <div id="painelFerramentas" class="painel-ferramentas" hidden>
+      <nav aria-label="所有工具" data-i18n-attr="aria-label:comum.todasFerramentas">
+        <div class="container painel-ferramentas__conteudo">
+            <div>
+              <h2 data-i18n="grupos.relogios">时钟</h2>
+              <ul>
+                <li><a href="/zh-cn"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">准确时间</span></a></li>
+                <li><a href="/zh-cn/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">世界时钟</span></a></li>
+                <li><a href="/zh-cn/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">时区转换器</span></a></li>
+                <li><a href="/zh-cn/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">全屏时钟</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.medir">计时</h2>
+              <ul>
+                <li><a href="/zh-cn/cronometro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#cronometro"/></svg><span data-i18n="paginas.cronometro.rotulo">秒表</span></a></li>
+                <li><a href="/zh-cn/temporizador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#temporizador"/></svg><span data-i18n="paginas.temporizador.rotulo">计时器</span></a></li>
+                <li><a href="/zh-cn/pomodoro"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#foco"/></svg><span data-i18n="paginas.pomodoro.rotulo">番茄钟</span></a></li>
+                <li><a href="/zh-cn/despertador"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#despertador"/></svg><span data-i18n="paginas.despertador.rotulo">闹钟</span></a></li>
+                <li><a href="/zh-cn/contagem"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#contagem"/></svg><span data-i18n="paginas.contagem.rotulo">倒计时</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.calendario">日历</h2>
+              <ul>
+                <li><a href="/zh-cn/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">日历</span></a></li>
+                <li><a href="/zh-cn/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">节假日</span></a></li>
+                <li><a href="/zh-cn/sol" aria-current="page"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">日出和日落</span></a></li>
+              </ul>
+            </div>
+            <div>
+              <h2 data-i18n="grupos.utilitarios">实用工具</h2>
+              <ul>
+                <li><a href="/zh-cn/calculadoras"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calculadora"/></svg><span data-i18n="paginas.calculadoras.rotulo">时间计算器</span></a></li>
+                <li><a href="/zh-cn/timestamp"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#codigo"/></svg><span data-i18n="paginas.timestamp.rotulo">Unix 时间戳</span></a></li>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </div>
+    <!-- /@cabecalho -->
+
+    <main id="conteudo" tabindex="-1">
+      <div class="container container--medio">
+        <header class="pagina-topo">
+          <div>
+            <h1 data-i18n="paginas.sol.rotulo">日出和日落</h1>
+            <p data-i18n="sol.subtitulo">适用于任何城市或坐标，并显示白昼时长。</p>
+          </div>
+        </header>
+
+        <form id="formSol" class="barra-filtros" novalidate>
+          <div class="campo">
+            <span class="campo__rotulo" id="rotuloOrigem" data-i18n="sol.localPor">定位方式</span>
+            <div class="segmentado" role="group" aria-labelledby="rotuloOrigem">
+              <button type="button" data-origem="cidade" aria-pressed="true" data-i18n="sol.cidade">城市</button>
+              <button type="button" data-origem="coordenadas" aria-pressed="false" data-i18n="sol.coordenadas">坐标</button>
+            </div>
+          </div>
+          <label id="grupoCidade" class="campo">
+            <span class="campo__rotulo" data-i18n="sol.cidade">城市</span>
+            <select id="campoCidade" class="entrada"></select>
+          </label>
+          <label class="campo">
+            <span class="campo__rotulo" data-i18n="sol.data">日期</span>
+            <input id="campoData" class="entrada" type="date" required />
+          </label>
+
+          <div id="grupoCoordenadas" class="barra-filtros__linha pilha pilha--sm" hidden>
+            <div class="campos campos--3-auto">
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="sol.latitude">纬度</span>
+                <input id="campoLat" class="entrada" type="number" inputmode="decimal" step="any" min="-90" max="90" placeholder="-15.79" />
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="sol.longitude">经度</span>
+                <input id="campoLon" class="entrada" type="number" inputmode="decimal" step="any" min="-180" max="180" placeholder="-47.88" />
+              </label>
+              <label class="campo">
+                <span class="campo__rotulo" data-i18n="sol.fusoHorarios">显示时区</span>
+                <select id="campoFuso" class="entrada"></select>
+              </label>
+            </div>
+            <span id="erroCoordenadas" class="campo__erro" role="alert" hidden></span>
+            <div class="linha">
+              <button id="botaoLocalizacao" type="button" class="botao botao--fantasma botao--pequeno">
+                <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#localizacao" /></svg>
+                <span data-i18n="sol.usarLocalizacao">使用我的位置</span>
+              </button>
+              <span id="estadoLocalizacao" class="texto-xs texto-fraco" data-i18n="sol.ajudaGraus">十进制度数；负数 = 南 / 西。</span>
+            </div>
+          </div>
+        </form>
+
+        <section class="pilha" aria-labelledby="tituloResultado" aria-live="polite">
+          <div>
+            <h2 id="tituloResultado" class="destaque__titulo">Brasília</h2>
+            <p id="localResultado" class="texto-suave texto-pequeno">&nbsp;</p>
+          </div>
+
+          <div id="avisoPolar" class="aviso aviso--acento" hidden>
+            <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol" /></svg>
+            <p id="textoPolar"></p>
+          </div>
+
+          <div class="resultados-sol">
+            <div class="resultado-sol">
+              <span class="resultado-sol__rotulo" data-i18n="sol.nascer">日出</span>
+              <span id="valorNascer" class="visor">--:--</span>
+            </div>
+            <div class="resultado-sol">
+              <span class="resultado-sol__rotulo" data-i18n="sol.por">日落</span>
+              <span id="valorPor" class="visor">--:--</span>
+            </div>
+            <div class="resultado-sol">
+              <span class="resultado-sol__rotulo" data-i18n="sol.duracaoDia">白昼时长</span>
+              <span id="valorDuracao" class="visor">--</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="barra-dia" aria-hidden="true">
+              <span id="barraCrepusculo" class="barra-dia__crepusculo"></span>
+              <span id="barraLuz" class="barra-dia__luz"></span>
+            </div>
+            <div class="barra-dia__escala" aria-hidden="true">
+              <span>0h</span><span>6h</span><span>12h</span><span>18h</span><span>24h</span>
+            </div>
+          </div>
+          <dl class="lista-dados lista-dados--linha">
+            <div><dt data-i18n="sol.meioDia">太阳正午</dt><dd id="valorMeioDia">--</dd></div>
+            <div><dt data-i18n="sol.crepInicio">民用晨光开始</dt><dd id="valorCrepInicio">--</dd></div>
+            <div><dt data-i18n="sol.crepFim">民用昏影结束</dt><dd id="valorCrepFim">--</dd></div>
+          </dl>
+
+          <details class="ajustes">
+            <summary>
+              <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario" /></svg>
+              <span data-i18n="sol.proximos7">未来 7 天</span>
+            </summary>
+            <div class="ajustes__corpo">
+              <div class="tabela-rolagem">
+                <table class="tabela">
+                  <caption class="sr-only" data-i18n="sol.legendaTabela">未来七天的日出和日落</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col" data-i18n="sol.data">日期</th>
+                      <th scope="col" class="numero" data-i18n="sol.colNascer">日出</th>
+                      <th scope="col" class="numero" data-i18n="sol.colPor">日落</th>
+                      <th scope="col" class="numero" data-i18n="sol.colDuracao">时长</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tabelaSemana"></tbody>
+                </table>
+              </div>
+            </div>
+          </details>
+
+          <p class="texto-xs texto-fraco" data-i18n="sol.nota">数值为计算所得（NOAA 算法），并非观测值：地形、海拔和大气条件可能使实际时间相差几分钟。</p>
+        </section>
+      </div>
+    </main>
+
+    <!-- @rodape -->
+    <footer class="rodape">
+      <div class="container rodape__conteudo">
+        <span>© <span data-ano-atual>2026</span> GlobalTime · <span data-i18n="comum.por">作者</span> <a href="https://lzdev.com.br/" rel="noopener">LZdev</a></span>
+        <span class="rodape__links">
+          <a href="/zh-cn/docs" data-i18n="comum.documentacao">文档</a>
+          <button type="button" class="rodape__botao" data-abrir-atalhos data-i18n="comum.atalhos">键盘快捷键</button>
+          <label class="rodape__idioma">
+            <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
+            <span class="sr-only" data-i18n="comum.idioma">语言</span>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" selected lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+          </label>
+        </span>
+      </div>
+    </footer>
+    <!-- /@rodape -->
+  </body>
+</html>

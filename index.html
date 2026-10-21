@@ -8,6 +8,20 @@
     <meta name="description" content="Veja a hora certa no seu fuso, sincronizada com o servidor, com o horário de Brasília à mão e ferramentas de tempo." />
     <meta name="gt:pagina" content="inicio" />
     <link rel="canonical" href="https://global-time.lzdev.com.br/" />
+    <link rel="alternate" hreflang="pt-BR" href="https://global-time.lzdev.com.br/" />
+    <link rel="alternate" hreflang="pt-PT" href="https://global-time.lzdev.com.br/pt-pt" />
+    <link rel="alternate" hreflang="en" href="https://global-time.lzdev.com.br/en" />
+    <link rel="alternate" hreflang="es" href="https://global-time.lzdev.com.br/es" />
+    <link rel="alternate" hreflang="fr" href="https://global-time.lzdev.com.br/fr" />
+    <link rel="alternate" hreflang="de" href="https://global-time.lzdev.com.br/de" />
+    <link rel="alternate" hreflang="it" href="https://global-time.lzdev.com.br/it" />
+    <link rel="alternate" hreflang="nl" href="https://global-time.lzdev.com.br/nl" />
+    <link rel="alternate" hreflang="ru" href="https://global-time.lzdev.com.br/ru" />
+    <link rel="alternate" hreflang="ja" href="https://global-time.lzdev.com.br/ja" />
+    <link rel="alternate" hreflang="zh-CN" href="https://global-time.lzdev.com.br/zh-cn" />
+    <link rel="alternate" hreflang="ko" href="https://global-time.lzdev.com.br/ko" />
+    <link rel="alternate" hreflang="ar" href="https://global-time.lzdev.com.br/ar" />
+    <link rel="alternate" hreflang="x-default" href="https://global-time.lzdev.com.br/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="GlobalTime" />
     <meta property="og:locale" content="pt_BR" />
@@ -17,14 +31,15 @@
     <meta property="og:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="GlobalTime — hora certa sincronizada e ferramentas de tempo" />
+    <meta property="og:image:alt" content="GlobalTime — Hora certa agora, sincronizada" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="GlobalTime — Hora certa agora, sincronizada" />
     <meta name="twitter:description" content="Veja a hora certa no seu fuso, sincronizada com o servidor, com o horário de Brasília à mão e ferramentas de tempo." />
     <meta name="twitter:image" content="https://global-time.lzdev.com.br/assets/marca/og.png" />
     <meta name="theme-color" content="#ffffff" />
     <meta name="color-scheme" content="light dark" />
-    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/assets/icones/icone-96.png" type="image/png" sizes="96x96" />
     <link rel="icon" href="/assets/icones/icone-192.png" type="image/png" sizes="192x192" />
     <link rel="apple-touch-icon" href="/assets/icones/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
@@ -33,7 +48,7 @@
     <link rel="stylesheet" href="/estilos/app.css" />
     <script src="/scripts/tema-inicial.js"></script>
     <script type="module" src="/scripts/nucleo/pagina.js"></script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"GlobalTime","url":"https://global-time.lzdev.com.br/","description":"Hora certa sincronizada com o servidor no seu fuso, com cronômetro, temporizador, calendário, fusos horários e outras ferramentas de tempo — gratuito.","inLanguage":["pt-BR","pt-PT","en","es","fr","de","it","nl","ru","ja","zh-CN","ko","ar"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"GlobalTime","alternateName":"Global Time","url":"https://global-time.lzdev.com.br/","description":"Hora certa sincronizada com o servidor no seu fuso, com cronômetro, temporizador, calendário, fusos horários e outras ferramentas de tempo — gratuito.","inLanguage":"pt-BR"}</script>
     <!-- /@head -->
     <script type="module" src="/scripts/paginas/inicio.js"></script>
   </head>
@@ -54,7 +69,7 @@
           <a href="/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">Fusos horários</a>
         </nav>
         <div class="cabecalho__acoes">
-          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="Usar tema escuro" title="Usar tema escuro">
+          <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="Usar tema escuro" title="Usar tema escuro" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
             <svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tema-escuro"/></svg>
           </button>
           <button id="botaoMenu" class="botao botao--secundario botao--pequeno" type="button" aria-expanded="false" aria-controls="painelFerramentas">

@@ -53,3 +53,35 @@ export function escolherIdioma(preferencias) {
   }
   return IDIOMA_PADRAO;
 }
+
+// ---- URLs por idioma -----------------------------------------------------------
+// Português do Brasil fica na raiz (/cronometro); os demais idiomas têm a
+// própria pasta, com o código em minúsculas (/en/cronometro, /zh-cn/cronometro).
+// Cada versão é um HTML já traduzido, gerado por dev/gerar.mjs.
+
+/** Prefixo de URL do idioma ("" para o padrão, "/en", "/pt-pt"…). */
+export function prefixoIdioma(codigo) {
+  return !codigo || codigo === IDIOMA_PADRAO ? "" : `/${codigo.toLowerCase()}`;
+}
+
+/** Idioma indicado pelo primeiro segmento do caminho, ou null (raiz). */
+export function idiomaDoCaminho(caminho) {
+  const segmento = String(caminho || "/").split("/")[1]?.toLowerCase() ?? "";
+  const info = IDIOMAS.find((i) => i.codigo !== IDIOMA_PADRAO && i.codigo.toLowerCase() === segmento);
+  return info ? info.codigo : null;
+}
+
+/** Caminho sem o prefixo de idioma ("/en/cronometro" → "/cronometro"). */
+export function caminhoSemIdioma(caminho) {
+  const idioma = idiomaDoCaminho(caminho);
+  if (!idioma) return caminho || "/";
+  return caminho.slice(prefixoIdioma(idioma).length) || "/";
+}
+
+/** O mesmo caminho em outro idioma ("/en/cronometro", "fr" → "/fr/cronometro"). */
+export function caminhoNoIdioma(caminho, codigo) {
+  const base = caminhoSemIdioma(caminho);
+  const prefixo = prefixoIdioma(codigo);
+  if (!prefixo) return base;
+  return base === "/" ? prefixo : `${prefixo}${base}`;
+}
