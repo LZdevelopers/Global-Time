@@ -3570,6 +3570,16 @@ textarea.entrada {
   white-space: normal;
 }
 
+/* Largura dos números (10 e 13 dígitos) já antes do JavaScript: com o "—"
+   inicial a linha cabia inteira e quebrava ao aparecer o valor (CLS). */
+#agoraSegundos {
+  min-width: 10ch;
+}
+
+#agoraMs {
+  min-width: 13ch;
+}
+
 .ts-conversores {
   display: grid;
   gap: var(--e-5);
