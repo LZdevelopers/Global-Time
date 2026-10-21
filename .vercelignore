@@ -5,3 +5,7 @@ testes/
 
 # Originais da logo (as versões publicadas ficam em assets/).
 logos/
+
+# Skills de agentes de IA (só para desenvolvimento).
+.agents/
+skills-lock.json
