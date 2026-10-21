@@ -740,18 +740,8 @@
       "permanent": true
     },
     {
-      "source": "/paginas/cronometro.html",
-      "destination": "/cronometro",
-      "permanent": true
-    },
-    {
-      "source": "/paginas/temporizador.html",
-      "destination": "/temporizador",
-      "permanent": true
-    },
-    {
-      "source": "/paginas/feriados.html",
-      "destination": "/feriados",
+      "source": "/paginas/(cronometro|temporizador|feriados)(\\.html)?",
+      "destination": "/$1",
       "permanent": true
     },
     {

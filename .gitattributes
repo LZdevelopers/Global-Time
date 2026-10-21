@@ -1,2 +1,5 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Auto detect text files and perform LF normalization.
+# eol=lf: o gerador (npm run gerar / checar) escreve e compara com LF; sem
+# isto, o checkout no Windows (core.autocrlf) converteria para CRLF e o
+# `npm run checar` acusaria todos os arquivos como desatualizados.
+* text=auto eol=lf
