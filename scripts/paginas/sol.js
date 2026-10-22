@@ -23,7 +23,7 @@ import {
   nomeDiaSemana,
   partesNoFuso,
 } from "../nucleo/tempo.js";
-import { CIDADES, buscarCidade, nomeCidade, opcoesCidades, rotuloCidade } from "../dados/cidades.js";
+import { CIDADES, buscarCidade, fusoDoNavegador, nomeCidade, opcoesCidades, rotuloCidade } from "../dados/cidades.js";
 import { $, $$, definirTexto, el, preencherSelect } from "../nucleo/ui.js";
 
 const relogio = obterRelogio();
@@ -42,13 +42,7 @@ const cidadeInicial = buscarCidade(salvo.cidade)?.id ?? cidadePreferida()?.id ??
 preencherSelect(campoCidade, opcoesCidades(), cidadeInicial);
 
 // Fusos disponíveis para coordenadas: os das cidades + o do aparelho.
-const fusoAparelho = (() => {
-  try {
-    return Intl.DateTimeFormat().resolvedOptions().timeZone;
-  } catch {
-    return null;
-  }
-})();
+const fusoAparelho = fusoDoNavegador();
 const fusos = [...new Set([...(fusoAparelho && fusoValido(fusoAparelho) ? [fusoAparelho] : []), ...CIDADES.map((c) => c.fuso)])];
 preencherSelect(
   campoFuso,

@@ -20,6 +20,7 @@
     <link rel="alternate" hreflang="ja" href="https://global-time.lzdev.com.br/ja/calendario" />
     <link rel="alternate" hreflang="zh-CN" href="https://global-time.lzdev.com.br/zh-cn/calendario" />
     <link rel="alternate" hreflang="ko" href="https://global-time.lzdev.com.br/ko/calendario" />
+    <link rel="alternate" hreflang="ne" href="https://global-time.lzdev.com.br/ne/calendario" />
     <link rel="alternate" hreflang="ar" href="https://global-time.lzdev.com.br/ar/calendario" />
     <link rel="alternate" hreflang="x-default" href="https://global-time.lzdev.com.br/calendario" />
     <meta property="og:type" content="website" />
@@ -66,6 +67,7 @@
           <a href="/ko/temporizador" data-i18n="paginas.temporizador.rotulo">타이머</a>
           <a href="/ko/calendario" aria-current="page" data-i18n="paginas.calendario.rotulo">캘린더</a>
           <a href="/ko/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">시간대</a>
+          <a href="/ko/clima" data-i18n="paginas.clima.rotulo">날씨</a>
         </nav>
         <div class="cabecalho__acoes">
           <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="어두운 테마 사용" title="어두운 테마 사용" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
@@ -86,7 +88,6 @@
                 <li><a href="/ko"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">정확한 시간</span></a></li>
                 <li><a href="/ko/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">세계 시계</span></a></li>
                 <li><a href="/ko/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">시간대 변환기</span></a></li>
-                <li><a href="/ko/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">전체 화면 시계</span></a></li>
               </ul>
             </div>
             <div>
@@ -105,6 +106,7 @@
                 <li><a href="/ko/calendario" aria-current="page"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">캘린더</span></a></li>
                 <li><a href="/ko/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">공휴일</span></a></li>
                 <li><a href="/ko/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">일출과 일몰</span></a></li>
+                <li><a href="/ko/clima"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#clima-sol-nuvem"/></svg><span data-i18n="paginas.clima.rotulo">날씨</span></a></li>
               </ul>
             </div>
             <div>
@@ -128,10 +130,14 @@
           </div>
           <div class="barra-filtros barra-filtros--compacta">
             <label class="campo">
+              <span class="campo__rotulo" data-i18n="calendario.pais">국가</span>
+              <select id="selectPais" class="entrada"><option value="BR">Brasil</option></select>
+            </label>
+            <label class="campo" data-so-brasil>
               <span class="campo__rotulo" data-i18n="feriados.estado">주</span>
               <select id="selectUf" class="entrada"></select>
             </label>
-            <label class="campo">
+            <label class="campo" data-so-brasil>
               <span class="campo__rotulo" data-i18n="feriados.municipio">시</span>
               <select id="selectMunicipio" class="entrada"></select>
             </label>
@@ -142,6 +148,7 @@
           <section class="pilha" aria-label="캘린더" data-i18n-attr="aria-label:paginas.calendario.rotulo">
             <div id="areaCalendario" class="area-calendario"></div>
             <div id="areaLegenda"></div>
+            <p id="estadoFeriados" class="texto-xs texto-fraco estado-feriados" aria-live="polite" hidden></p>
           </section>
 
           <aside class="calendario-lateral pilha">
@@ -183,7 +190,7 @@
           <label class="rodape__idioma">
             <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
             <span class="sr-only" data-i18n="comum.idioma">언어</span>
-            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" selected lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" selected lang="ko">한국어</option><option value="ne" lang="ne">नेपाली</option><option value="ar" lang="ar">العربية</option></select>
           </label>
         </span>
       </div>

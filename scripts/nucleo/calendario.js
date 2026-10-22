@@ -41,12 +41,18 @@ export function primeiroDiaSemana() {
   return 0;
 }
 
-/** Classe da marca de um evento: feriado, facultativo, comemorativa, contagem, pessoal. */
+/**
+ * Classe da marca de um evento: feriado, regional, facultativo, comemorativa,
+ * contagem, pessoal. Feriados de outros países que valem só numa região
+ * ficam com "regional"; os opcionais e os de um setor (bancos, escolas,
+ * órgãos públicos), com "facultativo".
+ */
 export function classeMarca(evento) {
   if (evento.tipo === "pessoal") return "pessoal";
   if (evento.tipo === "contagem") return "contagem";
   if (evento.folga) return "feriado";
-  if (evento.tipo === "facultativo") return "facultativo";
+  if (evento.tipo === "regional") return "regional";
+  if (["facultativo", "opcional", "setorial"].includes(evento.tipo)) return "facultativo";
   return "comemorativa";
 }
 
@@ -55,17 +61,25 @@ export function classeSeloEvento(evento) {
   const marca = classeMarca(evento);
   if (marca === "pessoal" || marca === "contagem") return "selo selo--acento";
   if (marca === "feriado") return "selo selo--perigo";
+  if (marca === "regional") return "selo selo--regional";
   if (marca === "facultativo") return "selo selo--alerta";
   return "selo selo--comemorativa";
 }
 
-/** Legenda das marcas. */
-export function legendaCalendario({ contagens = false, pessoais = false } = {}) {
-  const itens = [
-    ["feriado", "calendario.legenda.feriado"],
-    ["facultativo", "calendario.legenda.facultativo"],
-    ["comemorativa", "calendario.legenda.comemorativa"],
-  ];
+/** Legenda das marcas. `outroPais`: feriados vindos da fonte internacional. */
+export function legendaCalendario({ contagens = false, pessoais = false, outroPais = false } = {}) {
+  const itens = outroPais
+    ? [
+        ["feriado", "calendario.legenda.feriadoNacional"],
+        ["regional", "calendario.legenda.regional"],
+        ["facultativo", "calendario.legenda.outrosFeriados"],
+        ["comemorativa", "calendario.legenda.comemorativa"],
+      ]
+    : [
+        ["feriado", "calendario.legenda.feriado"],
+        ["facultativo", "calendario.legenda.facultativo"],
+        ["comemorativa", "calendario.legenda.comemorativa"],
+      ];
   if (pessoais) itens.push(["pessoal", "calendario.legenda.pessoal"]);
   if (contagens) itens.push(["contagem", "calendario.legenda.contagem"]);
   return el(
@@ -144,6 +158,7 @@ export function criarCalendario({
     if (d.diaSemana === 0 || d.diaSemana === 6) classes.push("calendario__dia--fim-semana");
     if (juliano === estado.hoje) classes.push("calendario__dia--hoje");
     if (eventos.some((e) => e.folga)) classes.push("calendario__dia--feriado");
+    else if (eventos.some((e) => e.tipo === "regional")) classes.push("calendario__dia--regional");
     if (eventos.some((e) => e.tipo === "pessoal")) classes.push("calendario__dia--pessoal");
     if (eventos.length) classes.push("calendario__dia--com-eventos");
     const no = el(

@@ -46,4 +46,22 @@
   <symbol id="tema-claro" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></symbol>
   <symbol id="tema-escuro" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
   <symbol id="editar" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16zM13.5 6.5l4 4"/></symbol>
+  <!-- Clima (condições da Open-Meteo e indicadores). -->
+  <symbol id="clima-sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></symbol>
+  <symbol id="clima-lua" viewBox="0 0 24 24"><path d="M19.5 14.6A7.8 7.8 0 0 1 9.4 4.5a7.8 7.8 0 1 0 10.1 10.1z"/></symbol>
+  <symbol id="clima-sol-nuvem" viewBox="0 0 24 24"><path d="M8 2.75v1.5M3.1 4.6l1 1M1.75 9.5h1.5M12.9 4.6l-1 1M4.6 12.4A4 4 0 0 1 11.3 7"/><path d="M9 20h8.5a3.25 3.25 0 0 0 .45-6.47 4.75 4.75 0 0 0-9.1.9A2.8 2.8 0 0 0 9 20z"/></symbol>
+  <symbol id="clima-lua-nuvem" viewBox="0 0 24 24"><path d="M11.6 6.3A4.6 4.6 0 0 1 6 1.9a5 5 0 0 0-1.6 9.4"/><path d="M9 20h8.5a3.25 3.25 0 0 0 .45-6.47 4.75 4.75 0 0 0-9.1.9A2.8 2.8 0 0 0 9 20z"/></symbol>
+  <symbol id="clima-nuvem" viewBox="0 0 24 24"><path d="M7.5 18.5h9.75a3.75 3.75 0 0 0 .55-7.46A5.5 5.5 0 0 0 7.2 12.1 3.2 3.2 0 0 0 7.5 18.5z"/></symbol>
+  <symbol id="clima-neblina" viewBox="0 0 24 24"><path d="M7.5 12.5A5 5 0 0 1 17 10.6M4 15.5h16M6 18.5h12M9 21.5h6"/></symbol>
+  <symbol id="clima-garoa" viewBox="0 0 24 24"><path d="M7.5 15h9.75a3.5 3.5 0 0 0 .5-6.96A5.25 5.25 0 0 0 7.4 9.1 3 3 0 0 0 7.5 15z"/><path d="M9 18.5h.01M12.5 19.5h.01M16 18.5h.01M10.5 21.5h.01M14 21.5h.01"/></symbol>
+  <symbol id="clima-chuva" viewBox="0 0 24 24"><path d="M7.5 15h9.75a3.5 3.5 0 0 0 .5-6.96A5.25 5.25 0 0 0 7.4 9.1 3 3 0 0 0 7.5 15z"/><path d="m9.5 17.5-1 3M13 17.5l-1 3M16.5 17.5l-1 3"/></symbol>
+  <symbol id="clima-neve" viewBox="0 0 24 24"><path d="M7.5 15h9.75a3.5 3.5 0 0 0 .5-6.96A5.25 5.25 0 0 0 7.4 9.1 3 3 0 0 0 7.5 15z"/><path d="M9 18v3M7.7 19.5h2.6M15 18v3M13.7 19.5h2.6M12 20.5v.01"/></symbol>
+  <symbol id="clima-tempestade" viewBox="0 0 24 24"><path d="M7.5 15h9.75a3.5 3.5 0 0 0 .5-6.96A5.25 5.25 0 0 0 7.4 9.1 3 3 0 0 0 7.5 15z"/><path d="m12.5 15.5-2 3.25h3l-2 3.25"/></symbol>
+  <symbol id="gota" viewBox="0 0 24 24"><path d="M12 3.5s-5.5 6.2-5.5 10a5.5 5.5 0 0 0 11 0c0-3.8-5.5-10-5.5-10z"/></symbol>
+  <symbol id="vento" viewBox="0 0 24 24"><path d="M3 9h11a2.75 2.75 0 1 0-2.75-2.75M3 15h15a2.75 2.75 0 1 1-2.75 2.75M3 12h7"/></symbol>
+  <symbol id="termometro" viewBox="0 0 24 24"><path d="M14 14.8V5a2 2 0 0 0-4 0v9.8a3.75 3.75 0 1 0 4 0zM12 16.5V9"/></symbol>
+  <symbol id="olho" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.75"/></symbol>
+  <symbol id="pressao" viewBox="0 0 24 24"><path d="M4.2 17a9 9 0 1 1 15.6 0"/><path d="m12 13 3.5-4M12 13h.01"/></symbol>
+  <symbol id="nascer-sol" viewBox="0 0 24 24"><path d="M7 17a5 5 0 0 1 10 0M3 20h18M12 3v6M9 6l3-3 3 3M4.9 11.9l1.4 1.4M19.1 11.9l-1.4 1.4"/></symbol>
+  <symbol id="por-sol" viewBox="0 0 24 24"><path d="M7 17a5 5 0 0 1 10 0M3 20h18M12 9V3M9 6l3 3 3-3M4.9 11.9l1.4 1.4M19.1 11.9l-1.4 1.4"/></symbol>
 </svg>

@@ -1,6 +1,7 @@
 // Roda antes da primeira pintura (script clássico e síncrono no <head>),
 // mantido mínimo de propósito:
-//  - aplica o tema salvo, evitando o "piscar" do tema errado;
+//  - aplica o tema salvo ou, sem escolha salva, o do sistema/navegador,
+//    evitando o "piscar" do tema errado;
 //  - marca que há JavaScript, para estilos que dependem dele;
 //  - nas páginas 404 e offline (as únicas traduzidas no navegador; as demais
 //    já vêm traduzidas no HTML), se a interface provavelmente não for em
@@ -9,12 +10,16 @@
 (function () {
   var raiz = document.documentElement;
   raiz.classList.add("js");
+  var tema = null;
   try {
-    var tema = localStorage.getItem("gt:tema") || localStorage.getItem("brasilTimeTheme");
-    if (tema === "dark" || tema === "light") raiz.setAttribute("data-theme", tema);
+    tema = localStorage.getItem("gt:tema") || localStorage.getItem("brasilTimeTheme");
   } catch (erro) {
-    /* armazenamento indisponível: tema claro padrão */
+    /* armazenamento indisponível: segue o sistema */
   }
+  if (tema !== "dark" && tema !== "light") {
+    tema = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  raiz.setAttribute("data-theme", tema);
   var pagina = document.querySelector('meta[name="gt:pagina"]');
   if (!pagina || (pagina.content !== "404" && pagina.content !== "offline")) return;
   var prefixo = location.pathname.split("/")[1] || "";

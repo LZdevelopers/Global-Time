@@ -54,6 +54,19 @@ function iniciarTema() {
   window.addEventListener("storage", (evento) => {
     if (evento.key === CHAVE_TEMA && evento.newValue) trocarComTransicao(evento.newValue);
   });
+
+  // Sem escolha salva no botão, acompanha o tema do sistema/navegador também
+  // quando ele muda com a página aberta.
+  const temaDoSistema = matchMedia("(prefers-color-scheme: dark)");
+  temaDoSistema.addEventListener("change", (evento) => {
+    let salvo = null;
+    try {
+      salvo = localStorage.getItem(CHAVE_TEMA) || localStorage.getItem("brasilTimeTheme");
+    } catch {
+      /* sem armazenamento: segue o sistema */
+    }
+    if (salvo !== "dark" && salvo !== "light") trocarComTransicao(evento.matches ? "dark" : "light");
+  });
 }
 
 function iniciarSeletorIdioma() {

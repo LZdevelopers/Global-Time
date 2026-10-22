@@ -89,6 +89,7 @@ test("Accept-Language: primeiro idioma decide; português do Brasil fica na raiz
   assert.equal(destino("zh-TW,zh;q=0.9"), "/zh-cn");
   assert.equal(destino("es-419,es;q=0.9"), "/es");
   assert.equal(destino("ar-SA"), "/ar");
+  assert.equal(destino("ne-NP,ne;q=0.9,en;q=0.8"), "/ne");
   assert.equal(destino("*"), null);
   assert.equal(destino(""), null);
   // Sem confundir prefixos: "de" não pode casar com "de-..." de outro idioma

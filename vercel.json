@@ -27,7 +27,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "cookie",
@@ -51,7 +51,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "cookie",
@@ -75,7 +75,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "cookie",
@@ -99,7 +99,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "cookie",
@@ -123,7 +123,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "cookie",
@@ -147,7 +147,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "cookie",
@@ -171,7 +171,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "cookie",
@@ -195,7 +195,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "cookie",
@@ -219,7 +219,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "cookie",
@@ -243,7 +243,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "cookie",
@@ -267,7 +267,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "cookie",
@@ -284,6 +284,30 @@
         {
           "type": "cookie",
           "key": "gt_idioma",
+          "value": "ne"
+        }
+      ],
+      "destination": "/ne",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
+          "value": "ne"
+        }
+      ],
+      "destination": "/ne/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma",
           "value": "ar"
         }
       ],
@@ -291,7 +315,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "cookie",
@@ -321,7 +345,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "header",
@@ -357,7 +381,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "header",
@@ -393,7 +417,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "header",
@@ -429,7 +453,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "header",
@@ -465,7 +489,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "header",
@@ -501,7 +525,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "header",
@@ -537,7 +561,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "header",
@@ -573,7 +597,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "header",
@@ -609,7 +633,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "header",
@@ -645,7 +669,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "header",
@@ -681,7 +705,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "header",
@@ -704,6 +728,42 @@
         {
           "type": "header",
           "key": "accept-language",
+          "value": "^\\s*[nN][eE](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/ne",
+      "permanent": false
+    },
+    {
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "^\\s*[nN][eE](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
+        }
+      ],
+      "missing": [
+        {
+          "type": "cookie",
+          "key": "gt_idioma"
+        }
+      ],
+      "destination": "/ne/$1",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
           "value": "^\\s*[aA][rR](?:[-_][A-Za-z0-9]+)*\\s*(?:[;,].*)?$"
         }
       ],
@@ -717,7 +777,7 @@
       "permanent": false
     },
     {
-      "source": "/(relogio-mundial|conversor|tela-cheia|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|calculadoras|timestamp|docs)",
+      "source": "/(relogio-mundial|conversor|cronometro|temporizador|pomodoro|despertador|contagem|calendario|feriados|sol|clima|calculadoras|timestamp|docs)",
       "has": [
         {
           "type": "header",
@@ -737,6 +797,16 @@
     {
       "source": "/sobre",
       "destination": "/docs",
+      "permanent": true
+    },
+    {
+      "source": "/tela-cheia",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/(pt-pt|en|es|fr|de|it|nl|ru|ja|zh-cn|ko|ar)/tela-cheia",
+      "destination": "/$1",
       "permanent": true
     },
     {
@@ -800,7 +870,7 @@
       ]
     },
     {
-      "source": "/api/(.*)",
+      "source": "/api/(hora|conta|eventos)",
       "headers": [
         {
           "key": "Cache-Control",

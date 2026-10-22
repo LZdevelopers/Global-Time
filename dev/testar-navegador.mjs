@@ -92,7 +92,8 @@ class Sessao {
   }
 
   async avaliar(expressao) {
-    const r = await this.enviar("Runtime.evaluate", { expression: expressao, awaitPromise: true, returnByValue: true });
+    // userGesture: as verificações simulam cliques reais (a tela cheia só aceita gestos do usuário).
+    const r = await this.enviar("Runtime.evaluate", { expression: expressao, awaitPromise: true, returnByValue: true, userGesture: true });
     if (r.exceptionDetails) throw new Error(r.exceptionDetails.exception?.description ?? r.exceptionDetails.text);
     return r.result.value;
   }

@@ -1,14 +1,26 @@
 // Calendário: visões anual (padrão), mensal e semanal com feriados da
 // localidade, pontos facultativos, datas comemorativas, contagens salvas e
 // eventos pessoais — na conta, quando há sessão, ou neste navegador.
+//
+// País: o Brasil usa os dados próprios do site (com estado e capital); os
+// outros países do relógio mundial vêm de /api/feriados, carregados por ano
+// conforme o calendário navega (ver scripts/nucleo/feriados-paises.js).
 
 import "../i18n/index.js";
-import { t, urlLocal } from "../i18n/estado.js";
+import { locale, t, urlLocal } from "../i18n/estado.js";
 import { aoMudarEmOutraAba, gravar, ler } from "../nucleo/armazenamento.js";
 import { classeMarca, classeSeloEvento, criarCalendario, legendaCalendario } from "../nucleo/calendario.js";
 import { abrirArmazemEventos, cadastrar, entrar, enviarLocaisParaConta, estadoConta, eventosLocais, excluirConta, sair } from "../nucleo/conta.js";
 import { LIMITE_DESCRICAO, LIMITE_TITULO, ocorrencias } from "../nucleo/eventos.js";
 import { eventosNoIntervalo } from "../nucleo/feriados.js";
+import {
+  PAIS_COM_DADOS_PROPRIOS,
+  carregarFeriados,
+  feriadosEmCache,
+  paisPreferido,
+  paisesComFeriados,
+  salvarPaisPreferido,
+} from "../nucleo/feriados-paises.js";
 import { fusoPreferido } from "../nucleo/fuso-preferido.js";
 import { ligarSeletorLocalidade } from "../nucleo/localidade.js";
 import { obterRelogio } from "../nucleo/sincronizacao.js";
@@ -25,7 +37,7 @@ import {
   partesNoFuso,
   semanaIso,
 } from "../nucleo/tempo.js";
-import { $, agendarPorSegundo, anunciar, avisar, confirmar, criarDialogo, definirTexto, el } from "../nucleo/ui.js";
+import { $, $$, agendarPorSegundo, anunciar, avisar, confirmar, criarDialogo, definirTexto, el, preencherSelect } from "../nucleo/ui.js";
 
 const relogio = obterRelogio();
 const fusoHoje = () => fusoPreferido().fuso;
@@ -37,6 +49,111 @@ let hojeJuliano = diaJuliano(hoje.ano, hoje.mes, hoje.dia);
 const localidade = ligarSeletorLocalidade($("#selectUf"), $("#selectMunicipio"), {
   aoMudar: () => redesenhar(),
 });
+
+// ---- País ----------------------------------------------------------------------------
+// ?pais= na URL tem prioridade; depois, a mesma escolha da página inicial.
+let pais = paisPreferido(new URLSearchParams(location.search).get("pais"));
+const ehBrasil = () => pais === PAIS_COM_DADOS_PROPRIOS;
+const selectPais = $("#selectPais");
+
+function nomeDoPais(codigo) {
+  try {
+    return new Intl.DisplayNames([locale()], { type: "region" }).of(codigo) ?? codigo;
+  } catch {
+    return codigo;
+  }
+}
+
+function preencherPaises(codigos) {
+  const opcoes = codigos
+    .map((c) => ({ valor: c, rotulo: nomeDoPais(c) }))
+    .sort((a, b) => a.rotulo.localeCompare(b.rotulo, locale()));
+  preencherSelect(selectPais, opcoes, pais);
+}
+
+function aplicarPais() {
+  for (const campo of $$("[data-so-brasil]")) campo.hidden = !ehBrasil();
+  $("#areaLegenda").replaceChildren(legendaCalendario({ contagens: true, pessoais: true, outroPais: !ehBrasil() }));
+  erroFeriados = null;
+  redesenhar();
+}
+
+selectPais.addEventListener("change", () => {
+  pais = selectPais.value;
+  salvarPaisPreferido(pais);
+  aplicarPais();
+});
+
+// A lista começa com o país atual; a consulta traz os que a fonte cobre.
+preencherPaises([...new Set([PAIS_COM_DADOS_PROPRIOS, pais])]);
+paisesComFeriados().then((codigos) => preencherPaises(codigos.includes(pais) ? codigos : [...codigos, pais]));
+
+// ---- Feriados de outros países: carregados por ano, sob demanda -------------------
+let erroFeriados = null;
+let carregando = 0;
+const pedidos = new Set();
+
+function feriadosDoPais(inicio, fim) {
+  const anoInicio = deDiaJuliano(inicio).ano;
+  const anoFim = deDiaJuliano(fim).ano;
+  const lista = [];
+  for (let ano = anoInicio; ano <= anoFim; ano += 1) {
+    const registro = feriadosEmCache(pais, ano);
+    if (registro) lista.push(...registro.eventos.filter((e) => e.juliano >= inicio && e.juliano <= fim));
+    pedirAno(pais, ano, registro);
+  }
+  return lista;
+}
+
+// Uma consulta por país/ano nesta visita; carregarFeriados decide se o cache basta.
+function pedirAno(codigo, ano, registro) {
+  const k = `${codigo}:${ano}`;
+  if (pedidos.has(k)) return;
+  pedidos.add(k);
+  carregando += 1;
+  carregarFeriados(codigo, ano)
+    .then((r) => {
+      if (codigo !== pais) return;
+      if (r.desatualizado) erroFeriados = { codigo: "desatualizado", ano };
+      // Só redesenha se chegou algo diferente do que já está na tela.
+      if (r !== registro) setTimeout(redesenhar);
+    })
+    .catch((erro) => {
+      if (codigo === pais) erroFeriados = { codigo: erro.message, ano };
+      pedidos.delete(k);
+    })
+    .finally(() => {
+      carregando -= 1;
+      mostrarEstadoFeriados();
+    });
+}
+
+function mostrarEstadoFeriados() {
+  const area = $("#estadoFeriados");
+  if (ehBrasil()) {
+    area.hidden = true;
+    return;
+  }
+  const partes = [];
+  if (carregando > 0) partes.push(el("span", {}, t("calendario.feriadosCarregando")));
+  else if (erroFeriados?.codigo === "sem-dados") {
+    partes.push(el("span", {}, t("calendario.feriadosSemDados", { pais: nomeDoPais(pais), ano: erroFeriados.ano })));
+  } else if (erroFeriados) {
+    partes.push(
+      el("span", {}, t(erroFeriados.codigo === "desatualizado" ? "calendario.feriadosDesatualizados" : "calendario.feriadosErro")),
+      el("button", { type: "button", class: "link-botao", onclick: tentarDeNovo }, t("comum.tentarNovamente")),
+    );
+  }
+  partes.push(el("span", {}, t("calendario.fonteFeriados"), " ", el("a", { href: "https://date.nager.at", rel: "noopener" }, "Nager.Date")));
+  area.replaceChildren(...partes);
+  area.hidden = false;
+}
+
+function tentarDeNovo() {
+  erroFeriados = null;
+  pedidos.clear();
+  redesenhar();
+}
 
 function opcoesLocal() {
   const { uf, municipio } = localidade.selecao;
@@ -86,7 +203,7 @@ function eventosPessoais(inicio, fim) {
 
 function eventosEntre(inicio, fim) {
   return [
-    ...eventosNoIntervalo(inicio, fim, opcoesLocal()),
+    ...(ehBrasil() ? eventosNoIntervalo(inicio, fim, opcoesLocal()) : feriadosDoPais(inicio, fim)),
     ...contagens.filter((c) => c.juliano >= inicio && c.juliano <= fim),
     ...eventosPessoais(inicio, fim),
   ];
@@ -104,11 +221,11 @@ const calendario = criarCalendario({
   visao: ["ano", "mes", "semana"].includes(visaoUrl) ? visaoUrl : ler("calendario:visao", "ano"),
 });
 $("#areaCalendario").append(calendario.elemento);
-$("#areaLegenda").append(legendaCalendario({ contagens: true, pessoais: true }));
 
 function redesenhar() {
   calendario.atualizar();
   mostrarDia(calendario.estado.selecionado);
+  mostrarEstadoFeriados();
 }
 
 // ---- Painel do dia -----------------------------------------------------------------
@@ -121,11 +238,21 @@ function relativo(juliano) {
   return diff > 0 ? t("calendario.daquiA", { n: diff }) : t("calendario.ha", { n: -diff });
 }
 
+const SETORES = { Bank: "calendario.setor.bancos", School: "calendario.setor.escolas", Authorities: "calendario.setor.orgaos" };
+
 function rotuloEvento(evento) {
   const tipo = t(`calendario.tipo.${evento.tipo}`);
   if (evento.tipo === "estadual") return `${capitalizar(tipo)} · ${evento.uf}`;
   if (evento.tipo === "municipal") return `${capitalizar(tipo)} · ${evento.municipio}`;
+  if (evento.tipo === "setorial" && evento.setores?.length) {
+    return `${capitalizar(tipo)} · ${evento.setores.map((s) => t(SETORES[s])).join(", ")}`;
+  }
   return capitalizar(tipo);
+}
+
+/** Onde vale um feriado regional: "DE-BW, DE-BY" → "Só em: BW, BY". */
+function regioesDoEvento(evento) {
+  return t("calendario.soEm", { regioes: evento.regioes.map((r) => r.replace(/^[A-Z]{2}-/, "")).join(", ") });
 }
 
 function itemEvento(evento) {
@@ -136,6 +263,8 @@ function itemEvento(evento) {
     { class: `evento-dia evento-dia--${classeMarca(evento)}` },
     el("span", { class: classeSeloEvento(evento) }, rotuloEvento(evento)),
     el("strong", { class: "evento-dia__nome" }, nome),
+    evento.nomeIngles ? el("span", { class: "texto-xs texto-fraco", lang: "en" }, evento.nomeIngles) : null,
+    evento.regioes ? el("span", { class: "texto-xs texto-fraco" }, regioesDoEvento(evento)) : null,
     pessoal && evento.evento.descricao ? el("p", { class: "evento-dia__descricao" }, evento.evento.descricao) : null,
     pessoal && evento.evento.anual ? el("span", { class: "texto-xs texto-fraco" }, t("eventos.repeteTodoAno")) : null,
     pessoal
@@ -158,7 +287,7 @@ function mostrarDia(juliano) {
     ? "calendario.situacao.feriado"
     : fimDeSemana
       ? "calendario.situacao.fimDeSemana"
-      : eventos.some((e) => e.tipo === "facultativo")
+      : eventos.some((e) => e.tipo === "facultativo" || e.tipo === "opcional")
         ? "calendario.situacao.facultativo"
         : "calendario.situacao.util";
 
@@ -426,6 +555,7 @@ const inicial = dataUrl ? diaJuliano(dataUrl.ano, dataUrl.mes, dataUrl.dia) : ho
 
 calendario.definirHoje(hojeJuliano);
 calendario.mostrar(inicial);
+aplicarPais();
 mostrarDia(inicial);
 carregarConta();
 

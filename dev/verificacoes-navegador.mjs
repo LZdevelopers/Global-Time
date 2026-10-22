@@ -8,6 +8,23 @@ const clicar = (seletor) => `document.querySelector(${JSON.stringify(seletor)}).
 export const VERIFICACOES = {
   "/": [
     {
+      nome: "tela cheia com um clique: só o relógio, e o botão sai",
+      codigo: `
+        const botao = document.querySelector("#botaoTelaCheia");
+        botao.click();
+        for (let i = 0; i < 20 && !document.body.classList.contains("inicio-tela-cheia"); i += 1) ${esperar(100)}
+        const entrou = document.body.classList.contains("inicio-tela-cheia") && getComputedStyle(document.querySelector(".cabecalho")).display === "none" && botao.getAttribute("aria-pressed") === "true";
+        const api = Boolean(document.fullscreenElement);
+        botao.click();
+        for (let i = 0; i < 20 && document.body.classList.contains("inicio-tela-cheia"); i += 1) ${esperar(100)}
+        const saiu = !document.body.classList.contains("inicio-tela-cheia") && !document.fullscreenElement && getComputedStyle(document.querySelector(".cabecalho")).display !== "none";
+        return (entrou && saiu) || { entrou, api, saiu };`,
+    },
+    {
+      nome: "resumo do clima leva à página do clima",
+      codigo: `const a = document.querySelector("#climaInicio"); return (a && new URL(a.href).pathname === "/clima") || a?.href;`,
+    },
+    {
       nome: "relógio sincroniza com /api/hora",
       codigo: `${esperar(1200)} const t = document.querySelector("#seloSync").textContent; return t.includes("Sincronizado") || t;`,
     },
@@ -90,8 +107,20 @@ export const VERIFICACOES = {
     },
     {
       nome: "tema escuro alterna",
-      codigo: `${clicar("#botaoTema")} const escuro = document.documentElement.dataset.theme === "dark"; ${clicar("#botaoTema")}
-        return (escuro && document.documentElement.dataset.theme === "light") || "tema não alternou";`,
+      // Sem escolha salva, a página abre no tema do sistema: compara com o inicial.
+      codigo: `const inicial = document.documentElement.dataset.theme; ${clicar("#botaoTema")} const trocado = document.documentElement.dataset.theme; ${clicar("#botaoTema")}
+        return (trocado !== inicial && ["dark", "light"].includes(trocado) && document.documentElement.dataset.theme === inicial) || "tema não alternou";`,
+    },
+    {
+      nome: "próximo feriado é do país do fuso (como no calendário)",
+      codigo: `
+        const fuso = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const quando = () => document.querySelector("#faltaProximoFeriado").textContent;
+        if (fuso !== "Europe/Paris") return true;
+        for (let i = 0; i < 60 && !quando().includes("França"); i += 1) ${esperar(150)}
+        const nome = document.querySelector("#tituloProximoFeriado").textContent;
+        const href = new URL(document.querySelector(".proximo-feriado").href).pathname + new URL(document.querySelector(".proximo-feriado").href).search;
+        return (quando().includes("França") && nome !== "Finados" && href === "/calendario?pais=FR") || { nome, quando: quando(), href };`,
     },
     {
       nome: "próximo feriado preenchido",
@@ -212,29 +241,90 @@ export const VERIFICACOES = {
         return (linhas === 4 && resumo.includes("10h–14h")) || { linhas, resumo };`,
     },
   ],
-  "/tela-cheia": [
+  "/clima": [
     {
-      nome: "relógio e dois fusos adicionais padrão",
-      codigo: `${esperar(1100)} const h = document.querySelector("#hora").textContent; return (/^\\d{2}:\\d{2}:\\d{2}$/.test(h) && document.querySelectorAll("#fusosExtras .quiosque__fuso").length === 2) || h;`,
+      nome: "sem lugar salvo (servidor local, sem IP): pede uma cidade",
+      codigo: `${esperar(600)} return (!document.querySelector("#semLugar").hidden && document.querySelector("#painelClima").hidden) || "estado inesperado";`,
     },
     {
-      nome: "modo quiosque esconde cabeçalho e Esc/sair restaura",
+      nome: "busca de cidade lista homônimas com estado e país",
       codigo: `
-        document.querySelector("#botaoEntrar").click();
-        ${esperar(300)}
-        const escondeu = document.body.classList.contains("modo-quiosque") && getComputedStyle(document.querySelector(".cabecalho")).display === "none";
-        document.querySelector("#barraSair").click();
-        ${esperar(300)}
-        const voltou = !document.body.classList.contains("modo-quiosque") && getComputedStyle(document.querySelector(".cabecalho")).display !== "none";
-        return (escondeu && voltou) || { escondeu, voltou };`,
+        const campo = document.querySelector("#campoBusca");
+        campo.value = "Springfield";
+        document.querySelector("#formBusca").requestSubmit();
+        for (let i = 0; i < 40 && document.querySelector("#resultadosBusca").hidden; i += 1) ${esperar(250)}
+        const itens = [...document.querySelectorAll(".resultado-busca")].map((b) => b.textContent);
+        const homonimas = itens.filter((x) => x.startsWith("Springfield"));
+        return (homonimas.length >= 3 && new Set(homonimas).size === homonimas.length) || itens;`,
     },
     {
-      nome: "alternar analógico atualiza URL",
+      nome: "escolher cidade carrega atual, 48 horas, dias e detalhes com os dados da API",
       codigo: `
-        document.querySelector('[data-modo="analogico"]').click();
-        const ok = !document.querySelector("#visorAnalogico").hidden && new URLSearchParams(location.search).get("modo") === "analogico";
-        document.querySelector('[data-modo="digital"]').click();
-        return ok || location.search;`,
+        const campo = document.querySelector("#campoBusca");
+        campo.value = "Umuarama";
+        document.querySelector("#formBusca").requestSubmit();
+        for (let i = 0; i < 40 && !document.querySelector(".resultado-busca strong")?.textContent.includes("Umuarama"); i += 1) ${esperar(250)}
+        document.querySelector(".resultado-busca").click();
+        for (let i = 0; i < 60 && !document.querySelector(".coluna-hora"); i += 1) ${esperar(250)}
+        const salvo = JSON.parse(localStorage.getItem("bt:clima:previsao"));
+        const a = salvo.dados.atual;
+        const temp = document.querySelector("#tempAgora").textContent;
+        const horas = document.querySelectorAll(".coluna-hora").length;
+        const primeira = document.querySelector(".coluna-hora").getAttribute("aria-label");
+        const dias = document.querySelectorAll(".dia-clima").length;
+        const diasApi = salvo.dados.dias.time.length - salvo.dados.dias.time.indexOf(a.time.slice(0, 10));
+        const detalhes = document.querySelectorAll(".clima-detalhes__item").length;
+        const titulo = document.querySelector("#tituloLugar").textContent;
+        const ok = temp === Math.round(a.temperature_2m) + "°" && horas === 48 && dias === diasApi && dias >= 7 && detalhes >= 8 && titulo === "Umuarama" && primeira.startsWith("Agora");
+        return ok || { temp, api: a.temperature_2m, horas, dias, diasApi, detalhes, titulo, primeira };`,
+    },
+    {
+      nome: "tema do painel segue a condição real e o dia/noite do lugar",
+      codigo: `
+        const a = JSON.parse(localStorage.getItem("bt:clima:previsao")).dados.atual;
+        const c = a.weather_code;
+        const esperado = c === 0 || c === 1 ? "limpo" : c === 2 ? "parcial" : c === 3 ? "nublado" : c < 50 ? "neblina" : c >= 95 ? "tempestade" : [71, 73, 75, 77, 85, 86].includes(c) ? "neve" : "chuva";
+        const s = document.querySelector("#agora");
+        return (s.dataset.tema === esperado && s.dataset.periodo === (a.is_day ? "dia" : "noite")) || { tema: s.dataset.tema, esperado, periodo: s.dataset.periodo, is_day: a.is_day };`,
+    },
+    {
+      nome: "horários no fuso do lugar (hora local e coluna \"Agora\")",
+      codigo: `
+        const d = JSON.parse(localStorage.getItem("bt:clima:previsao")).dados;
+        const local = new Intl.DateTimeFormat("en-GB", { timeZone: d.fuso, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(new Date());
+        const exibida = document.querySelector("#horaLocal").textContent;
+        const [h, m] = local.split(":").map(Number); const [eh, em] = exibida.split(":").map(Number);
+        const diferenca = Math.abs(h * 60 + m - (eh * 60 + em));
+        return (diferenca <= 1 || diferenca >= 1439) || { local, exibida, fuso: d.fuso };`,
+    },
+    {
+      nome: "abrir um dia mostra os detalhes; chuva tem resumo",
+      codigo: `
+        const dia = document.querySelectorAll(".dia-clima")[1];
+        dia.querySelector("summary").click();
+        const linhas = dia.querySelectorAll(".lista-dados > div").length;
+        const chuva = document.querySelector("#resumoChuva").textContent.trim();
+        return (dia.open && linhas >= 5 && chuva.length > 10) || { aberto: dia.open, linhas, chuva };`,
+    },
+    {
+      nome: "falha da API mantém os últimos dados e avisa",
+      codigo: `
+        // Previsão salva "vencida" e a consulta nova falhando: escolher a mesma
+        // cidade de novo deve mostrar a cópia salva com o aviso.
+        const original = window.fetch;
+        window.fetch = (url, ...r) => String(url).startsWith("/api/clima?lat=") ? Promise.reject(new TypeError("rede")) : original(url, ...r);
+        const salvo = JSON.parse(localStorage.getItem("bt:clima:previsao"));
+        salvo.recebidoEm -= 11 * 60 * 1000;
+        localStorage.setItem("bt:clima:previsao", JSON.stringify(salvo));
+        document.querySelector("#campoBusca").value = "Umuarama";
+        document.querySelector("#formBusca").requestSubmit();
+        for (let i = 0; i < 40 && document.querySelector("#resultadosBusca").hidden; i += 1) ${esperar(250)}
+        document.querySelector(".resultado-busca").click();
+        ${esperar(800)}
+        window.fetch = original;
+        const estado = document.querySelector("#estadoDados").textContent;
+        const temp = document.querySelector("#tempAgora").textContent;
+        return (/desatualizados/.test(estado) && /\\d°$/.test(temp) && !!document.querySelector("#estadoDados button")) || { estado, temp };`,
     },
   ],
   "/cronometro": [
@@ -491,6 +581,39 @@ export const VERIFICACOES = {
     },
   ],
   "/calendario": [
+    {
+      nome: "outro país: feriados da API marcados e nomeados; voltar ao Brasil",
+      codigo: `
+        const select = document.querySelector("#selectPais");
+        for (let i = 0; i < 100 && !select.querySelector("option[value=DE]"); i += 1) ${esperar(150)}
+        select.value = "DE"; select.dispatchEvent(new Event("change"));
+        for (let i = 0; i < 100 && !document.querySelector(".calendario__dia--feriado"); i += 1) ${esperar(150)}
+        const ano = Number(document.querySelector(".calendario__titulo").textContent);
+        const anoNovo = document.querySelector("[data-juliano]:not(.calendario__dia--fora)")?.getAttribute("aria-label") ?? "";
+        const feriados = document.querySelectorAll(".calendario__dia--feriado").length;
+        const regionais = document.querySelectorAll(".calendario__dia--regional").length;
+        const ufOculta = document.querySelector("#selectUf").closest("label").hidden;
+        const fonte = document.querySelector("#estadoFeriados").textContent;
+        select.value = "BR"; select.dispatchEvent(new Event("change"));
+        const brasil = !document.querySelector("#selectUf").closest("label").hidden && document.querySelector("#estadoFeriados").hidden;
+        const ok = feriados >= 8 && regionais >= 1 && /Neujahr/.test(anoNovo) && ufOculta && fonte.includes("Nager.Date") && brasil && ano > 2000;
+        return ok || { feriados, regionais, anoNovo, ufOculta, fonte, brasil };`,
+    },
+    {
+      nome: "feriado de outro país fica na data civil certa (sem efeito de fuso)",
+      codigo: `
+        const select = document.querySelector("#selectPais");
+        select.value = "JP"; select.dispatchEvent(new Event("change"));
+        for (let i = 0; i < 100 && !document.querySelector(".calendario__dia--feriado"); i += 1) ${esperar(150)}
+        const ano = document.querySelector(".calendario__titulo").textContent;
+        const r = await fetch("/api/feriados?pais=JP&ano=" + ano).then((x) => x.json());
+        const primeiro = r.feriados[0];
+        const [a, m, d] = primeiro.data.split("-").map(Number);
+        const rotulo = new Intl.DateTimeFormat("pt-BR", { day: "numeric", month: "long", timeZone: "UTC" }).format(new Date(Date.UTC(a, m - 1, d)));
+        const celula = [...document.querySelectorAll("[data-juliano]")].find((c) => c.getAttribute("aria-label").includes(primeiro.nome));
+        select.value = "BR"; select.dispatchEvent(new Event("change"));
+        return (celula && celula.getAttribute("aria-label").includes(rotulo)) || { rotulo, celula: celula?.getAttribute("aria-label") };`,
+    },
     {
       nome: "abre na visão anual com 12 meses e hoje selecionado",
       codigo: `

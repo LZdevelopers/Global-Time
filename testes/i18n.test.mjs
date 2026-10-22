@@ -15,6 +15,7 @@ test("escolha do idioma pelas preferências do navegador", () => {
   assert.equal(escolherIdioma(["zh-TW"]), "zh-CN");
   assert.equal(escolherIdioma(["zh-Hans-CN"]), "zh-CN");
   assert.equal(escolherIdioma(["ar-EG"]), "ar");
+  assert.equal(escolherIdioma(["ne-NP", "en"]), "ne");
   assert.equal(escolherIdioma(["xx", "yy"]), "pt-BR");
   assert.equal(escolherIdioma([]), "pt-BR");
   assert.equal(idiomaDaTag("de_AT"), "de");

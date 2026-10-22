@@ -8,6 +8,7 @@
 //
 // Os textos de algumas páginas ficam em partes (pasta pt-BR/), unidas aqui.
 
+import clima from "./pt-BR/clima.js";
 import docs from "./pt-BR/docs.js";
 import feriados from "./pt-BR/feriados.js";
 import fusos from "./pt-BR/fusos.js";
@@ -19,6 +20,7 @@ export default {
   ...medir,
   ...feriados,
   ...utilitarios,
+  ...clima,
   ...docs,
 
   // ---- Site e páginas ------------------------------------------------------
@@ -43,9 +45,6 @@ export default {
   "paginas.conversor.titulo": "Conversor de fuso horário e planejador de reuniões",
   "paginas.conversor.descricao":
     "Converta um horário entre cidades e fusos, inclusive em datas de horário de verão, e encontre horários em comum para reuniões.",
-  "paginas.tela-cheia.rotulo": "Relógio em tela cheia",
-  "paginas.tela-cheia.titulo": "Relógio em tela cheia para TV e monitor",
-  "paginas.tela-cheia.descricao": "Relógio grande para TVs, monitores e recepções, com data, fusos adicionais e versão analógica.",
   "paginas.cronometro.rotulo": "Cronômetro",
   "paginas.cronometro.titulo": "Cronômetro online com voltas",
   "paginas.cronometro.descricao":
@@ -123,6 +122,7 @@ export default {
   "comum.proximo": "Próximo",
   "comum.ajustes": "Ajustes",
   "comum.carregando": "Carregando…",
+  "comum.tentarNovamente": "Tentar novamente",
   "comum.semDados": "—",
 
   // ---- Regiões (listas de cidades) ------------------------------------------
@@ -278,6 +278,9 @@ export default {
   "calendario.legenda.comemorativa": "Data comemorativa",
   "calendario.legenda.pessoal": "Seus eventos",
   "calendario.legenda.contagem": "Suas contagens",
+  "calendario.legenda.feriadoNacional": "Feriado nacional",
+  "calendario.legenda.regional": "Feriado regional",
+  "calendario.legenda.outrosFeriados": "Opcional ou de um setor",
   "calendario.tipo.nacional": "feriado nacional",
   "calendario.tipo.estadual": "feriado estadual",
   "calendario.tipo.municipal": "feriado municipal",
@@ -285,6 +288,19 @@ export default {
   "calendario.tipo.comemorativa": "data comemorativa",
   "calendario.tipo.contagem": "sua contagem regressiva",
   "calendario.tipo.pessoal": "seu evento",
+  "calendario.tipo.regional": "feriado regional",
+  "calendario.tipo.opcional": "folga opcional",
+  "calendario.tipo.setorial": "feriado de um setor",
+  "calendario.setor.bancos": "bancos",
+  "calendario.setor.escolas": "escolas",
+  "calendario.setor.orgaos": "órgãos públicos",
+  "calendario.soEm": "Só em: {regioes}",
+  "calendario.pais": "País",
+  "calendario.feriadosCarregando": "Carregando feriados…",
+  "calendario.feriadosErro": "Não foi possível carregar os feriados deste país agora.",
+  "calendario.feriadosDesatualizados": "Sem conexão com a fonte: mostrando os feriados salvos da última consulta.",
+  "calendario.feriadosSemDados": "A fonte não tem feriados de {pais} para {ano}.",
+  "calendario.fonteFeriados": "Feriados de outros países:",
   "calendario.contarAte": "Contar até este dia",
   "calendario.maisSobreDia": "Mais sobre este dia",
   "calendario.diaVazio": "Nenhum feriado, data comemorativa ou evento neste dia.",
@@ -393,6 +409,12 @@ export default {
     "Muda só a forma de exibir: o horário continua sincronizado com o servidor. A escolha fica salva neste navegador.",
   "inicio.emBrasilia": "Brasília: {hora}{dia} · {diferenca}",
   "inicio.telaCheia": "Tela cheia",
+  "inicio.sairTelaCheia": "Sair da tela cheia",
+  "inicio.telaCheiaAtivada": "Tela cheia ativada. Pressione Esc para sair.",
+  "inicio.telaCheiaNegada": "O navegador não permitiu a tela cheia.",
+  "inicio.telaCheiaIndisponivel": "Tela cheia indisponível neste navegador. O relógio ocupa a janela; Esc ou o botão saem.",
+  "inicio.atalho.telaCheia": "Entrar ou sair da tela cheia",
+  "inicio.atalho.sairTelaCheia": "Sair da tela cheia",
   "inicio.copiar": "Copiar horário",
   "inicio.analogico": "Relógio analógico",
   "inicio.proximoFeriado": "Próximo feriado",

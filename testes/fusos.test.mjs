@@ -111,3 +111,10 @@ test("nome legível do fuso do navegador", async () => {
   assert.equal(nomeDoFuso("America/El_Salvador"), "El Salvador");
   assert.equal(cidadeDoFuso("Marte/Base"), null);
 });
+
+test("nomes antigos de fuso que o Chrome informa acham a cidade", async () => {
+  const { cidadeDoFuso } = await import("../scripts/dados/cidades.js");
+  assert.equal(cidadeDoFuso("Asia/Katmandu")?.id, "katmandu");
+  assert.equal(cidadeDoFuso("Asia/Kathmandu")?.id, "katmandu");
+  assert.equal(cidadeDoFuso("Asia/Calcutta")?.fuso, "Asia/Kolkata");
+});

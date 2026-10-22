@@ -3,8 +3,10 @@
 
 export const IDIOMA_PADRAO = "pt-BR";
 
-// `intl` é o locale passado ao Intl (datas, números). Em árabe fixamos os
-// algarismos latinos para que datas e relógio usem os mesmos dígitos.
+// `intl` é o locale passado ao Intl (datas, números). Em árabe e em nepalês
+// fixamos os algarismos latinos para que datas e relógio usem os mesmos dígitos.
+// `intlAlternativo` vale quando o navegador não tem os dados do idioma (o
+// Chrome não traz o nepalês): sem ele, o Intl cairia no idioma do sistema.
 export const IDIOMAS = Object.freeze([
   { codigo: "pt-BR", nome: "Português (Brasil)", intl: "pt-BR", dir: "ltr" },
   { codigo: "pt-PT", nome: "Português (Portugal)", intl: "pt-PT", dir: "ltr" },
@@ -18,6 +20,7 @@ export const IDIOMAS = Object.freeze([
   { codigo: "ja", nome: "日本語", intl: "ja", dir: "ltr" },
   { codigo: "zh-CN", nome: "简体中文", intl: "zh-CN", dir: "ltr" },
   { codigo: "ko", nome: "한국어", intl: "ko", dir: "ltr" },
+  { codigo: "ne", nome: "नेपाली", intl: "ne-u-nu-latn", intlAlternativo: "en", dir: "ltr" },
   { codigo: "ar", nome: "العربية", intl: "ar-u-nu-latn", dir: "rtl" },
 ]);
 

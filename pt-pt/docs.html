@@ -56,6 +56,7 @@
           <a href="/pt-pt/temporizador" data-i18n="paginas.temporizador.rotulo">Temporizador</a>
           <a href="/pt-pt/calendario" data-i18n="paginas.calendario.rotulo">Calendário</a>
           <a href="/pt-pt/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">Fusos horários</a>
+          <a href="/pt-pt/clima" data-i18n="paginas.clima.rotulo">Meteorologia</a>
         </nav>
         <div class="cabecalho__acoes">
           <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="Usar tema escuro" title="Usar tema escuro" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
@@ -76,7 +77,6 @@
                 <li><a href="/pt-pt"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">Hora certa</span></a></li>
                 <li><a href="/pt-pt/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">Relógio mundial</span></a></li>
                 <li><a href="/pt-pt/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">Conversor de fusos</span></a></li>
-                <li><a href="/pt-pt/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">Relógio em ecrã inteiro</span></a></li>
               </ul>
             </div>
             <div>
@@ -95,6 +95,7 @@
                 <li><a href="/pt-pt/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">Calendário</span></a></li>
                 <li><a href="/pt-pt/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">Feriados do Brasil</span></a></li>
                 <li><a href="/pt-pt/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">Nascer e pôr do sol</span></a></li>
+                <li><a href="/pt-pt/clima"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#clima-sol-nuvem"/></svg><span data-i18n="paginas.clima.rotulo">Meteorologia</span></a></li>
               </ul>
             </div>
             <div>
@@ -142,8 +143,9 @@
                 <p>
                   O GlobalTime mostra a hora certa no seu fuso, sincronizada com o servidor, e reúne ferramentas de
                   tempo: relógio mundial, conversor de fusos, relógio em tela cheia, cronômetro, temporizador,
-                  Pomodoro, despertador, contagem regressiva, calendário com eventos pessoais, feriados do Brasil,
-                  nascer e pôr do sol, calculadoras de datas e conversor de timestamp Unix.
+                  Pomodoro, despertador, contagem regressiva, calendário com eventos pessoais, feriados do Brasil e
+                  de outros países, clima e previsão do tempo, nascer e pôr do sol, calculadoras de datas e conversor
+                  de timestamp Unix.
                 </p>
                 <p>
                   Tudo funciona no navegador, de graça e sem anúncios. Criar uma conta é opcional e serve só para
@@ -207,7 +209,7 @@
                       <tr><td><kbd>R</kbd></td><td>Zerar ou reiniciar (pede confirmação quando há dados a perder)</td><td>Cronômetro, temporizador, Pomodoro</td></tr>
                       <tr><td><kbd>+</kbd></td><td>Adicionar 1 minuto</td><td>Temporizador</td></tr>
                       <tr><td><kbd>N</kbd></td><td>Pular para a próxima etapa</td><td>Pomodoro</td></tr>
-                      <tr><td><kbd>F</kbd> / <kbd>M</kbd></td><td>Tela cheia / alternar digital e analógico</td><td>Tela cheia</td></tr>
+                      <tr><td><kbd>F</kbd></td><td>Entrar ou sair da tela cheia</td><td>Hora certa</td></tr>
                       <tr><td>Setas, <kbd>PageUp</kbd>, <kbd>PageDown</kbd>, <kbd>Home</kbd></td><td>Mudar de dia, de período e voltar a hoje</td><td>Calendário</td></tr>
                       <tr><td><kbd>H</kbd> ou <kbd>?</kbd></td><td>Mostrar os atalhos</td><td>Todas</td></tr>
                       <tr><td><kbd>Esc</kbd></td><td>Fechar janelas e sair de modos</td><td>Todas</td></tr>
@@ -287,7 +289,7 @@
                 <ul>
                   <li><strong>Relógio mundial:</strong> começa com poucas cidades a partir do seu fuso; adicione, reordene e remova cidades. A lista fica salva neste navegador.</li>
                   <li><strong>Conversor:</strong> converte um horário entre cidades ou fusos IANA, avisa horários inexistentes ou repetidos na troca do horário de verão e tem um planejador de reuniões.</li>
-                  <li><strong>Tela cheia:</strong> relógio grande para TVs e monitores, com fusos extras; os ajustes ficam no endereço da página.</li>
+                  <li><strong>Tela cheia:</strong> o botão de tela cheia da página inicial (ou a tecla <kbd>F</kbd>) deixa só o relógio, grande, na tela inteira — bom para TVs e monitores. A tela fica ligada enquanto isso, quando o navegador permite; <kbd>Esc</kbd> ou o mesmo botão saem.</li>
                 </ul>
               </section>
             </div>
@@ -341,6 +343,7 @@
                   <li><strong>Calculadoras:</strong> diferença entre datas (com dias úteis descontando feriados nacionais e, se escolhidos, estaduais), soma de dias corridos ou úteis, duração entre horários e conversão de unidades.</li>
                   <li><strong>Timestamp Unix:</strong> converte segundos ou milissegundos em datas (ISO 8601, UTC e no fuso escolhido) e o caminho inverso.</li>
                   <li><strong>Nascer e pôr do sol:</strong> cálculo pelo algoritmo da NOAA para cidades ou coordenadas. A localização só é pedida se você clicar em “Usar minha localização”, e as coordenadas não saem do navegador.</li>
+                  <li><strong>Clima:</strong> condições atuais, próximas 48 horas, até 16 dias (os dias além de uma semana são tendência), chance e volume de chuva, vento, UV e mais, com dados da <a href="https://open-meteo.com/" rel="noopener">Open-Meteo</a>. Busque qualquer cidade ou use a localização do aparelho (só ao clicar); na primeira visita, o site usa uma localização aproximada pela conexão. A cidade escolhida fica salva neste navegador e aparece também na página inicial. Para buscar o clima, as coordenadas arredondadas (cerca de 1 km) passam pelo servidor do GlobalTime.</li>
                 </ul>
               </section>
             </div>
@@ -357,6 +360,13 @@
                   Feriados nacionais, estaduais e da capital escolhida, pontos facultativos, datas comemorativas, as
                   suas contagens e os seus eventos aparecem em todas as visualizações. O painel ao lado mostra os
                   detalhes do dia selecionado.
+                </p>
+                <p>
+                  No campo <strong>País</strong> você vê os feriados de outros países do relógio mundial, consultados
+                  na <a href="https://date.nager.at" rel="noopener">Nager.Date</a> para o ano exibido: feriados
+                  nacionais em vermelho, regionais (só em parte do país) em outra cor e, à parte, os opcionais ou só
+                  de bancos, escolas e órgãos públicos. Os dados ficam guardados no navegador; sem conexão, os já
+                  consultados continuam aparecendo. O Brasil usa os dados próprios do site, com estados e capitais.
                 </p>
               </section>
 
@@ -549,7 +559,7 @@ KV_REST_API_TOKEN=…</code></pre>
           <label class="rodape__idioma">
             <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
             <span class="sr-only" data-i18n="comum.idioma">Idioma</span>
-            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" selected lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" selected lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ne" lang="ne">नेपाली</option><option value="ar" lang="ar">العربية</option></select>
           </label>
         </span>
       </div>

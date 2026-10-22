@@ -20,6 +20,7 @@
     <link rel="alternate" hreflang="ja" href="https://global-time.lzdev.com.br/ja/contagem" />
     <link rel="alternate" hreflang="zh-CN" href="https://global-time.lzdev.com.br/zh-cn/contagem" />
     <link rel="alternate" hreflang="ko" href="https://global-time.lzdev.com.br/ko/contagem" />
+    <link rel="alternate" hreflang="ne" href="https://global-time.lzdev.com.br/ne/contagem" />
     <link rel="alternate" hreflang="ar" href="https://global-time.lzdev.com.br/ar/contagem" />
     <link rel="alternate" hreflang="x-default" href="https://global-time.lzdev.com.br/contagem" />
     <meta property="og:type" content="website" />
@@ -66,6 +67,7 @@
           <a href="/ja/temporizador" data-i18n="paginas.temporizador.rotulo">タイマー</a>
           <a href="/ja/calendario" data-i18n="paginas.calendario.rotulo">カレンダー</a>
           <a href="/ja/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">タイムゾーン</a>
+          <a href="/ja/clima" data-i18n="paginas.clima.rotulo">天気</a>
         </nav>
         <div class="cabecalho__acoes">
           <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="ダークテーマを使用" title="ダークテーマを使用" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
@@ -86,7 +88,6 @@
                 <li><a href="/ja"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">正確な時刻</span></a></li>
                 <li><a href="/ja/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">世界時計</span></a></li>
                 <li><a href="/ja/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">タイムゾーン変換</span></a></li>
-                <li><a href="/ja/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">全画面時計</span></a></li>
               </ul>
             </div>
             <div>
@@ -105,6 +106,7 @@
                 <li><a href="/ja/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">カレンダー</span></a></li>
                 <li><a href="/ja/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">祝日</span></a></li>
                 <li><a href="/ja/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">日の出・日の入り</span></a></li>
+                <li><a href="/ja/clima"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#clima-sol-nuvem"/></svg><span data-i18n="paginas.clima.rotulo">天気</span></a></li>
               </ul>
             </div>
             <div>
@@ -196,7 +198,7 @@
           <label class="rodape__idioma">
             <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
             <span class="sr-only" data-i18n="comum.idioma">言語</span>
-            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" selected lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" selected lang="ja">日本語</option><option value="zh-CN" lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ne" lang="ne">नेपाली</option><option value="ar" lang="ar">العربية</option></select>
           </label>
         </span>
       </div>

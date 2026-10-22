@@ -52,6 +52,7 @@
           <a href="/zh-cn/temporizador" data-i18n="paginas.temporizador.rotulo">计时器</a>
           <a href="/zh-cn/calendario" data-i18n="paginas.calendario.rotulo">日历</a>
           <a href="/zh-cn/relogio-mundial" data-i18n="paginas.relogio-mundial.rotuloNav">时区</a>
+          <a href="/zh-cn/clima" data-i18n="paginas.clima.rotulo">天气</a>
         </nav>
         <div class="cabecalho__acoes">
           <button id="botaoTema" class="botao botao--fantasma botao--icone" type="button" aria-pressed="false" aria-label="使用深色主题" title="使用深色主题" data-i18n-attr="aria-label:comum.temaEscuro;title:comum.temaEscuro">
@@ -72,7 +73,6 @@
                 <li><a href="/zh-cn"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#relogio"/></svg><span data-i18n="paginas.inicio.rotulo">准确时间</span></a></li>
                 <li><a href="/zh-cn/relogio-mundial"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg><span data-i18n="paginas.relogio-mundial.rotulo">世界时钟</span></a></li>
                 <li><a href="/zh-cn/conversor"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#conversor"/></svg><span data-i18n="paginas.conversor.rotulo">时区转换器</span></a></li>
-                <li><a href="/zh-cn/tela-cheia"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#tela-cheia"/></svg><span data-i18n="paginas.tela-cheia.rotulo">全屏时钟</span></a></li>
               </ul>
             </div>
             <div>
@@ -91,6 +91,7 @@
                 <li><a href="/zh-cn/calendario"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#calendario"/></svg><span data-i18n="paginas.calendario.rotulo">日历</span></a></li>
                 <li><a href="/zh-cn/feriados"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#feriado"/></svg><span data-i18n="paginas.feriados.rotulo">节假日</span></a></li>
                 <li><a href="/zh-cn/sol"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#sol"/></svg><span data-i18n="paginas.sol.rotulo">日出和日落</span></a></li>
+                <li><a href="/zh-cn/clima"><svg class="icone" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#clima-sol-nuvem"/></svg><span data-i18n="paginas.clima.rotulo">天气</span></a></li>
               </ul>
             </div>
             <div>
@@ -140,8 +141,9 @@
                 <p>
                   GlobalTime shows the exact time in your time zone, synchronized with the server, and brings together
                   time tools: world clock, time zone converter, full-screen clock, stopwatch, timer,
-                  Pomodoro, alarm clock, countdown, calendar with personal events, Brazilian holidays,
-                  sunrise and sunset, date calculators and a Unix timestamp converter.
+                  Pomodoro, alarm clock, countdown, calendar with personal events, holidays for Brazil and
+                  other countries, weather and forecast, sunrise and sunset, date calculators and a Unix timestamp
+                  converter.
                 </p>
                 <p>
                   Everything runs in the browser, free and without ads. Creating an account is optional and only serves
@@ -205,7 +207,7 @@
                       <tr><td><kbd>R</kbd></td><td>Reset or restart (asks for confirmation when there is data to lose)</td><td>Stopwatch, timer, Pomodoro</td></tr>
                       <tr><td><kbd>+</kbd></td><td>Add 1 minute</td><td>Timer</td></tr>
                       <tr><td><kbd>N</kbd></td><td>Skip to the next stage</td><td>Pomodoro</td></tr>
-                      <tr><td><kbd>F</kbd> / <kbd>M</kbd></td><td>Full screen / toggle digital and analog</td><td>Full screen</td></tr>
+                      <tr><td><kbd>F</kbd></td><td>Enter or exit full screen</td><td>Exact time</td></tr>
                       <tr><td>Arrows, <kbd>PageUp</kbd>, <kbd>PageDown</kbd>, <kbd>Home</kbd></td><td>Change day, change period and go back to today</td><td>Calendar</td></tr>
                       <tr><td><kbd>H</kbd> or <kbd>?</kbd></td><td>Show shortcuts</td><td>All</td></tr>
                       <tr><td><kbd>Esc</kbd></td><td>Close dialogs and exit modes</td><td>All</td></tr>
@@ -285,7 +287,7 @@
                 <ul>
                   <li><strong>World clock:</strong> starts with a few cities based on your time zone; add, reorder and remove cities. The list is saved in this browser.</li>
                   <li><strong>Converter:</strong> converts a time between cities or IANA time zones, warns about nonexistent or repeated times at daylight saving transitions and includes a meeting planner.</li>
-                  <li><strong>Full screen:</strong> a large clock for TVs and monitors, with extra time zones; the settings are kept in the page address.</li>
+                  <li><strong>Full screen:</strong> the full-screen button on the home page (or the <kbd>F</kbd> key) shows only the clock, large, across the whole screen — good for TVs and monitors. The screen stays on meanwhile when the browser allows it; <kbd>Esc</kbd> or the same button exits.</li>
                 </ul>
               </section>
             </div>
@@ -339,6 +341,7 @@
                   <li><strong>Calculators:</strong> difference between dates (with business days excluding national holidays and, if selected, state holidays), adding calendar or business days, duration between times and unit conversion.</li>
                   <li><strong>Unix timestamp:</strong> converts seconds or milliseconds into dates (ISO 8601, UTC and in the chosen time zone) and the other way around.</li>
                   <li><strong>Sunrise and sunset:</strong> calculated with the NOAA algorithm for cities or coordinates. Your location is only requested if you click “Use my location”, and the coordinates never leave the browser.</li>
+                  <li><strong>Weather:</strong> current conditions, the next 48 hours, up to 16 days (days beyond a week are a trend), chance and amount of rain, wind, UV and more, with data from <a href="https://open-meteo.com/" rel="noopener">Open-Meteo</a>. Search any city or use your device location (only when you click); on the first visit the site uses an approximate location from your connection. The chosen city is saved in this browser and also shows on the home page. To fetch the weather, the rounded coordinates (about 1 km) go through the GlobalTime server.</li>
                 </ul>
               </section>
             </div>
@@ -355,6 +358,14 @@
                   National, state and selected-capital holidays, optional federal holidays (pontos facultativos), observances,
                   your countdowns and your events appear in every view. The side panel shows the
                   details of the selected day.
+                </p>
+                <p>
+                  The <strong>Country</strong> field shows the holidays of other world-clock countries, fetched from
+                  <a href="https://date.nager.at" rel="noopener">Nager.Date</a> for the year on screen: national
+                  holidays in red, regional ones (only in part of the country) in another color and, separately,
+                  optional holidays or those only for banks, schools and public offices. The data is kept in the
+                  browser; offline, holidays already fetched still show. Brazil uses the site's own data, with states
+                  and capitals.
                 </p>
               </section>
 
@@ -545,7 +556,7 @@ KV_REST_API_TOKEN=…</code></pre>
           <label class="rodape__idioma">
             <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#globo"/></svg>
             <span class="sr-only" data-i18n="comum.idioma">语言</span>
-            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" selected lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ar" lang="ar">العربية</option></select>
+            <select id="seletorIdioma"><option value="pt-BR" lang="pt-BR">Português (Brasil)</option><option value="pt-PT" lang="pt-PT">Português (Portugal)</option><option value="en" lang="en">English</option><option value="es" lang="es">Español</option><option value="fr" lang="fr">Français</option><option value="de" lang="de">Deutsch</option><option value="it" lang="it">Italiano</option><option value="nl" lang="nl">Nederlands</option><option value="ru" lang="ru">Русский</option><option value="ja" lang="ja">日本語</option><option value="zh-CN" selected lang="zh-CN">简体中文</option><option value="ko" lang="ko">한국어</option><option value="ne" lang="ne">नेपाली</option><option value="ar" lang="ar">العربية</option></select>
           </label>
         </span>
       </div>

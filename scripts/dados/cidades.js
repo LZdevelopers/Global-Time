@@ -8,6 +8,7 @@
 // o nome próprio). Países vêm do Intl.DisplayNames, no idioma da interface.
 
 import { idiomaAtual, locale, t } from "../i18n/estado.js";
+import { CODIGOS_PAISES } from "./paises.js";
 
 export const CIDADES = [
   // Brasil — capitais e Fernando de Noronha
@@ -115,17 +116,6 @@ export function buscarCidade(id) {
   return CIDADES.find((c) => c.id === id) ?? null;
 }
 
-// Código ISO 3166-1 dos países usados acima (para Intl.DisplayNames).
-const CODIGOS_PAISES = {
-  Brasil: "BR", Argentina: "AR", Uruguai: "UY", Paraguai: "PY", Chile: "CL", "Bolívia": "BO", Peru: "PE",
-  "Colômbia": "CO", Venezuela: "VE", "México": "MX", "Estados Unidos": "US", "Canadá": "CA", Portugal: "PT",
-  "Reino Unido": "GB", Irlanda: "IE", Espanha: "ES", "França": "FR", "Países Baixos": "NL", Alemanha: "DE",
-  "Suíça": "CH", "Itália": "IT", "Grécia": "GR", Turquia: "TR", "Rússia": "RU", "Islândia": "IS", Noruega: "NO",
-  Angola: "AO", "Moçambique": "MZ", "Nigéria": "NG", "África do Sul": "ZA", Egito: "EG", Israel: "IL",
-  "Emirados Árabes Unidos": "AE", "Irã": "IR", "Índia": "IN", Nepal: "NP", Singapura: "SG", China: "CN",
-  "Coreia do Sul": "KR", "Japão": "JP", "Austrália": "AU", "Nova Zelândia": "NZ",
-};
-
 // Só onde o nome difere do português do Brasil.
 const NOMES_PT_PT = {
   "nova-york": "Nova Iorque", madri: "Madrid", amsterda: "Amesterdão", moscou: "Moscovo", teera: "Teerão",
@@ -145,6 +135,11 @@ export function nomeCidade(cidade) {
   if (idioma === "pt-BR") return cidade.nome;
   if (idioma === "pt-PT") return NOMES_PT_PT[cidade.id] ?? cidade.nome;
   return NOMES_EN[cidade.id] ?? cidade.nome;
+}
+
+/** Código ISO do país da cidade ("BR"), ou null. */
+export function codigoPais(cidade) {
+  return (cidade && CODIGOS_PAISES[cidade.pais]) ?? null;
 }
 
 let nomesRegioes = null;
@@ -181,10 +176,19 @@ export function opcoesCidades(filtro = () => true) {
   }));
 }
 
+// O Chrome (ICU) informa alguns fusos pelo nome antigo do IANA; a lista de
+// cidades usa o atual.
+const FUSOS_ANTIGOS = {
+  "Asia/Katmandu": "Asia/Kathmandu",
+  "Asia/Calcutta": "Asia/Kolkata",
+  "America/Buenos_Aires": "America/Argentina/Buenos_Aires",
+};
+
 /** Fuso IANA informado pelo navegador. Indica a configuração do aparelho, não necessariamente onde a pessoa está. */
 export function fusoDoNavegador() {
   try {
-    return Intl.DateTimeFormat().resolvedOptions().timeZone || null;
+    const fuso = Intl.DateTimeFormat().resolvedOptions().timeZone || null;
+    return FUSOS_ANTIGOS[fuso] ?? fuso;
   } catch {
     return null;
   }
@@ -192,7 +196,8 @@ export function fusoDoNavegador() {
 
 /** Cidade cadastrada para um fuso IANA, se houver. */
 export function cidadeDoFuso(fuso) {
-  return CIDADES.find((c) => c.fuso === fuso) ?? null;
+  const atual = FUSOS_ANTIGOS[fuso] ?? fuso;
+  return CIDADES.find((c) => c.fuso === atual) ?? null;
 }
 
 /** Nome legível de um fuso IANA: a cidade cadastrada ou o último trecho do identificador. */

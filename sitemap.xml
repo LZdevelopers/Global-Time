@@ -13,10 +13,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://global-time.lzdev.com.br/tela-cheia</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://global-time.lzdev.com.br/cronometro</loc>
     <priority>0.8</priority>
   </url>
@@ -49,6 +45,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-time.lzdev.com.br/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-time.lzdev.com.br/calculadoras</loc>
     <priority>0.8</priority>
   </url>
@@ -70,10 +70,6 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/pt-pt/conversor</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://global-time.lzdev.com.br/pt-pt/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -109,6 +105,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-time.lzdev.com.br/pt-pt/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-time.lzdev.com.br/pt-pt/calculadoras</loc>
     <priority>0.8</priority>
   </url>
@@ -130,10 +130,6 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/en/conversor</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://global-time.lzdev.com.br/en/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -169,6 +165,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-time.lzdev.com.br/en/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-time.lzdev.com.br/en/calculadoras</loc>
     <priority>0.8</priority>
   </url>
@@ -190,10 +190,6 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/es/conversor</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://global-time.lzdev.com.br/es/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -229,6 +225,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-time.lzdev.com.br/es/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-time.lzdev.com.br/es/calculadoras</loc>
     <priority>0.8</priority>
   </url>
@@ -246,10 +246,6 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/fr/conversor</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://global-time.lzdev.com.br/fr/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -285,6 +281,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-time.lzdev.com.br/fr/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-time.lzdev.com.br/fr/calculadoras</loc>
     <priority>0.8</priority>
   </url>
@@ -302,10 +302,6 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/de/conversor</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://global-time.lzdev.com.br/de/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -341,6 +337,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-time.lzdev.com.br/de/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-time.lzdev.com.br/de/calculadoras</loc>
     <priority>0.8</priority>
   </url>
@@ -358,10 +358,6 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/it/conversor</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://global-time.lzdev.com.br/it/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -397,6 +393,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-time.lzdev.com.br/it/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-time.lzdev.com.br/it/calculadoras</loc>
     <priority>0.8</priority>
   </url>
@@ -414,10 +414,6 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/nl/conversor</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://global-time.lzdev.com.br/nl/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -453,6 +449,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-time.lzdev.com.br/nl/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-time.lzdev.com.br/nl/calculadoras</loc>
     <priority>0.8</priority>
   </url>
@@ -470,10 +470,6 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/ru/conversor</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://global-time.lzdev.com.br/ru/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -509,6 +505,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-time.lzdev.com.br/ru/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-time.lzdev.com.br/ru/calculadoras</loc>
     <priority>0.8</priority>
   </url>
@@ -526,10 +526,6 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/ja/conversor</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://global-time.lzdev.com.br/ja/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -565,6 +561,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-time.lzdev.com.br/ja/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-time.lzdev.com.br/ja/calculadoras</loc>
     <priority>0.8</priority>
   </url>
@@ -582,10 +582,6 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/zh-cn/conversor</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://global-time.lzdev.com.br/zh-cn/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -621,6 +617,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-time.lzdev.com.br/zh-cn/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-time.lzdev.com.br/zh-cn/calculadoras</loc>
     <priority>0.8</priority>
   </url>
@@ -638,10 +638,6 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/ko/conversor</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://global-time.lzdev.com.br/ko/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -677,11 +673,71 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://global-time.lzdev.com.br/ko/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://global-time.lzdev.com.br/ko/calculadoras</loc>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/ko/timestamp</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/relogio-mundial</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/conversor</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/cronometro</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/temporizador</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/pomodoro</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/despertador</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/contagem</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/calendario</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/feriados</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/sol</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/clima</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/calculadoras</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ne/timestamp</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -694,10 +750,6 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/ar/conversor</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://global-time.lzdev.com.br/ar/tela-cheia</loc>
     <priority>0.8</priority>
   </url>
   <url>
@@ -730,6 +782,10 @@
   </url>
   <url>
     <loc>https://global-time.lzdev.com.br/ar/sol</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://global-time.lzdev.com.br/ar/clima</loc>
     <priority>0.8</priority>
   </url>
   <url>

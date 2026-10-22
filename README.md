@@ -22,6 +22,7 @@ Relógio, cronômetro, temporizador, calendário com eventos, fusos horários e 
 - [Como funciona a sincronização de horário](#como-funciona-a-sincronização-de-horário)
 - [Limitações de precisão](#limitações-de-precisão)
 - [Dados de feriados](#dados-de-feriados)
+- [Clima](#clima)
 - [PWA e funcionamento offline](#pwa-e-funcionamento-offline)
 - [Rotas e cabeçalhos](#rotas-e-cabeçalhos)
 - [Permissões do navegador](#permissões-do-navegador)
@@ -31,9 +32,11 @@ Relógio, cronômetro, temporizador, calendário com eventos, fusos horários e 
 ## Visão geral
 
 O GlobalTime (antes Brasil Time) é um site estático — HTML, CSS e JavaScript
-puro, sem framework e sem etapa de build — publicado na Vercel com três Vercel
-Functions: `api/hora.js` (sincronização do relógio) e `api/conta.js` /
-`api/eventos.js` (contas opcionais para guardar eventos do calendário).
+puro, sem framework e sem etapa de build — publicado na Vercel com cinco Vercel
+Functions: `api/hora.js` (sincronização do relógio), `api/conta.js` /
+`api/eventos.js` (contas opcionais para guardar eventos do calendário),
+`api/feriados.js` (feriados de outros países) e `api/clima.js` (clima,
+previsão e busca de cidades).
 
 Princípios:
 
@@ -47,9 +50,11 @@ Princípios:
   o próximo feriado e o acesso a todas as ferramentas.
 - **Localizado desde a primeira visita:** idioma pelas preferências do
   navegador e hora no fuso do aparelho, ambos ajustáveis e salvos.
-- **Sem dependências em produção:** nenhuma biblioteca de terceiros. O único
-  serviço externo é opcional: um Upstash Redis (Marketplace da Vercel) para as
-  contas. As fontes (Inter e Plus Jakarta Sans, licença OFL) são auto-hospedadas.
+- **Sem dependências em produção:** nenhuma biblioteca de terceiros. Serviços
+  externos: um Upstash Redis opcional (Marketplace da Vercel) para as contas e
+  APIs públicas gratuitas, sem chave, consultadas pelas Functions (o navegador
+  só fala com o próprio domínio): Nager.Date (feriados), Open-Meteo (clima e
+  busca de cidades) e Nominatim/OpenStreetMap (nome do lugar a partir do GPS). As fontes (Inter e Plus Jakarta Sans, licença OFL) são auto-hospedadas.
 - **Privacidade:** sem rastreadores. Preferências, voltas, alarmes, históricos e
   eventos sem conta ficam no `localStorage`; com conta, o servidor guarda só
   e-mail, senha protegida (scrypt) e os eventos.
@@ -58,17 +63,17 @@ Princípios:
 
 | Rota | Ferramenta |
 |---|---|
-| `/` | Hora certa sincronizada no fuso do aparelho (ou escolhido), digital ou analógica; horário de Brasília quando o fuso é outro; próximo feriado |
+| `/` | Hora certa sincronizada no fuso do aparelho (ou escolhido), digital ou analógica, com tela cheia em um clique (`/tela-cheia` redireciona para cá); horário de Brasília quando o fuso é outro; próximo feriado; clima agora |
 | `/relogio-mundial` | Começa com poucas cidades a partir do seu fuso; adicione as suas (salvas no navegador). Diferença em relação a você e horário comercial |
 | `/conversor` | Conversão de horário entre cidades/fusos (com tratamento de horário de verão) e planejador de reuniões |
-| `/tela-cheia` | Modo quiosque para TV/monitor: relógio grande, data, fusos extras, digital/analógico |
 | `/cronometro` | Cronômetro com voltas, melhor/pior volta, diferenças, cópia e exportação CSV |
 | `/temporizador` | Contagem regressiva com alarme, notificação, progresso e tempo no título da aba |
 | `/pomodoro` | Ciclos de foco/pausa configuráveis com histórico local |
 | `/despertador` | Alarmes com data, repetição semanal, fuso e som |
 | `/contagem` | Contagem regressiva para datas (Natal, Ano Novo, personalizadas) com link compartilhável |
 | `/feriados` | Feriados nacionais, estaduais e municipais (capitais), pontos facultativos, feriadões e exportação `.ics` |
-| `/calendario` | Calendário anual (padrão), mensal e semanal com feriados, contagens e eventos pessoais (no navegador ou na conta) |
+| `/calendario` | Calendário anual (padrão), mensal e semanal com feriados (Brasil com estados e capitais; outros países do relógio mundial pela Nager.Date), contagens e eventos pessoais (no navegador ou na conta) |
+| `/clima` | Clima atual, próximas 48 h com gráfico, até 16 dias, chuva (chance, volume, períodos), vento, UV, nascer/pôr do sol; busca de cidades e localização do aparelho |
 | `/sol` | Nascer e pôr do sol, meio-dia solar, crepúsculo e duração do dia |
 | `/calculadoras` | Diferença entre datas, dias úteis com feriados, soma de dias, duração entre horários, conversão de unidades |
 | `/timestamp` | Conversor de timestamp Unix (segundos/milissegundos) |
@@ -160,6 +165,13 @@ npm run dev
 Acesse `http://localhost:3000`. O servidor de desenvolvimento
 (`dev/servidor.mjs`) imita a Vercel: URLs limpas, `404.html`,
 redirecionamentos e cabeçalhos do `vercel.json`, e executa `api/hora.js`.
+
+**Ver o site como um visitante de outro país:** `npm run demo -- paris`
+(lista: `npm run demo -- ajuda`, um lugar por idioma). Abre um Chrome com
+perfil limpo, com o idioma do navegador, o fuso horário e a localização por
+IP desse lugar: o site abre já redirecionado para o idioma, com o relógio, o
+país do calendário, o próximo feriado e o clima de lá. Feche a janela para
+encerrar.
 
 > Abrir os arquivos HTML direto pelo `file://` **não funciona**: as páginas
 > usam módulos JavaScript e caminhos absolutos (`/estilos/...`).
@@ -313,6 +325,29 @@ pontos parciais) e ajuste `fonte`. Para leis estaduais/municipais novas,
 inclua uma entrada com `base_legal`, `fonte`, `desde`/`ate` e rode `npm test`.
 Cada item exibe sua base legal e fonte na página.
 
+**Outros países** (calendário): `api/feriados.js` consulta a
+[Nager.Date](https://date.nager.at) por país e ano, só para os países das
+cidades do relógio mundial (`scripts/dados/paises.js`, fonte única dos
+códigos ISO). A CDN guarda cada resposta por 1 dia; o navegador guarda por 30
+dias (`scripts/nucleo/feriados-paises.js`) e usa a cópia salva se a consulta
+falhar. Países que a fonte não cobre (hoje IL, AE, IR, IN, NP) não aparecem
+na lista. As datas chegam como `AAAA-MM-DD` e viram dias civis sem passar
+por `Date`, então nenhum fuso desloca um feriado.
+
+## Clima
+
+`api/clima.js` usa a [Open-Meteo](https://open-meteo.com) (CC BY 4.0, uso não
+comercial gratuito) para a previsão (atual, 48 h exibidas, 16 dias — o maior
+horizonte da fonte; a página marca os dias além de 7 como tendência) e para a
+busca de cidades, e o Nominatim/OpenStreetMap só para dar nome à posição do
+GPS. Coordenadas são arredondadas a 2 casas (~1 km). Cache na CDN: previsão
+10 min, busca 1 dia, nomes 30 dias. Na primeira visita, sem lugar salvo, a
+localização aproximada vem dos cabeçalhos `x-vercel-ip-*` (só em produção;
+resposta `private, no-store`). O navegador guarda o lugar e a última previsão;
+se a consulta falhar, mostra a cópia salva avisando que pode estar
+desatualizada. Se o site passar a ter uso comercial, a Open-Meteo exige o
+plano pago.
+
 ## PWA e funcionamento offline
 
 - `manifest.webmanifest` + ícones em `assets/icones/` permitem instalar o site.
@@ -341,7 +376,8 @@ Cada item exibe sua base legal e fonte na página.
 - Segurança em todas as rotas: CSP restritiva (`script-src 'self'`, sem
   scripts ou estilos inline), `X-Content-Type-Options`, `X-Frame-Options`,
   `Referrer-Policy`, `Permissions-Policy`, HSTS.
-- `/api/*`: `no-store` também no CDN. `/sw.js`: `no-cache`.
+- `/api/hora`, `/api/conta`, `/api/eventos`: `no-store` também no CDN;
+  `/api/feriados` e `/api/clima` definem o próprio cache (CDN, nunca o navegador). `/sw.js`: `no-cache`.
   `/assets/fontes/*`: cache imutável de 1 ano. HTML, CSS e JS usam o padrão
   da Vercel (revalidação a cada acesso), para atualizações imediatas.
 
@@ -354,9 +390,9 @@ seção de publicação.
 |---|---|---|
 | Áudio | Temporizador, Pomodoro, Despertador | Navegadores só liberam som após um clique na página |
 | Notificações | Temporizador, Pomodoro, Despertador | Pedidas apenas ao clicar em "Ativar notificações" |
-| Wake Lock (tela ligada) | Temporizador, Tela cheia, Despertador | Opcional; não disponível em todos os navegadores |
-| Tela cheia | Tela cheia | Só por ação do usuário; no iPhone usa o modo quiosque sem a API |
-| Geolocalização | Nascer e pôr do sol | Apenas ao clicar em "Usar minha localização" |
+| Wake Lock (tela ligada) | Temporizador, tela cheia da página inicial, Despertador | Opcional; não disponível em todos os navegadores |
+| Tela cheia | Página inicial | Só por clique ou tecla F; sem a API (iPhone), o relógio ocupa a janela |
+| Geolocalização | Nascer e pôr do sol, Clima | Apenas ao clicar em "Usar minha localização"; recusar não impede buscar a cidade |
 
 **Segundo plano:** temporizadores, Pomodoro e alarmes só funcionam com a
 página aberta (pode estar em outra aba). Com o navegador fechado ou o
@@ -374,6 +410,8 @@ Global-Time/
 ├── api/hora.js            # Vercel Function: timestamp do servidor (no-store)
 ├── api/conta.js           # contas: cadastro, login, sessão, exclusão
 ├── api/eventos.js         # eventos pessoais da conta
+├── api/feriados.js        # feriados de outros países (Nager.Date)
+├── api/clima.js           # clima, previsão e busca de cidades (Open-Meteo, Nominatim)
 ├── api/_lib/              # HTTP, Upstash/memória, senhas e sessões (não é rota)
 ├── estilos/app.css        # design system + estilos de todas as páginas
 ├── scripts/

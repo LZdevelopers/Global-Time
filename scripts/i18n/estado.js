@@ -17,7 +17,9 @@ const formatosNumero = new Map();
 export function definirDicionario(codigo, novo) {
   codigoAtual = codigo;
   dicionario = novo ?? ptBR;
-  localeIntl = infoIdioma(codigo)?.intl ?? codigo;
+  const info = infoIdioma(codigo);
+  localeIntl = info?.intl ?? codigo;
+  if (info?.intlAlternativo && !Intl.DateTimeFormat.supportedLocalesOf([localeIntl]).length) localeIntl = info.intlAlternativo;
 }
 
 /** Código do idioma da interface (ex.: "pt-BR", "en", "zh-CN"). */

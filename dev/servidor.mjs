@@ -5,6 +5,9 @@
 //
 // Uso: npm run dev            → http://localhost:3000
 //      PORT=8080 npm run dev
+//      IP_FALSO="-23.77,-53.32,Umuarama,PR,BR" npm run dev
+//        (simula a localização por IP que a Vercel manda nos cabeçalhos
+//        x-vercel-ip-*; sem isso, o clima local não detecta lugar nenhum)
 
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
@@ -18,6 +21,21 @@ const PORTA = Number(process.env.PORT) || 3000;
 // armazenamento em memória (apagado ao reiniciar) para permitir testar o
 // cadastro e o login. Em produção isso nunca acontece sozinho.
 if (!process.env.KV_REST_API_URL && !process.env.UPSTASH_REDIS_REST_URL) process.env.GT_ARMAZEM ??= "memoria";
+// Localização por IP simulada: "lat,lon,cidade,região,país".
+const IP_FALSO = (() => {
+  const partes = (process.env.IP_FALSO || "").split(",").map((p) => p.trim());
+  if (partes.length < 2 || partes.slice(0, 2).some((p) => !Number.isFinite(Number(p)))) return null;
+  const [lat, lon, cidade = "", regiao = "", pais = ""] = partes;
+  return {
+    "x-vercel-ip-latitude": lat,
+    "x-vercel-ip-longitude": lon,
+    "x-vercel-ip-city": encodeURIComponent(cidade),
+    "x-vercel-ip-country-region": regiao,
+    "x-vercel-ip-country": pais,
+  };
+})();
+if (IP_FALSO) console.log("Localização por IP simulada:", process.env.IP_FALSO);
+
 const config = JSON.parse(await readFile(join(RAIZ, "vercel.json"), "utf8"));
 
 const TIPOS = {
@@ -150,6 +168,7 @@ const servidor = createServer(async (req, res) => {
     aplicarCabecalhos(req, res, caminho);
 
     if (caminho.startsWith("/api/")) {
+      if (IP_FALSO) Object.assign(req.headers, IP_FALSO);
       if (await executarFuncao(caminho.slice(5), req, res)) return;
     }
 

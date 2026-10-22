@@ -13,7 +13,8 @@
     "checar": "node dev/gerar.mjs --checar",
     "test": "node --test \"testes/**/*.test.mjs\"",
     "test:navegador": "node dev/testar-navegador.mjs",
-    "test:pwa": "node dev/testar-pwa.mjs"
+    "test:pwa": "node dev/testar-pwa.mjs",
+    "demo": "node dev/demo.mjs"
   },
   "license": "MIT"
 }

@@ -13,7 +13,7 @@
 // "Atualizar" (mensagem ATIVAR_AGORA). Se ninguém clicar, ela assume quando
 // todas as abas do site forem fechadas — ninguém fica preso a uma versão.
 
-const VERSAO = "ce24cf7a611f";
+const VERSAO = "347ce9f93a2b";
 const CACHE = `globaltime-${VERSAO}`;
 const TEMPO_LIMITE_REDE_MS = 3500;
 
@@ -29,6 +29,7 @@ const PRECACHE = [
   "/assets/marca/simbolo-preto.png",
   "/calculadoras",
   "/calendario",
+  "/clima",
   "/contagem",
   "/conversor",
   "/cronometro",
@@ -45,6 +46,7 @@ const PRECACHE = [
   "/scripts/dados/feriados-estaduais.js",
   "/scripts/dados/feriados-municipais.js",
   "/scripts/dados/feriados-nacionais.js",
+  "/scripts/dados/paises.js",
   "/scripts/dados/ufs.js",
   "/scripts/i18n/estado.js",
   "/scripts/i18n/idiomas.js",
@@ -57,8 +59,10 @@ const PRECACHE = [
   "/scripts/i18n/textos/it.js",
   "/scripts/i18n/textos/ja.js",
   "/scripts/i18n/textos/ko.js",
+  "/scripts/i18n/textos/ne.js",
   "/scripts/i18n/textos/nl.js",
   "/scripts/i18n/textos/pt-BR.js",
+  "/scripts/i18n/textos/pt-BR/clima.js",
   "/scripts/i18n/textos/pt-BR/docs.js",
   "/scripts/i18n/textos/pt-BR/feriados.js",
   "/scripts/i18n/textos/pt-BR/fusos.js",
@@ -74,9 +78,11 @@ const PRECACHE = [
   "/scripts/nucleo/atalhos.js",
   "/scripts/nucleo/calculos.js",
   "/scripts/nucleo/calendario.js",
+  "/scripts/nucleo/clima.js",
   "/scripts/nucleo/conta.js",
   "/scripts/nucleo/contagem-datas.js",
   "/scripts/nucleo/eventos.js",
+  "/scripts/nucleo/feriados-paises.js",
   "/scripts/nucleo/feriados.js",
   "/scripts/nucleo/fuso-preferido.js",
   "/scripts/nucleo/fusos.js",
@@ -92,6 +98,7 @@ const PRECACHE = [
   "/scripts/nucleo/voltas.js",
   "/scripts/paginas/calculadoras.js",
   "/scripts/paginas/calendario.js",
+  "/scripts/paginas/clima.js",
   "/scripts/paginas/comum-temporizadores.js",
   "/scripts/paginas/contagem.js",
   "/scripts/paginas/conversor.js",
@@ -104,12 +111,10 @@ const PRECACHE = [
   "/scripts/paginas/pomodoro.js",
   "/scripts/paginas/relogio-mundial.js",
   "/scripts/paginas/sol.js",
-  "/scripts/paginas/tela-cheia.js",
   "/scripts/paginas/temporizador.js",
   "/scripts/paginas/timestamp.js",
   "/scripts/tema-inicial.js",
   "/sol",
-  "/tela-cheia",
   "/temporizador",
   "/timestamp",
 ];
@@ -118,8 +123,8 @@ const PRECACHE = [
 // Versões traduzidas (/en/cronometro…): não entram no pré-cache; a página
 // pede (GUARDAR_IDIOMA) as do idioma em uso. Listas geradas por dev/gerar.mjs.
 // @idiomas
-const PREFIXOS_IDIOMA = ["/pt-pt","/en","/es","/fr","/de","/it","/nl","/ru","/ja","/zh-cn","/ko","/ar"];
-const PAGINAS_TRADUZIDAS = ["/","/relogio-mundial","/conversor","/tela-cheia","/cronometro","/temporizador","/pomodoro","/despertador","/contagem","/calendario","/feriados","/sol","/calculadoras","/timestamp","/docs"];
+const PREFIXOS_IDIOMA = ["/pt-pt","/en","/es","/fr","/de","/it","/nl","/ru","/ja","/zh-cn","/ko","/ne","/ar"];
+const PAGINAS_TRADUZIDAS = ["/","/relogio-mundial","/conversor","/cronometro","/temporizador","/pomodoro","/despertador","/contagem","/calendario","/feriados","/sol","/clima","/calculadoras","/timestamp","/docs"];
 // /@idiomas
 
 self.addEventListener("install", (evento) => {
