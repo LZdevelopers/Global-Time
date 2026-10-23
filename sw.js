@@ -13,7 +13,7 @@
 // "Atualizar" (mensagem ATIVAR_AGORA). Se ninguém clicar, ela assume quando
 // todas as abas do site forem fechadas — ninguém fica preso a uma versão.
 
-const VERSAO = "7a2be5bb3bae";
+const VERSAO = "4244c94eef7c";
 const CACHE = `globaltime-${VERSAO}`;
 const TEMPO_LIMITE_REDE_MS = 3500;
 

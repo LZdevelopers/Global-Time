@@ -151,6 +151,12 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-padding-top: calc(var(--altura-cabecalho) + var(--e-4));
+  /* Sem a barra de rolagem da página; a rolagem continua (roda, toque, teclado). */
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -1893,12 +1899,32 @@ dialog.dialogo::backdrop {
 }
 
 /* ===== Página inicial ===== */
-/* A página ocupa a altura da janela: o relógio no centro do espaço livre,
-   o próximo feriado e o acesso às ferramentas na base. */
+/* A página tem exatamente a altura da janela, sem rolagem: cabeçalho e
+   rodapé com a altura que tiverem (no celular o rodapé quebra em duas
+   linhas) e o relógio no centro do espaço que sobra. Em janelas muito
+   baixas (celular deitado) a rolagem volta, para nada ficar cortado. */
 .inicio {
   display: flex;
   flex-direction: column;
-  min-height: calc(100svh - var(--altura-cabecalho) - var(--altura-rodape));
+  min-height: 0;
+}
+
+@media (min-height: 32rem) {
+  html:has(.inicio),
+  body:has(.inicio) {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body:has(.inicio) {
+    height: 100svh;
+    min-height: 0;
+  }
+
+  .inicio .relogio {
+    min-height: 0;
+    padding-block: var(--e-4);
+  }
 }
 
 body:has(.inicio) .rodape {
