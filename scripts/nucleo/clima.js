@@ -12,6 +12,9 @@
 
 import { idiomaAtual, t } from "../i18n/estado.js";
 import { gravar, ler, remover } from "./armazenamento.js";
+import { registrarPaisDoVisitante } from "./unidades-clima.js";
+
+export { grau } from "./unidades-clima.js";
 
 const CHAVE_LUGAR = "clima:lugar";
 const CHAVE_PREVISAO = "clima:previsao";
@@ -236,6 +239,8 @@ export function lugarSalvo() {
 
 export function salvarLugar(lugar) {
   gravar(CHAVE_LUGAR, lugar);
+  // IP e GPS dizem onde o visitante está: o país decide as unidades padrão.
+  if (lugar?.origem === "ip" || lugar?.origem === "gps") registrarPaisDoVisitante(lugar.codigoPais);
 }
 
 export function esquecerLugar() {
@@ -326,11 +331,4 @@ export function posicaoDoAparelho() {
       { enableHighAccuracy: false, timeout: 15000, maximumAge: 10 * 60 * 1000 },
     );
   });
-}
-
-// ---- Formatação --------------------------------------------------------------------------
-/** "23°" (arredondado; −0 vira 0). */
-export function grau(valor) {
-  if (!Number.isFinite(valor)) return "—";
-  return `${Math.round(valor) || 0}°`;
 }

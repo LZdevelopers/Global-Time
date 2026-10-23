@@ -208,6 +208,39 @@
             <dl id="listaDetalhes" class="clima-detalhes"></dl>
           </section>
 
+          <!-- F. Unidades (padrão pelo país do visitante) -->
+          <details id="ajustesUnidades" class="ajustes">
+            <summary>
+              <svg class="icone icone--sm" aria-hidden="true" focusable="false"><use href="/assets/icones.svg#termometro" /></svg>
+              <span data-i18n="clima.unidades">एकाइहरू</span>
+            </summary>
+            <div class="ajustes__corpo">
+              <p id="unidadesAjuda" class="texto-pequeno texto-suave">&nbsp;</p>
+              <div class="campos campos--3-auto">
+              <div class="campo">
+                <label class="campo__rotulo" for="unidade-temperatura" data-i18n="clima.temperatura">तापक्रम</label>
+                <select id="unidade-temperatura" class="entrada" data-grandeza="temperatura"></select>
+              </div>
+              <div class="campo">
+                <label class="campo__rotulo" for="unidade-vento" data-i18n="clima.vento">हावा</label>
+                <select id="unidade-vento" class="entrada" data-grandeza="vento"></select>
+              </div>
+              <div class="campo">
+                <label class="campo__rotulo" for="unidade-chuva" data-i18n="clima.chuva">वर्षा</label>
+                <select id="unidade-chuva" class="entrada" data-grandeza="chuva"></select>
+              </div>
+              <div class="campo">
+                <label class="campo__rotulo" for="unidade-distancia" data-i18n="clima.visibilidade">दृश्यता</label>
+                <select id="unidade-distancia" class="entrada" data-grandeza="distancia"></select>
+              </div>
+              <div class="campo">
+                <label class="campo__rotulo" for="unidade-pressao" data-i18n="clima.pressao">वायुचाप</label>
+                <select id="unidade-pressao" class="entrada" data-grandeza="pressao"></select>
+              </div>
+              </div>
+            </div>
+          </details>
+
           <p class="texto-xs texto-fraco clima-fonte">
             <span data-i18n="clima.fonte">मौसम डेटा:</span>
             <a href="https://open-meteo.com/" rel="noopener">Open-Meteo.com</a> (CC BY 4.0) ·

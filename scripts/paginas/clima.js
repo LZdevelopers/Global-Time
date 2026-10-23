@@ -20,7 +20,6 @@ import {
   descricaoLugar,
   dia,
   faixaUv,
-  grau,
   horaDoTexto,
   indiceHoje,
   lerHorario,
@@ -38,8 +37,19 @@ import {
   textoCondicao,
 } from "../nucleo/clima.js";
 import { obterRelogio } from "../nucleo/sincronizacao.js";
+import {
+  UNIDADES,
+  escolherUnidade,
+  escolhasManuais,
+  formatarMedida,
+  grau,
+  paisDoVisitante,
+  simboloUnidade,
+  unidadesAtuais,
+  unidadesDoPais,
+} from "../nucleo/unidades-clima.js";
 import { capitalizar, diaJuliano, diaSemana, doisDigitos, formatarDataIntl, nomeDiaSemana, partesNoFuso } from "../nucleo/tempo.js";
-import { $, agendarPorSegundo, anunciar, definirTexto, el, icone, trocarIcone } from "../nucleo/ui.js";
+import { $, agendarPorSegundo, anunciar, definirTexto, el, icone, preencherSelect, trocarIcone } from "../nucleo/ui.js";
 
 const relogio = obterRelogio();
 const HORAS_LINHA = 48;
@@ -50,10 +60,13 @@ let carregando = false;
 let erro = null;
 
 // ---- Formatação --------------------------------------------------------------------
+// Unidades escolhidas (ou as do país do visitante); relidas a cada renderização.
+let unidades = unidadesAtuais();
 const decimal = (v, casas = 1) => numero(v, { maximumFractionDigits: casas });
-const mm = (v) => t("clima.mm", { valor: decimal(v) });
+const temp = (v) => grau(v, unidades.temperatura);
+const volume = (v) => formatarMedida("chuva", v, unidades.chuva);
+const velocidade = (v) => formatarMedida("vento", v, unidades.vento);
 const porcento = (v) => t("clima.porcento", { valor: numero(Math.round(v)) });
-const kmh = (v) => t("clima.kmh", { valor: numero(Math.round(v)) });
 const temValor = (v) => v != null && Number.isFinite(v);
 
 /** Propriedades CSS pelo CSSOM (a política de segurança bloqueia o atributo style). */
@@ -94,18 +107,18 @@ function renderizarAgora(dados) {
   const detalhe = [lugar.regiao !== lugar.nome ? lugar.regiao : null, lugar.pais ?? regiaoPorCodigo(lugar.codigoPais)].filter(Boolean).join(", ");
   definirTexto($("#detalheLugar"), lugar.origem === "ip" ? [detalhe, t("clima.aproximado")].filter(Boolean).join(" · ") : detalhe || " ");
   trocarIcone($("#iconeAgora"), c.icone);
-  definirTexto($("#tempAgora"), grau(a.temperature_2m));
+  definirTexto($("#tempAgora"), temp(a.temperature_2m));
   definirTexto($("#condicaoAgora"), textoCondicao(c.codigo));
-  definirTexto($("#sensacaoAgora"), temValor(a.apparent_temperature) ? t("clima.sensacaoDe", { valor: grau(a.apparent_temperature) }) : " ");
+  definirTexto($("#sensacaoAgora"), temValor(a.apparent_temperature) ? t("clima.sensacaoDe", { valor: temp(a.apparent_temperature) }) : " ");
   definirTexto(
     $("#minMaxAgora"),
-    temValor(hoje.min) && temValor(hoje.max) ? t("clima.minMax", { min: grau(hoje.min), max: grau(hoje.max) }) : " ",
+    temValor(hoje.min) && temValor(hoje.max) ? t("clima.minMax", { min: temp(hoje.min), max: temp(hoje.max) }) : " ",
   );
 
   const itens = [
     ["gota", "clima.umidade", temValor(a.relative_humidity_2m) ? porcento(a.relative_humidity_2m) : null],
-    ["vento", "clima.vento", temValor(a.wind_speed_10m) ? `${kmh(a.wind_speed_10m)} ${direcao(a.wind_direction_10m)}`.trim() : null],
-    ["clima-chuva", "clima.precipitacao", temValor(a.precipitation) ? mm(a.precipitation) : null],
+    ["vento", "clima.vento", temValor(a.wind_speed_10m) ? `${velocidade(a.wind_speed_10m)} ${direcao(a.wind_direction_10m)}`.trim() : null],
+    ["clima-chuva", "clima.precipitacao", temValor(a.precipitation) ? volume(a.precipitation) : null],
     ["clima-sol", "clima.uv", temValor(a.uv_index) ? `${decimal(a.uv_index)} · ${t(`clima.uvFaixa.${faixaUv(a.uv_index)}`)}` : null],
   ].filter(([, , valor]) => valor != null);
   $("#indicadoresAgora").replaceChildren(
@@ -189,11 +202,11 @@ function renderizarHoras(dados) {
     const hora = horaDoTexto(h.time);
     const novoDia = n > 0 && hora === "00:00";
     const prob = temValor(h.prob) ? h.prob : null;
-    const chuva = temValor(h.mm) && h.mm > 0 ? mm(h.mm) : null;
+    const chuva = temValor(h.mm) && h.mm > 0 ? volume(h.mm) : null;
     const classe = `${n === 0 ? " coluna-hora--agora" : ""}${novoDia ? " coluna-hora--novo-dia" : ""}`;
     const descricao = [
       n === 0 ? t("clima.agora") : `${rotuloDia(h.time.slice(0, 10), hoje)} ${hora}`,
-      grau(h.temp),
+      temp(h.temp),
       textoCondicao(c.codigo),
       prob != null ? t("clima.chanceChuva", { valor: porcento(prob) }) : null,
       chuva,
@@ -207,7 +220,7 @@ function renderizarHoras(dados) {
         el("span", { class: "coluna-hora__dia", "aria-hidden": "true" }, novoDia ? rotuloDia(h.time.slice(0, 10), hoje) : " "),
         el("span", { class: "coluna-hora__hora", "aria-hidden": "true" }, n === 0 ? t("clima.agora") : hora),
         icone(c.icone, "coluna-hora__icone"),
-        el("span", { class: "coluna-hora__temp", "aria-hidden": "true" }, grau(h.temp)),
+        el("span", { class: "coluna-hora__temp", "aria-hidden": "true" }, temp(h.temp)),
       ),
     );
     chuvas.push(
@@ -265,7 +278,7 @@ function renderizarDias(dados) {
         { class: `dia-clima__chance${prob ? "" : " dia-clima__chance--zero"}` },
         prob ? [icone("gota", "icone--sm"), el("span", { class: "sr-only" }, t("clima.chanceChuvaRotulo")), porcento(prob)] : "",
       ),
-      el("span", { class: "dia-clima__min" }, el("span", { class: "sr-only" }, t("clima.minima")), grau(d.min)),
+      el("span", { class: "dia-clima__min" }, el("span", { class: "sr-only" }, t("clima.minima")), temp(d.min)),
       el(
         "span",
         { class: "dia-clima__faixa", "aria-hidden": "true" },
@@ -274,17 +287,17 @@ function renderizarDias(dados) {
           "inset-inline-end": `${100 - fimBarra}%`,
         }),
       ),
-      el("span", { class: "dia-clima__max" }, el("span", { class: "sr-only" }, t("clima.maxima")), grau(d.max)),
+      el("span", { class: "dia-clima__max" }, el("span", { class: "sr-only" }, t("clima.maxima")), temp(d.max)),
     );
     const itens = [
       [t("clima.condicao"), texto],
       temValor(d.sensacaoMin) && temValor(d.sensacaoMax)
-        ? [t("clima.sensacao"), t("clima.minMax", { min: grau(d.sensacaoMin), max: grau(d.sensacaoMax) })]
+        ? [t("clima.sensacao"), t("clima.minMax", { min: temp(d.sensacaoMin), max: temp(d.sensacaoMax) })]
         : null,
       prob != null ? [t("clima.chanceChuvaRotulo"), porcento(prob)] : null,
-      temValor(d.mm) ? [t("clima.chuvaPrevista"), temValor(d.horasChuva) && d.horasChuva > 0 ? t("clima.mmEmHoras", { mm: mm(d.mm), n: Math.round(d.horasChuva) }) : mm(d.mm)] : null,
+      temValor(d.mm) ? [t("clima.chuvaPrevista"), temValor(d.horasChuva) && d.horasChuva > 0 ? t("clima.mmEmHoras", { mm: volume(d.mm), n: Math.round(d.horasChuva) }) : volume(d.mm)] : null,
       temValor(d.vento)
-        ? [t("clima.vento"), [kmh(d.vento), direcao(d.direcao), temValor(d.rajadas) ? t("clima.rajadasDe", { valor: kmh(d.rajadas) }) : null].filter(Boolean).join(" · ")]
+        ? [t("clima.vento"), [velocidade(d.vento), direcao(d.direcao), temValor(d.rajadas) ? t("clima.rajadasDe", { valor: velocidade(d.rajadas) }) : null].filter(Boolean).join(" · ")]
         : null,
       temValor(d.uv) ? [t("clima.uvMax"), `${decimal(d.uv)} · ${t(`clima.uvFaixa.${faixaUv(d.uv)}`)}`] : null,
       d.nascer ? [t("clima.nascer"), horaDoTexto(d.nascer)] : null,
@@ -329,7 +342,7 @@ function renderizarChuva(dados) {
           quando: `${rotuloDia(pico.time.slice(0, 10), hoje).toLowerCase()} ${horaDoTexto(pico.time)}`,
         }),
       ),
-      el("p", { class: "texto-suave texto-pequeno" }, t("clima.total24", { mm: mm(soma24) })),
+      el("p", { class: "texto-suave texto-pequeno" }, t("clima.total24", { mm: volume(soma24) })),
     );
   }
 
@@ -345,7 +358,7 @@ function renderizarChuva(dados) {
             "li",
             {},
             el("strong", {}, `${rotuloDia(p.inicio.slice(0, 10), hoje)}, ${horaDoTexto(p.inicio)}–${fimDoPeriodo(p.fim)}`),
-            el("span", {}, [t("clima.ate", { valor: porcento(p.probMax) }), p.mm > 0 ? mm(p.mm) : null, t("clima.horasN", { n: p.horas })].filter(Boolean).join(" · ")),
+            el("span", {}, [t("clima.ate", { valor: porcento(p.probMax) }), p.mm > 0 ? volume(p.mm) : null, t("clima.horasN", { n: p.horas })].filter(Boolean).join(" · ")),
           ),
         ),
       ),
@@ -376,7 +389,7 @@ function renderizarChuva(dados) {
               {},
               [
                 porcento(d.prob),
-                temValor(d.mm) && d.mm > 0 ? mm(d.mm) : null,
+                temValor(d.mm) && d.mm > 0 ? volume(d.mm) : null,
                 temValor(d.horasChuva) && d.horasChuva > 0 ? t("clima.horasN", { n: Math.round(d.horasChuva) }) : null,
               ]
                 .filter(Boolean)
@@ -401,18 +414,18 @@ function renderizarDetalhes(dados) {
   const a = dados.atual;
   const hoje = dia(dados, indiceHoje(dados));
   const itens = [
-    ["termometro", "clima.sensacao", temValor(a.apparent_temperature) ? grau(a.apparent_temperature) : null],
+    ["termometro", "clima.sensacao", temValor(a.apparent_temperature) ? temp(a.apparent_temperature) : null],
     ["gota", "clima.umidade", temValor(a.relative_humidity_2m) ? porcento(a.relative_humidity_2m) : null],
-    ["vento", "clima.vento", temValor(a.wind_speed_10m) ? `${kmh(a.wind_speed_10m)} ${direcao(a.wind_direction_10m)}`.trim() : null],
-    ["vento", "clima.rajadas", temValor(a.wind_gusts_10m) ? kmh(a.wind_gusts_10m) : null],
+    ["vento", "clima.vento", temValor(a.wind_speed_10m) ? `${velocidade(a.wind_speed_10m)} ${direcao(a.wind_direction_10m)}`.trim() : null],
+    ["vento", "clima.rajadas", temValor(a.wind_gusts_10m) ? velocidade(a.wind_gusts_10m) : null],
     ["clima-sol", "clima.uv", temValor(a.uv_index) ? `${decimal(a.uv_index)} · ${t(`clima.uvFaixa.${faixaUv(a.uv_index)}`)}` : null],
     ["clima-sol", "clima.uvMax", temValor(hoje.uv) ? `${decimal(hoje.uv)} · ${t(`clima.uvFaixa.${faixaUv(hoje.uv)}`)}` : null],
     ["nascer-sol", "clima.nascer", hoje.nascer ? horaDoTexto(hoje.nascer) : null],
     ["por-sol", "clima.por", hoje.por ? horaDoTexto(hoje.por) : null],
-    ["clima-chuva", "clima.chuvaHoje", temValor(hoje.mm) ? mm(hoje.mm) : null],
+    ["clima-chuva", "clima.chuvaHoje", temValor(hoje.mm) ? volume(hoje.mm) : null],
     ["clima-nuvem", "clima.nebulosidade", temValor(a.cloud_cover) ? porcento(a.cloud_cover) : null],
-    ["olho", "clima.visibilidade", temValor(a.visibility) ? t("clima.km", { valor: decimal(a.visibility / 1000) }) : null],
-    ["pressao", "clima.pressao", temValor(a.pressure_msl) ? t("clima.hpa", { valor: numero(Math.round(a.pressure_msl)) }) : null],
+    ["olho", "clima.visibilidade", temValor(a.visibility) ? formatarMedida("distancia", a.visibility, unidades.distancia) : null],
+    ["pressao", "clima.pressao", temValor(a.pressure_msl) ? formatarMedida("pressao", a.pressure_msl, unidades.pressao) : null],
   ].filter(([, , valor]) => valor != null);
   $("#listaDetalhes").replaceChildren(
     ...itens.map(([nomeIcone, chave, valor]) =>
@@ -422,7 +435,40 @@ function renderizarDetalhes(dados) {
 }
 
 // ---- Carregar e mostrar ---------------------------------------------------------------------
+// ---- F. Unidades ------------------------------------------------------------------------------
+const seletoresUnidade = [...document.querySelectorAll("#ajustesUnidades select[data-grandeza]")];
+
+function preencherUnidades() {
+  const pais = paisDoVisitante();
+  const padrao = unidadesDoPais(pais);
+  const manuais = escolhasManuais();
+  for (const select of seletoresUnidade) {
+    const g = select.dataset.grandeza;
+    preencherSelect(
+      select,
+      [
+        { valor: "", rotulo: t("clima.automatico", { unidade: simboloUnidade(padrao[g]) }) },
+        ...UNIDADES[g].map((u) => ({ valor: u, rotulo: simboloUnidade(u) })),
+      ],
+      manuais[g] ?? "",
+    );
+  }
+  definirTexto(
+    $("#unidadesAjuda"),
+    pais ? t("clima.unidadesAjuda", { pais: regiaoPorCodigo(pais) ?? pais }) : t("clima.unidadesAjudaSemPais"),
+  );
+}
+
+for (const select of seletoresUnidade) {
+  select.addEventListener("change", () => {
+    escolherUnidade(select.dataset.grandeza, select.value || null);
+    renderizar();
+  });
+}
+
 function renderizar() {
+  unidades = unidadesAtuais();
+  preencherUnidades();
   const temLugar = Boolean(lugar);
   $("#semLugar").hidden = temLugar;
   $("#painelClima").hidden = !temLugar;

@@ -28,6 +28,7 @@ import { cidadePreferida, escolherCidade, fusoDoAparelho, fusoPreferido } from "
 import { ligarIndicador } from "../nucleo/indicador-sincronizacao.js";
 import { ler, gravar } from "../nucleo/armazenamento.js";
 import { obterRelogio } from "../nucleo/sincronizacao.js";
+import { unidadesAtuais } from "../nucleo/unidades-clima.js";
 import {
   FUSO_BRASILIA,
   capitalizar,
@@ -311,7 +312,7 @@ async function atualizarClima() {
   trocarIcone($("#climaIcone"), c.icone);
   const resumo = $("#climaResumo");
   resumo.removeAttribute("data-i18n");
-  definirTexto(resumo, `${grau(a.temperature_2m)} · ${textoCondicao(c.codigo)}`);
+  definirTexto(resumo, `${grau(a.temperature_2m, unidadesAtuais().temperatura)} · ${textoCondicao(c.codigo)}`);
   const antigo = r.desatualizado || Date.now() - (r.dados.obtidoEm ?? r.recebidoEm) > LIMITE_ATUAL_MS;
   const nome = lugar.nome || t("clima.minhaLocalizacao");
   definirTexto($("#climaLugar"), antigo ? t("inicio.climaAntigo", { lugar: nome, hora: horaDoTexto(a.time) }) : nome);

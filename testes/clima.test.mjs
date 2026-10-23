@@ -112,3 +112,33 @@ test("API do clima: coordenadas, idioma, resultados e IP", () => {
     { nome: "São Paulo", regiao: "SP", codigoPais: "BR", lat: -23.55, lon: -46.64 },
   );
 });
+
+test("unidades: padrão pelo país do visitante e conversões", async () => {
+  const u = await import("../scripts/nucleo/unidades-clima.js");
+  assert.deepEqual(u.unidadesDoPais("BR"), { temperatura: "c", vento: "kmh", chuva: "mm", distancia: "km", pressao: "hpa" });
+  assert.deepEqual(u.unidadesDoPais("US"), { temperatura: "f", vento: "mph", chuva: "pol", distancia: "mi", pressao: "inhg" });
+  assert.deepEqual(u.unidadesDoPais("GB"), { temperatura: "c", vento: "mph", chuva: "mm", distancia: "mi", pressao: "hpa" });
+  assert.equal(u.unidadesDoPais("RU").pressao, "mmhg");
+  assert.equal(u.unidadesDoPais("JP").vento, "ms");
+  assert.equal(u.unidadesDoPais("CA").pressao, "kpa");
+  assert.deepEqual(u.unidadesDoPais(null), u.unidadesDoPais("BR"));
+  // Toda unidade de um costume existe na lista da grandeza.
+  for (const pais of ["US", "GB", "CA", "RU", "NO", "IS", "JP", "KR", "CN"]) {
+    for (const [g, unidade] of Object.entries(u.unidadesDoPais(pais))) assert.ok(u.UNIDADES[g].includes(unidade), `${pais} ${g}`);
+  }
+  assert.equal(u.grau(0, "f"), "32°");
+  assert.equal(u.grau(22.6, "f"), "73°");
+  assert.equal(u.grau(-17.8, "f"), "0°");
+  assert.equal(u.grau(22.6), "23°");
+  assert.ok(Math.abs(u.converterVento(36, "ms") - 10) < 1e-9);
+  assert.ok(Math.abs(u.converterVento(16.09344, "mph") - 10) < 1e-9);
+  assert.ok(Math.abs(u.converterChuva(25.4, "pol") - 1) < 1e-9);
+  assert.equal(u.converterDistancia(24140, "km"), 24.14);
+  assert.ok(Math.abs(u.converterDistancia(1609.344, "mi") - 1) < 1e-9);
+  assert.equal(u.converterPressao(1013, "kpa"), 101.3);
+  assert.equal(Math.round(u.converterPressao(1013.25, "mmhg")), 760);
+  assert.equal(Math.round(u.converterPressao(1013.25, "inhg") * 100) / 100, 29.92);
+  assert.equal(u.formatarMedida("vento", 36, "ms"), "10 m/s");
+  assert.equal(u.formatarMedida("pressao", 1013.25, "inhg"), "29,92 inHg");
+  assert.equal(u.simboloUnidade("kmh"), "km/h");
+});
