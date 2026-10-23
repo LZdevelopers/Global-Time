@@ -20,16 +20,20 @@ const VALIDADE_MS = 30 * 24 * 60 * 60 * 1000;
 const VALIDADE_LISTA_MS = 7 * 24 * 60 * 60 * 1000;
 const CHAVE_LISTA = "feriados-paises:lista";
 const CHAVE_PAIS = "calendario:pais";
+// Gravado por scripts/nucleo/unidades-clima.js.
+const CHAVE_PAIS_VISITANTE = "clima:pais";
 
 /**
  * País dos feriados, o mesmo no calendário e na página inicial. Ordem: o
- * indicado (ex.: ?pais= na URL), a escolha salva no calendário, o país da
+ * indicado (ex.: ?pais= na URL), a escolha salva no calendário, o país
+ * onde o visitante está (localização por IP ou GPS feita no clima), o da
  * cidade do fuso preferido, o do fuso do aparelho e, por fim, o Brasil.
  */
 export function paisPreferido(indicado = null) {
   const candidatos = [
     indicado?.toUpperCase(),
     ler(CHAVE_PAIS),
+    ler(CHAVE_PAIS_VISITANTE),
     codigoPais(cidadePreferida()),
     codigoPais(cidadeDoFuso(fusoDoNavegador())),
   ];

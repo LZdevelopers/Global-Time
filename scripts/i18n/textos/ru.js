@@ -953,6 +953,7 @@ export default {
   "calendario.setor.orgaos": "госучреждения",
   "calendario.soEm": "Только в регионах: {regioes}",
   "calendario.pais": "Страна",
+  "calendario.sistema": "Система",
   "calendario.feriadosCarregando": "Загрузка праздников…",
   "calendario.feriadosErro": "Сейчас не удалось загрузить праздники этой страны.",
   "calendario.feriadosDesatualizados": "Нет связи с источником: показаны праздники, сохранённые при последнем запросе.",

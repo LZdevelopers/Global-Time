@@ -141,6 +141,10 @@
               <span class="campo__rotulo" data-i18n="feriados.municipio">Gemeinde</span>
               <select id="selectMunicipio" class="entrada"></select>
             </label>
+            <label class="campo">
+              <span class="campo__rotulo" data-i18n="calendario.sistema">Kalendersystem</span>
+              <select id="selectSistema" class="entrada"><option value="gregory">Gregoriano</option></select>
+            </label>
           </div>
         </header>
 
@@ -153,7 +157,10 @@
 
           <aside class="calendario-lateral pilha">
             <section class="cartao pilha" aria-labelledby="tituloDia">
-              <h2 id="tituloDia" class="destaque__titulo" aria-live="polite">—</h2>
+              <div>
+                <h2 id="tituloDia" class="destaque__titulo" aria-live="polite">—</h2>
+                <p id="dataNoSistema" class="texto-pequeno texto-suave" hidden></p>
+              </div>
               <div id="eventosDia" class="pilha pilha--sm texto-pequeno"></div>
               <div class="grupo-botoes">
                 <button id="botaoNovoEvento" type="button" class="botao botao--primario botao--pequeno">

@@ -953,6 +953,7 @@ export default {
   "calendario.setor.orgaos": "공공 기관",
   "calendario.soEm": "해당 지역: {regioes}",
   "calendario.pais": "국가",
+  "calendario.sistema": "역법",
   "calendario.feriadosCarregando": "공휴일을 불러오는 중…",
   "calendario.feriadosErro": "지금은 이 국가의 공휴일을 불러올 수 없습니다.",
   "calendario.feriadosDesatualizados": "출처에 연결할 수 없어 마지막으로 조회해 저장한 공휴일을 표시합니다.",

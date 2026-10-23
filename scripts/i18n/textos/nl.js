@@ -953,6 +953,7 @@ export default {
   "calendario.setor.orgaos": "overheidsinstanties",
   "calendario.soEm": "Alleen in: {regioes}",
   "calendario.pais": "Land",
+  "calendario.sistema": "Kalendersysteem",
   "calendario.feriadosCarregando": "Feestdagen laden…",
   "calendario.feriadosErro": "De feestdagen van dit land kunnen nu niet worden geladen.",
   "calendario.feriadosDesatualizados": "Geen verbinding met de bron: de opgeslagen feestdagen van de laatste raadpleging worden getoond.",

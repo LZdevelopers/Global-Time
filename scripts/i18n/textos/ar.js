@@ -953,6 +953,7 @@ export default {
   "calendario.setor.orgaos": "الجهات الحكومية",
   "calendario.soEm": "فقط في: {regioes}",
   "calendario.pais": "البلد",
+  "calendario.sistema": "نظام التقويم",
   "calendario.feriadosCarregando": "جارٍ تحميل العطلات…",
   "calendario.feriadosErro": "تعذّر تحميل عطلات هذا البلد الآن.",
   "calendario.feriadosDesatualizados": "لا يوجد اتصال بالمصدر: تُعرض العطلات المحفوظة من آخر استعلام.",

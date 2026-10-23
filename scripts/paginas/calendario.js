@@ -5,6 +5,10 @@
 // País: o Brasil usa os dados próprios do site (com estado e capital); os
 // outros países do relógio mundial vêm de /api/feriados, carregados por ano
 // conforme o calendário navega (ver scripts/nucleo/feriados-paises.js).
+//
+// Sistema: gregoriano por padrão, ou outro que o navegador saiba calcular
+// (hegírico, hebraico, chinês, persa…). Só muda a grade e a escrita das
+// datas; os eventos são os mesmos (ver scripts/nucleo/sistemas-calendario.js).
 
 import "../i18n/index.js";
 import { locale, t, urlLocal } from "../i18n/estado.js";
@@ -23,6 +27,7 @@ import {
 } from "../nucleo/feriados-paises.js";
 import { fusoPreferido } from "../nucleo/fuso-preferido.js";
 import { ligarSeletorLocalidade } from "../nucleo/localidade.js";
+import { nomesCurtos, salvarSistemaPreferido, sistemaPreferido, sistemasDisponiveis } from "../nucleo/sistemas-calendario.js";
 import { obterRelogio } from "../nucleo/sincronizacao.js";
 import {
   anoBissexto,
@@ -219,8 +224,23 @@ const calendario = criarCalendario({
   aoAtivar: (juliano) => abrirEditor({ juliano }),
   aoMudarVisao: (visao) => gravar("calendario:visao", visao),
   visao: ["ano", "mes", "semana"].includes(visaoUrl) ? visaoUrl : ler("calendario:visao", "ano"),
+  sistema: sistemaPreferido(parametros.get("sistema")),
 });
 $("#areaCalendario").append(calendario.elemento);
+
+// ---- Sistema de calendário ------------------------------------------------------------
+const selectSistema = $("#selectSistema");
+// O gregoriano primeiro; os demais em ordem alfabética no idioma.
+const sistemas = sistemasDisponiveis();
+const rotulos = nomesCurtos(sistemas);
+const [gregoriano, ...outros] = sistemas.map((s, i) => ({ valor: s, rotulo: rotulos[i] }));
+outros.sort((a, b) => a.rotulo.localeCompare(b.rotulo, locale()));
+preencherSelect(selectSistema, [gregoriano, ...outros], calendario.sistema.id);
+selectSistema.addEventListener("change", () => {
+  salvarSistemaPreferido(selectSistema.value);
+  calendario.definirSistema(selectSistema.value);
+  mostrarDia(calendario.estado.selecionado);
+});
 
 function redesenhar() {
   calendario.atualizar();
@@ -292,6 +312,10 @@ function mostrarDia(juliano) {
         : "calendario.situacao.util";
 
   definirTexto($("#tituloDia"), capitalizar(formatarDataExtenso(d)));
+  const sistema = calendario.sistema;
+  const dataNoSistema = $("#dataNoSistema");
+  dataNoSistema.hidden = sistema.gregoriano;
+  if (!sistema.gregoriano) definirTexto(dataNoSistema, capitalizar(sistema.data(juliano, { comSemana: false })));
   const linhas = [
     [t("calendario.campo.situacao"), t(situacao)],
     [t("calendario.campo.relativo"), relativo(juliano)],

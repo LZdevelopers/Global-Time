@@ -953,6 +953,7 @@ export default {
   "calendario.setor.orgaos": "serviços públicos",
   "calendario.soEm": "Apenas em: {regioes}",
   "calendario.pais": "País",
+  "calendario.sistema": "Sistema",
   "calendario.feriadosCarregando": "A carregar feriados…",
   "calendario.feriadosErro": "Não foi possível carregar os feriados deste país neste momento.",
   "calendario.feriadosDesatualizados": "Sem ligação à fonte: a mostrar os feriados guardados da última consulta.",

@@ -953,6 +953,7 @@ export default {
   "calendario.setor.orgaos": "सरकारी कार्यालयहरू",
   "calendario.soEm": "यहाँ मात्र: {regioes}",
   "calendario.pais": "देश",
+  "calendario.sistema": "पात्रो प्रणाली",
   "calendario.feriadosCarregando": "बिदाहरू लोड गर्दै…",
   "calendario.feriadosErro": "यो देशका बिदाहरू अहिले लोड गर्न सकिएन।",
   "calendario.feriadosDesatualizados": "स्रोतसँग जडान छैन: अन्तिम खोजबाट सुरक्षित गरिएका बिदाहरू देखाइँदै।",

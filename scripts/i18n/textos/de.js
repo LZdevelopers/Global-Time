@@ -953,6 +953,7 @@ export default {
   "calendario.setor.orgaos": "Behörden",
   "calendario.soEm": "Nur in: {regioes}",
   "calendario.pais": "Land",
+  "calendario.sistema": "Kalendersystem",
   "calendario.feriadosCarregando": "Feiertage werden geladen …",
   "calendario.feriadosErro": "Die Feiertage dieses Landes können gerade nicht geladen werden.",
   "calendario.feriadosDesatualizados": "Keine Verbindung zur Quelle: Es werden die gespeicherten Feiertage der letzten Abfrage angezeigt.",

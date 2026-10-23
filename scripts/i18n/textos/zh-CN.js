@@ -953,6 +953,7 @@ export default {
   "calendario.setor.orgaos": "政府机关",
   "calendario.soEm": "仅限：{regioes}",
   "calendario.pais": "国家",
+  "calendario.sistema": "历法",
   "calendario.feriadosCarregando": "正在加载节假日…",
   "calendario.feriadosErro": "暂时无法加载该国家的节假日。",
   "calendario.feriadosDesatualizados": "无法连接数据源：正在显示上次查询时保存的节假日。",

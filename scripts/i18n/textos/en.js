@@ -953,6 +953,7 @@ export default {
   "calendario.setor.orgaos": "government offices",
   "calendario.soEm": "Only in: {regioes}",
   "calendario.pais": "Country",
+  "calendario.sistema": "Calendar system",
   "calendario.feriadosCarregando": "Loading holidays…",
   "calendario.feriadosErro": "Couldn't load this country's holidays right now.",
   "calendario.feriadosDesatualizados": "No connection to the source: showing the holidays saved from the last lookup.",

@@ -12,6 +12,8 @@
 //      FUSO=Europe/Lisbon npm run test:navegador (simula um aparelho em outro fuso)
 //      TEMA=dark npm run test:navegador          (abre as páginas no tema escuro)
 //      IDIOMA=en npm run test:navegador          (abre as páginas em outro idioma)
+//      GUARDAR='{"calendario:sistema":"hebrew"}' npm run test:navegador
+//                                                (escolhas salvas antes de abrir, como gravar())
 
 import { spawn } from "node:child_process";
 import { existsSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
@@ -26,7 +28,7 @@ import { caminhoNoIdioma, infoIdioma } from "../scripts/i18n/idiomas.js";
 const RAIZ = fileURLToPath(new URL("..", import.meta.url));
 const PORTA_SITE = Number(process.env.PORTA) || 3100 + Math.floor(Math.random() * 600);
 const PORTA_DEPURACAO = 9300 + Math.floor(Math.random() * 600);
-const SAIDA = join(tmpdir(), "brasil-time-capturas", `${process.env.SO || "todas"}${process.env.FUSO ? `-${process.env.FUSO}` : ""}${process.env.TEMA ? `-${process.env.TEMA}` : ""}${process.env.IDIOMA ? `-${process.env.IDIOMA}` : ""}`.replace(/[^\w-]+/g, "_") || "inicio");
+const SAIDA = join(tmpdir(), "brasil-time-capturas", `${process.env.SO || "todas"}${process.env.FUSO ? `-${process.env.FUSO}` : ""}${process.env.TEMA ? `-${process.env.TEMA}` : ""}${process.env.IDIOMA ? `-${process.env.IDIOMA}` : ""}${process.env.GUARDAR ? `-${process.env.GUARDAR}` : ""}`.replace(/[^\w-]+/g, "_") || "inicio");
 const BASE = `http://localhost:${PORTA_SITE}`;
 
 const CANDIDATOS_CHROME = [
@@ -164,6 +166,12 @@ async function main() {
     }
     if (process.env.TEMA) {
       await cdp.enviar("Page.addScriptToEvaluateOnNewDocument", { source: `localStorage.setItem("gt:tema", ${JSON.stringify(process.env.TEMA)});` });
+    }
+    if (process.env.GUARDAR) {
+      const itens = Object.entries(JSON.parse(process.env.GUARDAR)).map(([k, v]) => [`bt:${k}`, JSON.stringify(v)]);
+      await cdp.enviar("Page.addScriptToEvaluateOnNewDocument", {
+        source: `for (const [k, v] of ${JSON.stringify(itens)}) localStorage.setItem(k, v);`,
+      });
     }
     if (process.env.FUSO) await cdp.enviar("Emulation.setTimezoneOverride", { timezoneId: process.env.FUSO });
 

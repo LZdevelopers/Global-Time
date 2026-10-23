@@ -13,7 +13,7 @@
 // "Atualizar" (mensagem ATIVAR_AGORA). Se ninguém clicar, ela assume quando
 // todas as abas do site forem fechadas — ninguém fica preso a uma versão.
 
-const VERSAO = "267a8b2b4a17";
+const VERSAO = "7a2be5bb3bae";
 const CACHE = `globaltime-${VERSAO}`;
 const TEMPO_LIMITE_REDE_MS = 3500;
 
@@ -92,6 +92,7 @@ const PRECACHE = [
   "/scripts/nucleo/pagina.js",
   "/scripts/nucleo/pomodoro.js",
   "/scripts/nucleo/sincronizacao.js",
+  "/scripts/nucleo/sistemas-calendario.js",
   "/scripts/nucleo/sol.js",
   "/scripts/nucleo/tempo.js",
   "/scripts/nucleo/ui.js",

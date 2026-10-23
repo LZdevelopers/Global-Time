@@ -655,6 +655,28 @@ export const VERIFICACOES = {
         return (noMes === hoje + 3 && naSemana === hoje + 3 && noAno === hoje + 3 && temSetaMes && diasSemana === 7 && salvo === "ano" && dados.includes("Semana (ISO 8601)")) || { noMes, naSemana, noAno, temSetaMes, diasSemana, salvo };`,
     },
     {
+      nome: "sistema hebraico: 13 meses em 5787, dia gregoriano no canto e a data no painel; volta ao gregoriano",
+      codigo: `
+        const select = document.querySelector("#selectSistema");
+        const opcoes = select.options.length;
+        const sel = () => Number(document.querySelector("[role=gridcell][aria-selected=true]").dataset.juliano);
+        const antes = sel();
+        select.value = "hebrew"; select.dispatchEvent(new Event("change"));
+        const titulo = document.querySelector(".calendario__titulo").textContent;
+        const meses = document.querySelectorAll(".calendario__mes").length;
+        const mesmoDia = sel() === antes;
+        const painel = document.querySelector("#dataNoSistema");
+        const noPainel = !painel.hidden && /AM/.test(painel.textContent);
+        document.querySelector('[data-visao="mes"]').click();
+        const gregorianos = document.querySelectorAll(".calendario__gregoriano").length;
+        const salvo = JSON.parse(localStorage.getItem("bt:calendario:sistema"));
+        select.value = "gregory"; select.dispatchEvent(new Event("change"));
+        document.querySelector('[data-visao="ano"]').click();
+        const volta = document.querySelectorAll(".calendario__mes").length === 12 && painel.hidden && !document.querySelector(".calendario__gregoriano");
+        const ok = opcoes >= 10 && /AM/.test(titulo) && [12, 13].includes(meses) && mesmoDia && noPainel && gregorianos >= 28 && salvo === "hebrew" && volta;
+        return ok || { opcoes, titulo, meses, mesmoDia, noPainel, gregorianos, salvo, volta };`,
+    },
+    {
       nome: "contagens salvas aparecem no calendário (dados inválidos ignorados)",
       codigo: `
         const ano = document.querySelector(".calendario__titulo").textContent;

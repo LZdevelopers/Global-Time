@@ -953,6 +953,7 @@ export default {
   "calendario.setor.orgaos": "administrations",
   "calendario.soEm": "Uniquement : {regioes}",
   "calendario.pais": "Pays",
+  "calendario.sistema": "Système",
   "calendario.feriadosCarregando": "Chargement des jours fériés…",
   "calendario.feriadosErro": "Impossible de charger les jours fériés de ce pays pour le moment.",
   "calendario.feriadosDesatualizados": "Pas de connexion à la source : affichage des jours fériés enregistrés lors de la dernière consultation.",

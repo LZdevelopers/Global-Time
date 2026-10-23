@@ -2778,6 +2778,30 @@ body:has(.inicio) .rodape {
   font-weight: 500;
 }
 
+/* Dia gregoriano no canto, quando a grade segue outro sistema. */
+.calendario__gregoriano {
+  position: absolute;
+  top: 0.5rem;
+  inset-inline-end: 0.375rem;
+  font-size: 0.6875rem;
+  line-height: 1;
+  color: var(--cor-fraca);
+  white-space: nowrap;
+}
+
+/* Células estreitas: abaixo do número, sem o nome do mês. */
+@media (max-width: 40rem) {
+  .calendario__gregoriano {
+    position: static;
+    margin-top: -0.25rem;
+    padding-inline-start: 0.25rem;
+  }
+
+  .calendario__gregoriano-mes {
+    display: none;
+  }
+}
+
 .calendario__dia--hoje .calendario__numero {
   background: var(--cor-marca);
   color: var(--cor-sobre-marca);

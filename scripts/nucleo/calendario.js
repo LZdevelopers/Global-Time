@@ -11,20 +11,14 @@
 // `obterEventos(inicio, fim)` recebe dias julianos e devolve
 // [{ juliano, nome, tipo, folga?, hora? }] — o componente não sabe de onde
 // vêm os dados (feriados, contagens, eventos pessoais).
+//
+// `sistema` (ver sistemas-calendario.js) define meses e anos: no gregoriano
+// é o calendário de sempre; nos outros, a grade segue os meses daquele
+// sistema e cada dia mostra também o número gregoriano.
 
 import { locale, t } from "../i18n/estado.js";
-import {
-  capitalizar,
-  deDiaJuliano,
-  diaJuliano,
-  diasNoMes,
-  formatarDataExtenso,
-  formatarMesAno,
-  inicialDiaSemana,
-  nomeDiaSemana,
-  nomeMes,
-  semanaIso,
-} from "./tempo.js";
+import { obterSistema } from "./sistemas-calendario.js";
+import { capitalizar, deDiaJuliano, diaJuliano, formatarDataExtenso, inicialDiaSemana, nomeDiaSemana, nomeMes, semanaIso } from "./tempo.js";
 import { el, icone } from "./ui.js";
 
 const VISOES = ["ano", "mes", "semana"];
@@ -98,8 +92,10 @@ export function criarCalendario({
   aoMudarVisao,
   visoes = VISOES,
   visao: visaoInicial = visoes[0],
+  sistema: sistemaInicial,
   compacto = false,
 }) {
+  let sistema = obterSistema(sistemaInicial);
   const inicioSemana = primeiroDiaSemana();
   const idTitulo = `cal-${Math.random().toString(36).slice(2, 8)}`;
   const titulo = el("h2", { id: idTitulo, class: "calendario__titulo", "aria-live": "polite" });
@@ -145,7 +141,8 @@ export function criarCalendario({
   }
 
   function rotuloCelula(juliano, eventos) {
-    const partes = [formatarDataExtenso(deDiaJuliano(juliano))];
+    const gregoriana = formatarDataExtenso(deDiaJuliano(juliano));
+    const partes = sistema.gregoriano ? [gregoriana] : [sistema.data(juliano), gregoriana];
     if (juliano === estado.hoje) partes.push(t("tempo.hoje"));
     for (const e of eventos) partes.push(`${t(`calendario.tipo.${e.tipo}`)}: ${e.nome}`);
     return partes.join(", ");
@@ -154,7 +151,7 @@ export function criarCalendario({
   function celula(juliano, eventos, { mesDaGrade, conteudo }) {
     const d = deDiaJuliano(juliano);
     const classes = ["calendario__dia"];
-    if (mesDaGrade != null && d.mes !== mesDaGrade) classes.push("calendario__dia--fora");
+    if (mesDaGrade && (juliano < mesDaGrade.inicio || juliano > mesDaGrade.fim)) classes.push("calendario__dia--fora");
     if (d.diaSemana === 0 || d.diaSemana === 6) classes.push("calendario__dia--fim-semana");
     if (juliano === estado.hoje) classes.push("calendario__dia--hoje");
     if (eventos.some((e) => e.folga)) classes.push("calendario__dia--feriado");
@@ -186,7 +183,15 @@ export function criarCalendario({
         )
       : null;
 
-  const numero = (d) => el("span", { class: "calendario__numero", "aria-hidden": "true" }, String(d.dia));
+  // Fora do gregoriano, o número grande é o do sistema e o pequeno, o
+  // gregoriano (com o mês no dia 1). `mini`: só o do sistema.
+  const numero = (juliano, { mini = false } = {}) => {
+    const principal = el("span", { class: "calendario__numero", "aria-hidden": "true" }, String(sistema.dia(juliano)));
+    if (sistema.gregoriano || mini) return principal;
+    const d = deDiaJuliano(juliano);
+    const mes = d.dia === 1 ? el("span", { class: "calendario__gregoriano-mes" }, ` ${nomeMes(d.mes, true)}`) : null;
+    return [principal, el("span", { class: "calendario__gregoriano", "aria-hidden": "true" }, String(d.dia), mes)];
+  };
 
   const cabecalhoSemana = (curto) =>
     el(
@@ -198,19 +203,18 @@ export function criarCalendario({
     );
 
   // ---- Visão mensal -----------------------------------------------------------
-  function gradeMes(ano, mes, porDia, { mini = false } = {}) {
-    const primeiro = diaJuliano(ano, mes, 1);
-    const ultimo = diaJuliano(ano, mes, diasNoMes(ano, mes));
+  /** Grade do mês `mes` ({ inicio, fim } em dias julianos). */
+  function gradeMes(mes, porDia, { mini = false } = {}) {
+    const { inicio: primeiro, fim: ultimo } = mes;
     const inicio = inicioDaSemana(primeiro);
     const semanas = Math.ceil((ultimo - inicio + 1) / 7);
-    const idMes = `${idTitulo}-${ano}-${mes}`;
+    const idMes = `${idTitulo}-${primeiro}`;
     const linhas = [cabecalhoSemana((i) => (mini ? inicialDiaSemana(i) : nomeDiaSemana(i, true)))];
     for (let s = 0; s < semanas; s += 1) {
       const linha = el("div", { class: "calendario__linha", role: "row" });
       for (let i = 0; i < 7; i += 1) {
         const juliano = inicio + s * 7 + i;
-        const d = deDiaJuliano(juliano);
-        if (mini && d.mes !== mes) {
+        if (mini && (juliano < primeiro || juliano > ultimo)) {
           linha.append(el("div", { class: "calendario__vazio", role: "gridcell", "aria-hidden": "true" }));
           continue;
         }
@@ -220,7 +224,7 @@ export function criarCalendario({
           celula(juliano, eventos, {
             mesDaGrade: mes,
             conteudo: () => [
-              numero(d),
+              numero(juliano, { mini }),
               mini ? null : marcas(eventos),
               !mini && principal ? el("span", { class: "calendario__rotulo", "aria-hidden": "true" }, principal.nome) : null,
             ],
@@ -233,35 +237,35 @@ export function criarCalendario({
   }
 
   function renderizarMes() {
-    const d = deDiaJuliano(estado.selecionado);
-    titulo.textContent = capitalizar(formatarMesAno(d.ano, d.mes));
-    const primeiro = inicioDaSemana(diaJuliano(d.ano, d.mes, 1));
+    const j = estado.selecionado;
+    titulo.textContent = capitalizar(sistema.tituloMes(j));
+    const mes = { inicio: sistema.inicioMes(j), fim: sistema.fimMes(j) };
+    const primeiro = inicioDaSemana(mes.inicio);
     const porDia = eventosPorDia(primeiro, primeiro + 42);
-    corpo.replaceChildren(gradeMes(d.ano, d.mes, porDia));
+    corpo.replaceChildren(gradeMes(mes, porDia));
   }
 
-  // ---- Visão anual: 12 meses compactos ---------------------------------------------
+  // ---- Visão anual: os meses do ano em grades compactas (12, ou 13) ------------------
   function renderizarAno() {
-    const { ano } = deDiaJuliano(estado.selecionado);
-    titulo.textContent = String(ano);
-    const porDia = eventosPorDia(diaJuliano(ano, 1, 1), diaJuliano(ano, 12, 31));
-    const meses = Array.from({ length: 12 }, (_, i) => {
-      const mes = i + 1;
-      return el(
+    const lista = sistema.mesesDoAno(estado.selecionado);
+    titulo.textContent = capitalizar(sistema.tituloAno(estado.selecionado));
+    const porDia = eventosPorDia(lista[0].inicio, lista.at(-1).fim);
+    const meses = lista.map((mes) =>
+      el(
         "section",
         { class: "calendario__mes" },
         el(
           "h3",
-          { class: "calendario__mes-titulo", id: `${idTitulo}-${ano}-${mes}` },
+          { class: "calendario__mes-titulo", id: `${idTitulo}-${mes.inicio}` },
           el(
             "button",
-            { type: "button", class: "calendario__mes-botao", dataset: { mes: String(mes) }, title: t("calendario.abrirMes") },
-            capitalizar(nomeMes(mes)),
+            { type: "button", class: "calendario__mes-botao", dataset: { mes: String(mes.inicio) }, title: t("calendario.abrirMes") },
+            capitalizar(sistema.nomeMes(mes.inicio)),
           ),
         ),
-        gradeMes(ano, mes, porDia, { mini: true }),
-      );
-    });
+        gradeMes(mes, porDia, { mini: true }),
+      ),
+    );
     corpo.replaceChildren(el("div", { class: "calendario__ano" }, meses));
   }
 
@@ -270,11 +274,10 @@ export function criarCalendario({
     const inicio = inicioDaSemana(estado.selecionado);
     const fim = inicio + 6;
     const a = deDiaJuliano(inicio);
-    const b = deDiaJuliano(fim);
-    titulo.textContent = t("calendario.tituloSemana", {
-      numero: semanaIso(a.ano, a.mes, a.dia),
-      periodo: `${formatarDataExtenso(a, { comSemana: false, comAno: a.ano !== b.ano })} – ${formatarDataExtenso(b, { comSemana: false })}`,
-    });
+    const outroAno = sistema.inicioAno(inicio) !== sistema.inicioAno(fim);
+    const periodo = `${sistema.data(inicio, { comSemana: false, comAno: outroAno })} – ${sistema.data(fim, { comSemana: false })}`;
+    // O número da semana é o ISO, que só faz sentido no gregoriano.
+    titulo.textContent = sistema.gregoriano ? t("calendario.tituloSemana", { numero: semanaIso(a.ano, a.mes, a.dia), periodo }) : periodo;
     const porDia = eventosPorDia(inicio, fim);
     const linha = el("div", { class: "calendario__linha calendario__linha--semana", role: "row" });
     for (let j = inicio; j <= fim; j += 1) {
@@ -286,7 +289,7 @@ export function criarCalendario({
               "span",
               { class: "calendario__cabeca-dia", "aria-hidden": "true" },
               el("span", { class: "calendario__nome-dia" }, nomeDiaSemana(d.diaSemana, true)),
-              numero(d),
+              numero(j),
             ),
             el(
               "ul",
@@ -333,10 +336,8 @@ export function criarCalendario({
 
   /** Mesmo período (ano, mês ou semana) que o dia já exibido? */
   function mesmoPeriodo(a, b) {
-    const x = deDiaJuliano(a);
-    const y = deDiaJuliano(b);
-    if (estado.visao === "ano") return x.ano === y.ano;
-    if (estado.visao === "mes") return x.ano === y.ano && x.mes === y.mes;
+    if (estado.visao === "ano") return sistema.inicioAno(a) === sistema.inicioAno(b);
+    if (estado.visao === "mes") return sistema.inicioMes(a) === sistema.inicioMes(b);
     return inicioDaSemana(a) === inicioDaSemana(b);
   }
 
@@ -356,23 +357,10 @@ export function criarCalendario({
   }
 
   function mudarPeriodo(delta, { focar = false } = {}) {
-    const d = deDiaJuliano(estado.selecionado);
-    if (estado.visao === "semana") return selecionar(estado.selecionado + 7 * delta, { focar });
-    if (estado.visao === "ano") {
-      const ano = d.ano + delta;
-      return selecionar(diaJuliano(ano, d.mes, Math.min(d.dia, diasNoMes(ano, d.mes))), { focar });
-    }
-    let { ano, mes } = d;
-    mes += delta;
-    while (mes < 1) {
-      mes += 12;
-      ano -= 1;
-    }
-    while (mes > 12) {
-      mes -= 12;
-      ano += 1;
-    }
-    return selecionar(diaJuliano(ano, mes, Math.min(d.dia, diasNoMes(ano, mes))), { focar });
+    const j = estado.selecionado;
+    if (estado.visao === "semana") return selecionar(j + 7 * delta, { focar });
+    if (estado.visao === "ano") return selecionar(sistema.moverAno(j, delta), { focar });
+    return selecionar(sistema.moverMes(j, delta), { focar });
   }
 
   function definirVisao(visao, { focar = false } = {}) {
@@ -396,8 +384,7 @@ export function criarCalendario({
   corpo.addEventListener("click", (evento) => {
     const mes = evento.target.closest("[data-mes]");
     if (mes) {
-      const { ano } = deDiaJuliano(estado.selecionado);
-      estado.selecionado = diaJuliano(ano, Number(mes.dataset.mes), 1);
+      estado.selecionado = Number(mes.dataset.mes);
       definirVisao("mes", { focar: true });
       aoSelecionar?.(estado.selecionado);
       return;
@@ -443,6 +430,14 @@ export function criarCalendario({
     },
     definirHoje(juliano) {
       estado.hoje = juliano;
+    },
+    /** Troca o sistema de calendário mantendo o dia selecionado. */
+    definirSistema(id) {
+      sistema = obterSistema(id);
+      renderizar();
+    },
+    get sistema() {
+      return sistema;
     },
     get estado() {
       return { ...estado };

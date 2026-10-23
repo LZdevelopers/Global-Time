@@ -953,6 +953,7 @@ export default {
   "calendario.setor.orgaos": "官公庁",
   "calendario.soEm": "{regioes} のみ",
   "calendario.pais": "国",
+  "calendario.sistema": "暦法",
   "calendario.feriadosCarregando": "祝日を読み込み中…",
   "calendario.feriadosErro": "現在、この国の祝日を読み込めません。",
   "calendario.feriadosDesatualizados": "ソースに接続できません。前回取得した祝日を表示しています。",
