@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/marca/logo.png" alt="GlobalTime" width="320" />
+<img src="assets/marca/logo-readme.png" alt="GlobalTime" width="320" />
 
 **Hora certa sincronizada no seu fuso e ferramentas de tempo.**
 Relógio, cronômetro, temporizador, calendário com eventos, fusos horários e mais — em 13 idiomas, gratuito e sem rastreadores.
@@ -145,6 +145,7 @@ lugar. Os originais (preto e branco, 1254 px, fundo transparente) ficam em
 
 - `simbolo-preto.png` / `simbolo-branco.png` — símbolo do cabeçalho (tema claro / escuro);
 - `logo.png` / `logo-fundo-escuro.png` — símbolo + nome, para fundo claro e escuro;
+- `logo-readme.png` — `logo.png` sobre cartão branco de cantos arredondados, para o topo deste README ficar legível também no tema escuro do GitHub;
 - `og.png` — imagem de compartilhamento (1200×630);
 - `assets/icones/` — logo branca em quadrado escuro: PNGs 96/192/512, versão *maskable* (dentro da zona segura) e `apple-touch-icon`; `favicon.ico` (16/32/48) na raiz.
 
